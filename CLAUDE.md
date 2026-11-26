@@ -2,7 +2,8 @@
 
 Launch films and product videos, built as code.
 
-- Read `docs/creative-playbook.md` before planning any video. It has the shot formula, measured pacing, and the step-by-step run.
+- Before planning any video, use `/creative-director`: idea first, then flow, then shots. Evidence lives in `docs/creative-thinking.md` and `docs/creative-playbook.md`.
+- Measure every draft with `tools/flow_report.py` and compare it to the references.
 - Use `/hyperframes` for any video work (compose, animate, render). Use `/stageshow` for product UI, phone screens, dashboards and cursor walkthroughs.
 - Run `npx hyperframes lint` and `npx hyperframes check` before every render. Watch the exported MP4, not just the preview.
 - Renders and source footage stay out of git (see `.gitignore`).

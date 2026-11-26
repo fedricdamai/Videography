@@ -5,3 +5,5 @@ renders/
 .hyperframes/
 node_modules/
 examples/**/check.png
+
+.venv/

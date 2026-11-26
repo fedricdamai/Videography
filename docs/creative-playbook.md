@@ -248,7 +248,7 @@ Check `/hyperframes-registry` first for ready blocks (glitch, kinetic type, capt
 
 ### Step 5. Assemble (1 to 2 days)
 
-- Cut to the music. Every hard cut lands on a beat or a hit.
+- Cut to the music, the way your school does. Quiet school (Plasma): cut on the beat grid, about a quarter beat early, so the new shot lands on the beat. Loud school (Cero, Predictstreet, Motoswap): cut on action in the picture. Measured proof in `docs/creative-thinking.md`.
 - Default shot length 1 to 1.5s. Hold only the UI explainer and the end card.
 - Transitions the refs use: hard cut with 1-frame white flash, radial zoom blur, RGB split glitch, object morph (pack into ticket), circle-mask collage.
 - Burn in captions for any dialogue. Small, white, bottom center (Motoswap style) or big kinetic (TikTok style). `npx hyperframes transcribe` gives word timings.
