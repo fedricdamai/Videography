@@ -25,5 +25,8 @@ cut $B/b12.mp4 17464 2 3.2;  cut $B/b13.mp4 32617 3 3.2;  cut $B/b14.mp4 22568 2
 curl -sfL -o flow-a/assets/music.mp3 https://assets.mixkit.co/music/267/267.mp3   # Trap Hamza, 112 BPM
 curl -sfL -o flow-b/assets/music.mp3 https://assets.mixkit.co/music/33/33.mp3     # Motivating Mornings, 123 BPM
 curl -sfL -o flow-c/assets/music.mp3 https://assets.mixkit.co/music/126/126.mp3   # Trap Electro Vibes, 112 BPM
-for f in a b c; do cp kit/kit.css kit/kit.js flow-$f/; done
+mkdir -p flow-c2/assets
+curl -sfL -o flow-c2/assets/music.mp3 https://assets.mixkit.co/music/126/126.mp3
+for id in 2354 2364 1492 1485 2870; do curl -sfL -o flow-c2/assets/sfx-$id.mp3 https://assets.mixkit.co/active_storage/sfx/$id/$id-preview.mp3; done
+for f in a b c c2; do cp kit/kit.css kit/kit.js flow-$f/; done
 rm -rf "$tmp"; echo "assets ready"

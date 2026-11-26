@@ -4,7 +4,7 @@ Three pitch videos for the Nika copytrading launch, one per flow in the script d
 
 - `kit/` holds the Nika UI rebuilt in HTML from the app screen recording: Strategies, trader detail, Mirror and Inverse sheet, portfolio, notifications, Nika AI chat. Handles are fictional and all numbers are placeholders.
 - Flows A and B cut free Mixkit stock footage under the app overlays to show pace and story. The final film replaces them with shot or generated footage of the actual characters.
-- Flow C is pure motion design and close to the final look.
+- Flow C is pure motion design and close to the final look. `flow-c2/` is the Group Chat version of Flow C, built entirely in code with Mixkit sound effects.
 
 Rebuild:
 
