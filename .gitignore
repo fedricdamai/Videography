@@ -1,0 +1,7 @@
+*.mp4
+*.mov
+*.webm
+renders/
+.hyperframes/
+node_modules/
+examples/**/check.png

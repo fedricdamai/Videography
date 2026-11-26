@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    html, body { margin: 0; background: #07040f; }
+    #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: radial-gradient(ellipse at 50% 55%, #1d1240 0%, #07040f 70%); font-family: "Archivo Black", sans-serif; }
+    .clip { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .label { font-family: "Inter", sans-serif; font-weight: 900; letter-spacing: 0.08em; font-size: 54px; color: #b9a4ff; }
+    .num { font-size: 260px; line-height: 1; color: #efe9ff; text-shadow: 0 0 40px rgba(150,110,255,.55); font-variant-numeric: tabular-nums; }
+    #flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 5; }
+  </style>
+</head>
+<body>
+  <div id="root" data-composition-id="main" data-start="0" data-duration="4" data-width="1920" data-height="1080">
+    <div id="s1" class="clip" data-start="0" data-duration="2">
+      <div id="s1-label" class="label">CATS PVE AIRDROPS</div>
+      <div id="s1-num" class="num">14,641</div>
+    </div>
+    <div id="s2" class="clip" data-start="2" data-duration="2">
+      <div id="s2-label" class="label">MOTO PAID OUT</div>
+      <div id="s2-num" class="num">623,997</div>
+    </div>
+    <div id="flash" class="clip" data-start="0" data-duration="4"></div>
+  </div>
+  <script>
+    const fmt = n => Math.round(n).toLocaleString("en-US");
+    const tl = gsap.timeline({ paused: true });
+    const c1 = { v: 14641 }, c2 = { v: 623997 };
+    // beat 1: label drops in, number punches and counts up
+    tl.fromTo("#s1-label", { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.25, ease: "power3.out" }, 0);
+    tl.fromTo("#s1-num", { scale: 1.35, opacity: 0, filter: "blur(14px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "expo.out" }, 0.05);
+    tl.fromTo(c1, { v: 14641 }, { v: 8927021, duration: 1.6, ease: "power2.in", onUpdate: () => { document.querySelector("#s1-num").textContent = fmt(c1.v); } }, 0.2);
+    // hard cut + one-frame flash on the beat
+    tl.fromTo("#flash", { opacity: 0.85 }, { opacity: 0, immediateRender: false, duration: 0.12, ease: "none" }, 2);
+    tl.fromTo("#s2-label", { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.25, ease: "power3.out" }, 2);
+    tl.fromTo("#s2-num", { scale: 1.35, opacity: 0, filter: "blur(14px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "expo.out" }, 2.05);
+    tl.fromTo(c2, { v: 623997 }, { v: 1810081, immediateRender: false, duration: 1.5, ease: "power2.inOut", onUpdate: () => { document.querySelector("#s2-num").textContent = fmt(c2.v); } }, 2.2);
+    window.__timelines = window.__timelines || {};
+    window.__timelines.main = tl;
+  </script>
+</body>
+</html>
