@@ -5,11 +5,27 @@ description: Come up with, structure and critique launch films, product videos, 
 
 # Creative director
 
-Work in this order: **format, truth, idea, flow, threads, shots, build, measure, critique, launch.** Never start at shots. A film that starts as a shot list ends as a feature list.
+Work in this order: **decide, truth, idea, flow, threads, shots, build, measure, critique, launch.** Never start at shots. A film that starts as a shot list ends as a feature list.
+
+**Never combine styles.** Every reference film is one spine, one world and a handful of moves native to that world. Stacking techniques from several films is the fastest way to a bad video. The decisions below exist to stop that.
 
 Evidence and examples for everything here: `docs/launch-video-formula.md` (founder-led launches and how they go viral), `docs/creative-thinking.md` (why brand films work), `docs/visual-grammar.md` (shot by shot, how it moves) and `docs/creative-playbook.md` (production). Read the ones your format needs before the first concept in a session.
 
-## 0. Pick the format
+## 0. Decide: goal → spine, audience → world, beats → moves
+
+Fill `templates/video-blueprint.md` before anything else. Logic and evidence: `docs/decision-logic.md`. Ask the user for any input you can't infer, especially the goal and the success number.
+
+1. **What must the viewer do after watching?** That picks the spine and the CTA (goal table in `docs/decision-logic.md`).
+2. **Is the category new to them?** New means explain: founder-led, 75-125s. Familiar means show: 20-40s.
+3. **How much money or trust does the product hold?** The more it holds, the quieter the world.
+4. **Who is watching?** Pick one world: loud play, cinematic genre, quiet premium, founder explainer (+ exactly one cutaway world), or kinetic manifesto. If the brand already has a world, keep it. The world belongs to the brand; the spine belongs to the goal.
+5. **What is the product's core action as an object?** That's the hero object or the one material.
+6. **For each beat, pick one move**, only from the world's native list (the move table in `docs/decision-logic.md`).
+7. **Write the cut list:** moves you considered and rejected, and why.
+
+Budget: one spine, one world, one hero object or material, one accent, one display face, one sync rule (voice, beat grid or action), at most one void, one joke and one hybrid seam.
+
+### The formats at a glance
 
 | Format | Length | Use when | Engine | Reference |
 |---|---|---|---|---|
@@ -17,7 +33,7 @@ Evidence and examples for everything here: `docs/launch-video-formula.md` (found
 | **Brand film** | 20-40s | Brand awareness, a product line, a market launch | Concept device and flow (steps 2-4) | Cero, Predictstreet, Motoswap, Plasma |
 | **Motion manifesto** | 40-50s | No founder story; switching users away from an incumbent | One line broken into one word per beat, competitor-UI morph, features as verbs | Phantom (BLVD) |
 
-A "VERY GOOD LAUNCH VIDEO" for a startup is usually the **founder-led launch**, with a brand film cut down from its cutaways for paid and repeat posts.
+For a startup launch whose category is new to the audience, the strongest choice is usually the **founder-led launch**, with a brand film cut down from its cutaways for repeat posts. If the category is familiar (a card, a wallet, a DEX), a 25-40s brand or offer film in the brand's world beats a long explainer.
 
 **For a founder-led launch:** fill `templates/founder-launch-script.md` first (280-320 words, 155-180 wpm), then do steps 1, 4 and 5 with these rules:
 
@@ -146,6 +162,13 @@ For a founder-led launch, also check:
 15. Every noun and number in the script has its own visual.
 16. There is an enemy, one joke, and a gift with a one-word comment CTA.
 17. The last shot shows the reply box with the keyword typed in.
+
+Coherence checks, for every film:
+
+18. Every move is native to the chosen world. Nothing from a second world.
+19. Every move serves a beat or the hero object. Nothing is decoration.
+20. Sync never switches mid-film.
+21. The blueprint's cut list exists, and nothing on it crept back in.
 
 Fix the failures, re-render, measure again. Two passes, then ship.
 
