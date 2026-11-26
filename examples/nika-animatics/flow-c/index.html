@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<link rel="stylesheet" href="kit.css">
+<script src="kit.js"></script>
+<style>
+  html, body { margin:0; background:#07080d; }
+  #root { position:relative; width:1920px; height:1080px; overflow:hidden; background:radial-gradient(ellipse at 60% 40%, #141a3a 0%, #07080d 65%); font-family:"Inter",sans-serif; }
+  #stage { position:absolute; inset:0; }
+  .wall { position:absolute; left:-40px; top:-40px; width:2000px; display:grid; grid-template-columns:repeat(7, 270px); gap:16px; transform-origin:50% 50%; }
+  .mc { height:150px; border-radius:18px; background:#13141c; border:1px solid #232532; padding:16px 18px; box-sizing:border-box; color:#fff; }
+  .mc b { font-size:17px; } .mc em { display:block; font-style:normal; font-size:34px; font-weight:800; margin:6px 0 2px; font-variant-numeric:tabular-nums; }
+  .wall.red .mc em { color:#ef4444; } .wall.green .mc em { color:#22c55e; }
+  .shade { position:absolute; inset:0; background:radial-gradient(ellipse at center, rgba(7,8,13,.78) 0%, rgba(7,8,13,.35) 70%); }
+  .line { position:absolute; left:0; right:0; top:440px; text-align:center; font-size:150px; font-weight:800; color:#fff; letter-spacing:-0.045em; }
+  .line span { display:inline-block; opacity:0; margin:0 18px; }
+  #pill { position:absolute; left:660px; top:470px; width:600px; height:140px; opacity:0; }
+  #pill .nk-tog { margin:0; height:140px; border-radius:70px; }
+  #pill .nk-tog span { font-size:44px; line-height:118px; }
+  #pill .knob { border-radius:70px; }
+  #logoC { position:absolute; left:50%; top:380px; transform:translateX(-50%); opacity:0; }
+  #both { position:absolute; left:0; right:0; top:560px; text-align:center; font-size:92px; font-weight:800; color:#fff; letter-spacing:-0.04em; }
+  #both span { display:inline-block; opacity:0; margin:0 12px; }
+  #cton { position:absolute; left:0; right:0; top:700px; text-align:center; font-size:30px; color:#9aa0b8; opacity:0; }
+  #phone { left:300px; top:107px; opacity:0; }
+  .big { position:absolute; left:930px; font-size:200px; font-weight:800; color:#fff; letter-spacing:-0.05em; opacity:0; }
+  .clone { position:absolute; width:420px; opacity:0; font-family:"Inter",sans-serif; color:#fff; }
+  #wipe { position:absolute; top:0; bottom:0; width:900px; left:-1000px; background:linear-gradient(90deg, rgba(34,197,94,0), rgba(34,197,94,.85) 60%, rgba(34,197,94,0)); }
+  #slot { position:absolute; left:930px; top:420px; color:#fff; opacity:0; }
+  #slot small { display:block; font-size:44px; color:#9aa0b8; font-weight:600; }
+  #slot b { display:block; font-size:150px; font-weight:800; letter-spacing:-0.045em; }
+  #end { position:absolute; inset:0; background:#07080d; opacity:0; }
+  #end .l1, #end .l2 { position:absolute; left:0; right:0; text-align:center; font-size:110px; font-weight:800; color:#fff; letter-spacing:-0.045em; opacity:0; }
+  #end .l1 { top:250px; } #end .l2 { top:390px; color:#5662ff; }
+  #end .lg { position:absolute; left:50%; top:600px; transform:translateX(-50%); opacity:0; }
+  #end .st { position:absolute; left:50%; top:770px; transform:translateX(-50%); opacity:0; }
+  #end .nk-disc { position:absolute; left:0; right:0; bottom:50px; text-align:center; opacity:0; }
+  #tagA { position:absolute; right:40px; bottom:30px; font-size:15px; font-weight:700; letter-spacing:.14em; color:rgba(255,255,255,.35); }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="45" data-width="1920" data-height="1080">
+  <div id="stage">
+    <div id="wallG" class="wall green"></div>
+    <div id="wallR" class="wall red" style="opacity:0"></div>
+    <div id="shade" class="shade"></div>
+    <div id="l1" class="line"><span>Someone</span><span>is</span><span>always</span><span>right.</span></div>
+    <div id="l2" class="line"><span>Someone</span><span>is</span><span>always</span><span>wrong.</span></div>
+    <div id="pill"><div class="nk-tog"><i class="knob" id="pknob"></i><span>Mirror</span><span>Inverse</span></div></div>
+    <div id="logoC"></div>
+    <div id="both"><span>Now</span><span>both</span><span>pay.</span></div>
+    <div id="cton">Copy trading on Nika</div>
+    <div id="phone" class="nk-phone"></div>
+    <div id="clones"></div>
+    <div id="wFind" class="big" style="top:70px">Find.</div>
+    <div id="echo" style="position:absolute;left:930px;top:330px;opacity:0;color:#fff"><div style="font-size:40px;color:#9aa0b8;font-weight:600">30D PnL</div><div id="echoV" style="font-size:150px;font-weight:800;letter-spacing:-0.045em;color:#22c55e;font-variant-numeric:tabular-nums">$0</div></div>
+    <div id="wMirror" class="big" style="top:400px">Mirror.</div>
+    <div id="wInverse" class="big" style="top:380px;font-size:260px">Inverse.</div>
+    <div id="wSlide" class="big" style="top:400px">Slide.</div>
+    <div id="wDone" class="big" style="top:400px;color:#22c55e">Done.</div>
+    <div id="slot"><small>Copy trades on</small><b id="slotw">BTC</b></div>
+    <div id="wipe"></div>
+    <div id="end"><div class="l1">Mirror or Inverse.</div><div class="l2">Your call.</div><div class="lg" id="endlogo"></div>
+      <div class="st nk-store"><span>Download on the App Store</span><span>Get it on Google Play</span></div>
+      <div class="nk-disc">Illustrative figures. Trading perpetuals involves risk of loss. Not financial advice.</div></div>
+  </div>
+  <div id="tagA">NIKA · FLOW C · MOTION DRAFT</div>
+  <audio id="music" src="assets/music.mp3" data-start="0" data-duration="45" data-media-start="5.034" data-volume="0.85" data-fade-out="2.5"></audio>
+</div>
+<script>
+const $ = (s) => document.querySelector(s);
+// ---------- build ----------
+const names = ["deltanova","fjordcapital","quietkoi","solsailor","tidecraft","ravenquant","atlasperp","kitsune","northdesk","lowvol","marbleroad","oakandash","bluefin","ghostbid","hexmaker","sandpiper","lumenfx","stillwater","copperline","mintleaf","orbitdesk"];
+const r = NK.rng(3);
+function wall(id, up) {
+  let h = "";
+  for (let i = 0; i < 49; i++) {
+    const n = names[i % names.length], v = (up ? "+" : "-") + (40 + Math.floor(r() * 900)) + "." + Math.floor(r() * 9) + "%";
+    h += `<div class="mc"><b>${n}</b><em>${v}</em>${NK.spark(i + 3, up, 230, 34)}</div>`;
+  }
+  $(id).innerHTML = h;
+}
+wall("#wallG", true); wall("#wallR", false);
+$("#logoC").innerHTML = NK.logo(150); $("#endlogo").innerHTML = NK.logo(90);
+const T = [
+  { h:"deltanova", c:"#7c5cff", roi:"+1,412.8%", win:"96.2%", seed:21, ago:"36M AGO", pnl:"$1,672,250.1", pnlShort:"$1.67M",
+    pos:[["BTC","Long","10x","$41,494.9","+$71,828.8"],["ETH","Long","5x","$21,403.8","+$40,059.8"],["SOL","Short","5x","$11,889.8","+$14,441.3"],["HYPE","Long","3x","$9,328.0","+$10,285.7"],["NVDA","Long","3x","$8,120.4","+$6,619.3"]] },
+  { h:"fjordcapital", c:"#22a6f0", roi:"+845.3%", win:"91.0%", seed:33, ago:"5D AGO" },
+  { h:"quietkoi", c:"#f59e0b", roi:"+677.4%", win:"99.1%", seed:44, ago:"13M AGO" },
+];
+$("#phone").innerHTML =
+  NK.strategies(T, { id:"s", just:"northdesk" }) +
+  NK.detail(T[0], { id:"d" }) +
+  NK.sheet(T[0], { id:"sh" }) +
+  NK.portfolio([{ h:"deltanova", c:"#7c5cff", mode:"Mirror", val:"$500.00" }, { h:"moonboy99", c:"#ef4444", mode:"Inverse", val:"$250.00" }], { id:"pf", value:"$750.00" }) +
+  `<div class="nk-chat" id="chat"><div class="nk-row" style="font-size:20px;margin-bottom:26px">${NK.av("#3b49f0")}Nika AI</div><div class="nk-bub" id="prompt"></div>
+   <div class="nk-panel" id="reply" style="margin-top:22px;opacity:0"><div class="nk-row">${NK.av("#7c5cff")}deltanova<span class="nk-badge m">Mirror</span></div><div style="margin-top:12px;color:#8c8f9c;font-size:14px">Top trader this month · $500 allocated</div><div style="margin-top:10px;color:#22c55e;font-weight:700">✓ Subscribed</div></div></div>`;
+["#d", "#sh", "#pf", "#chat"].forEach((s) => gsap.set(s, { opacity: 0 }));
+gsap.set("#sh", { y: 760 });
+$("#clones").innerHTML = T.map((t, i) => `<div class="clone" id="cl${i}" style="left:${930 + i * 40}px;top:${360 + i * 232}px">${NK.traderCard(t, "x" + i)}</div>`).join("");
+// ---------- timeline ----------
+const tl = gsap.timeline({ paused: true });
+const B = 0.536; // beat at 112 BPM (Trap Electro Vibes)
+tl.to("#wallG", { y: -260, duration: 4.2, ease: "none" }, 0);
+document.querySelectorAll("#l1 span").forEach((s, i) => tl.fromTo(s, { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.18, ease: "expo.out" }, 0.25 + i * B));
+tl.to("#l1", { opacity: 0, duration: 0.12 }, 3.9);
+tl.to("#wallG", { rotationY: 90, duration: 0.16, ease: "power2.in" }, 3.9);
+tl.fromTo("#wallR", { opacity: 1, rotationY: -90, y: -260 }, { opacity: 1, rotationY: 0, duration: 0.16, ease: "power2.out", immediateRender: false }, 4.06);
+tl.to("#wallR", { y: -480, duration: 2.8, ease: "none" }, 4.22);
+document.querySelectorAll("#l2 span").forEach((s, i) => tl.fromTo(s, { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.18, ease: "expo.out" }, 4.3 + i * B));
+tl.to(["#wallR", "#l2", "#shade"], { opacity: 0, scale: 0.2, duration: 0.4, ease: "power3.in" }, 6.85);
+tl.to("#wallG", { opacity: 0, duration: 0.01 }, 6.85);
+tl.fromTo("#pill", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)", immediateRender: false }, 7.15);
+tl.to("#pknob", { xPercent: 100, duration: 0.22, ease: "power3.inOut" }, 7.6);
+tl.to("#pknob", { xPercent: 0, duration: 0.22, ease: "power3.inOut" }, 7.95);
+tl.to("#pill", { opacity: 0, scale: 0.6, duration: 0.2 }, 8.25);
+tl.fromTo("#logoC", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "expo.out", immediateRender: false }, 8.35);
+document.querySelectorAll("#both span").forEach((s, i) => tl.to(s, { opacity: 1, duration: 0.15 }, 8.6 + i * B));
+tl.to("#cton", { opacity: 1, duration: 0.3 }, 9.3);
+tl.to(["#logoC", "#both", "#cton"], { opacity: 0, duration: 0.25 }, 9.95);
+// Find
+tl.fromTo("#phone", { opacity: 1, y: 900 }, { opacity: 1, y: 0, duration: 0.6, ease: "expo.out", immediateRender: false }, 10.1);
+tl.to("#wFind", { opacity: 1, duration: 0.2 }, 10.8);
+tl.fromTo("#s-just", { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2)", immediateRender: false }, 11.0);
+T.forEach((t, i) => {
+  tl.fromTo("#cl" + i, { opacity: 0, x: -520, scale: 0.85 }, { opacity: 1, x: 0, scale: 1, duration: 0.45, ease: "expo.out", immediateRender: false }, 11.6 + i * B);
+  const target = parseFloat(t.roi.replace(/[+,%]/g, ""));
+  NK.count(tl, "#x" + i + "-roi", 0, target, 1.4, 11.7 + i * B, (v) => "+" + v.toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + "%");
+});
+tl.to(["#cl1", "#cl2", "#wFind"], { opacity: 0, duration: 0.25 }, 15.4);
+tl.to("#cl0", { x: -560, scale: 0.9, opacity: 0, duration: 0.35, ease: "power3.in" }, 15.5);
+// Mirror
+tl.to("#s", { opacity: 0, duration: 0.2 }, 15.8);
+tl.fromTo("#d", { opacity: 0, x: 120 }, { opacity: 1, x: 0, duration: 0.35, ease: "expo.out", immediateRender: false }, 15.8);
+NK.count(tl, "#d-pnl", 0, 1672250.1, 2.0, 16.1, (v) => NK.money(v, 1));
+tl.to("#echo", { opacity: 1, duration: 0.25 }, 16.1);
+NK.count(tl, "#echoV", 0, 1672250.1, 2.0, 16.1, (v) => NK.money(v, 1));
+tl.to("#echo", { opacity: 0, duration: 0.2 }, 19.4);
+tl.fromTo("#d-line", { attr: { "stroke-dashoffset": 1 } }, { attr: { "stroke-dashoffset": 0 }, duration: 1.9, ease: "power2.out", immediateRender: false }, 16.1);
+tl.from("#d-pos .nk-pos", { opacity: 0, y: 30, duration: 0.3, stagger: 0.12 }, 18.0);
+tl.to("#wMirror", { opacity: 1, duration: 0.2 }, 19.6);
+tl.to("#sh", { opacity: 1, duration: 0.01 }, 19.7);
+tl.to("#sh", { y: 0, duration: 0.5, ease: "expo.out" }, 19.7);
+// Inverse
+tl.to("#wMirror", { opacity: 0, duration: 0.15 }, 22.7);
+tl.to("#sh-knob", { xPercent: 100, backgroundColor: "#2a1b52", borderColor: "#6d4bd8", duration: 0.2, ease: "power3.inOut" }, 23.0);
+NK.say(tl, "#sh-hint", "Take the opposite of this trader's positions.", 23.05);
+tl.to("#stage", { filter: "invert(1) hue-rotate(180deg)", duration: 0.08 }, 23.0);
+tl.to("#stage", { filter: "invert(0) hue-rotate(0deg)", duration: 0.25 }, 23.45);
+tl.fromTo("#wInverse", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out", immediateRender: false }, 23.1);
+tl.to("#wInverse", { opacity: 0, duration: 0.2 }, 27.5);
+// Slide
+NK.say(tl, "#sh-amt", "$5", 28.0); NK.say(tl, "#sh-amt", "$50", 28.25); NK.say(tl, "#sh-amt", "$500", 28.5);
+tl.to("#wSlide", { opacity: 1, duration: 0.2 }, 28.4);
+tl.to("#sh-thumb", { x: 274, duration: 0.7, ease: "power2.inOut" }, 29.1);
+tl.to("#sh-fill", { width: "100%", duration: 0.7, ease: "power2.inOut" }, 29.1);
+tl.to("#wipe", { x: 2920, duration: 0.6, ease: "power2.in" }, 29.8);
+tl.to(["#d", "#sh", "#wSlide"], { opacity: 0, duration: 0.01 }, 30.15);
+tl.to("#pf", { opacity: 1, duration: 0.01 }, 30.15);
+tl.to("#wDone", { opacity: 1, duration: 0.2 }, 30.4);
+NK.count(tl, "#pf-p0", 0, 2640.8, 1.6, 30.5, (v) => "+" + NK.money(v));
+NK.count(tl, "#pf-p1", 0, 1184.2, 1.6, 30.6, (v) => "+" + NK.money(v));
+NK.count(tl, "#pf-total", 0, 3825, 1.8, 30.6, (v) => "+" + NK.money(v));
+tl.to("#wDone", { opacity: 0, duration: 0.2 }, 33.6);
+// Ask
+tl.to("#pf", { opacity: 0, duration: 0.2 }, 33.8);
+tl.to("#chat", { opacity: 1, duration: 0.2 }, 33.8);
+NK.type(tl, "#prompt", "Mirror this month's top trader with $500.", 34.0, 0.035);
+tl.fromTo("#reply", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, immediateRender: false }, 35.7);
+tl.to("#slot", { opacity: 1, duration: 0.2 }, 36.3);
+["NVDA", "Gold", "EUR/USD", "500+ markets"].forEach((w, i) => NK.say(tl, "#slotw", w, 36.8 + i * B));
+// End
+tl.to(["#phone", "#slot"], { opacity: 0, duration: 0.3 }, 39.1);
+tl.to("#end", { opacity: 1, duration: 0.3 }, 39.3);
+tl.to("#end .l1", { opacity: 1, duration: 0.25 }, 39.6);
+tl.to("#end .l2", { opacity: 1, duration: 0.25 }, 40.3);
+tl.to("#end .lg", { opacity: 1, duration: 0.3 }, 41.0);
+tl.to("#end .st", { opacity: 1, duration: 0.3 }, 41.4);
+tl.to("#end .nk-disc", { opacity: 1, duration: 0.3 }, 41.6);
+window.__timelines = window.__timelines || {};
+window.__timelines.main = tl;
+</script>
+</body>
+</html>

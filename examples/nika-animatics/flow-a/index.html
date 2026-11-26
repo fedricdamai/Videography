@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<link rel="stylesheet" href="kit.css">
+<script src="kit.js"></script>
+<style>
+  html, body { margin:0; background:#000; }
+  #root { position:relative; width:1920px; height:1080px; overflow:hidden; background:#000; font-family:"Inter",sans-serif; }
+  #stage { position:absolute; inset:0; }
+  .nk-scene { opacity:0; }
+  .sun { position:absolute; width:520px; height:520px; border-radius:50%; left:380px; top:560px; background:radial-gradient(circle, #fff3c4 0%, #ffcf6b 35%, rgba(255,140,80,0) 70%); }
+  .road { position:absolute; left:0; right:0; bottom:0; height:300px; background:linear-gradient(180deg, rgba(30,12,40,.0), rgba(20,8,30,.85)); }
+  .live { position:absolute; left:70px; top:120px; display:flex; gap:14px; align-items:center; font-weight:800; font-size:22px; }
+  .live b { background:#ef4444; padding:6px 14px; border-radius:8px; } .live span { background:rgba(0,0,0,.45); padding:6px 14px; border-radius:8px; }
+  .comments { position:absolute; right:90px; top:160px; width:420px; height:720px; overflow:hidden; }
+  .comments .col { position:absolute; left:0; right:0; top:0; }
+  .comments p { margin:0 0 14px; background:rgba(0,0,0,.45); padding:12px 16px; border-radius:12px; font-size:22px; }
+  .comments p i { font-style:normal; color:#ffd36b; font-weight:700; margin-right:8px; }
+  .pos { position:absolute; left:70px; top:190px; background:rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.2); padding:12px 18px; border-radius:12px; font-size:22px; font-weight:700; }
+  .rain { position:absolute; left:-200px; top:-1000px; width:2400px; height:3200px; background:repeating-linear-gradient(100deg, rgba(255,255,255,0) 0 22px, rgba(180,200,255,.10) 22px 23px); }
+  .bokeh { position:absolute; border-radius:50%; filter:blur(18px); }
+  .horizon { position:absolute; left:0; right:0; top:560px; height:2px; background:rgba(255,255,255,.4); }
+  .split { position:absolute; left:960px; top:0; bottom:0; width:3px; background:rgba(255,255,255,.7); }
+  .halfL { position:absolute; left:0; top:0; bottom:0; width:960px; overflow:hidden; }
+  .ad { position:absolute; left:720px; top:110px; width:420px; padding:24px; border-radius:16px; background:rgba(10,10,10,.85); border:3px solid #ffcf3a; color:#ffcf3a; font-size:34px; font-weight:900; line-height:1.15; }
+  .phone-pos { left:1340px; top:107px; }
+  #flipper { position:absolute; inset:0; }
+  .vg { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+  #end { position:absolute; inset:0; background:#000; opacity:0; }
+  #end .h { position:absolute; top:330px; width:960px; font-size:92px; font-weight:800; color:#fff; letter-spacing:-0.04em; text-align:center; opacity:0; }
+  #end .mid { position:absolute; left:958px; top:280px; height:240px; width:3px; background:#5662ff; opacity:0; }
+  #end .lg { position:absolute; left:50%; top:610px; transform:translateX(-50%); opacity:0; }
+  #end .st { position:absolute; left:50%; top:770px; transform:translateX(-50%); opacity:0; }
+  #end .nk-disc { position:absolute; left:0; right:0; bottom:50px; text-align:center; opacity:0; }
+  .vid { position:absolute; left:0; top:0; width:100%; height:100%; object-fit:cover; }
+  .halfv { position:absolute; left:0; top:0; width:960px; height:1080px; overflow:hidden; }
+  #shadeB { position:absolute; left:0; right:0; bottom:0; height:380px; background:linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.7)); }
+  #scenes { position:absolute; inset:0; }
+  #tagA { position:absolute; right:40px; bottom:30px; font-size:15px; font-weight:700; letter-spacing:.14em; color:rgba(255,255,255,.4); z-index:99; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1920" data-height="1080">
+  <div id="stage"><div id="flipper">
+    <video id="va01" class="vid" src="assets/a01.mp4" data-start="0" data-duration="2.6" muted playsinline></video><video id="va02" class="vid" src="assets/a02.mp4" data-start="2.6" data-duration="5.4" muted playsinline></video><video id="va03" class="vid" src="assets/a03.mp4" data-start="8.0" data-duration="1.5" muted playsinline></video><video id="va04" class="vid" src="assets/a04.mp4" data-start="9.5" data-duration="7.5" muted playsinline></video><video id="va07" class="vid" src="assets/a07.mp4" data-start="25.0" data-duration="2.5" muted playsinline></video><video id="va08" class="vid" src="assets/a08.mp4" data-start="27.5" data-duration="3.0" muted playsinline></video><video id="va09" class="vid" src="assets/a09.mp4" data-start="30.5" data-duration="4.5" muted playsinline></video><video id="va10" class="vid" src="assets/a10.mp4" data-start="35.0" data-duration="3.33" muted playsinline></video><video id="va11" class="vid" src="assets/a11.mp4" data-start="38.33" data-duration="3.34" muted playsinline></video><video id="va12" class="vid" src="assets/a12.mp4" data-start="41.67" data-duration="3.33" muted playsinline></video><video id="va13" class="vid" src="assets/a13.mp4" data-start="45.0" data-duration="3.0" muted playsinline></video><video id="va14" class="vid" src="assets/a14.mp4" data-start="48.0" data-duration="4.7" muted playsinline></video><div class="halfv"><video id="va05" class="vid" src="assets/a05.mp4" data-start="17.0" data-duration="4.0" muted playsinline></video><video id="va06" class="vid" src="assets/a06.mp4" data-start="21.0" data-duration="4.0" muted playsinline></video></div><div id="shadeB"></div>
+    <div id="scenes"></div>
+    <div id="phone" class="nk-phone phone-pos"></div>
+    <div id="end"><div class="h" style="left:0">Copy the best.</div><div class="mid"></div><div class="h" style="left:960px;color:#b49cff">Fade the loudest.</div>
+      <div class="lg" id="endlogo"></div><div class="st nk-store"><span>Download on the App Store</span><span>Get it on Google Play</span></div>
+      <div class="nk-disc">Illustrative figures. Fictional characters. Trading perpetuals involves risk of loss. Not financial advice.</div></div>
+  </div></div>
+  <div id="tagA">NIKA · FLOW A · RIPOMATIC · STOCK FOOTAGE FROM MIXKIT</div>
+  <audio id="music" src="assets/music.mp3" data-start="0" data-duration="60" data-media-start="3" data-volume="0.85" data-fade-out="2.5"></audio>
+</div>
+<script>
+const $ = (s) => document.querySelector(s);
+const C = (txt) => txt.map(([u, m]) => `<p><i>${u}</i>${m}</p>`).join("");
+const hype = C([["degen_42","SEND IT"],["0xmoon","brad never misses"],["lilfomo","50x??"],["satsboi","ser this is the bottom"],["wagmi_pls","LFG"],["chartguy","entry?"],["gm_ser","we are so back"],["apeville","to the moon"],["k1ng","brad for president"],["nfa_dyor","copying this"],["lambo_soon","50x is conservative"],["hodl4ever","bullish"]]);
+const doom = C([["degen_42","BRO??"],["0xmoon","liquidated lol"],["lilfomo","its over"],["satsboi","f"],["wagmi_pls","unfollow"],["chartguy","called it"],["gm_ser","rip lambo"],["apeville","who is towing that"],["k1ng","shakeout he says"],["nfa_dyor","f in chat"]]);
+$("#scenes").innerHTML =
+  NK.scene("s1", { bg:"transparent", clean:true,
+    deco:`<div class="live"><b>LIVE</b><span>48.2K watching</span></div><div class="pos">BTC-PERP · <span style="color:#4ade80">50x LONG</span></div><div class="comments"><div class="col" id="c1">${hype}${hype}</div></div>` }) +
+  NK.scene("s2", { bg:"transparent", clean:true }) +
+  NK.scene("s3", { bg:"transparent", clean:true,
+    deco:`<div class="halfL"><div class="live"><b>LIVE</b><span>61.9K watching</span></div><div class="pos" style="top:190px">BTC-PERP · <span style="color:#f87171">LIQUIDATED</span></div>
+      <div class="comments" style="right:60px;width:360px"><div class="col" id="c3">${doom}${doom}</div></div></div><div class="split"></div>` }) +
+  NK.scene("s4", { bg:"transparent", clean:true }) +
+  NK.scene("s5a", { bg:"transparent", clean:true }) + NK.scene("s5b", { bg:"transparent", clean:true }) + NK.scene("s5c", { bg:"transparent", clean:true }) +
+  NK.scene("s6", { bg:"transparent", clean:true,
+    deco:`<div class="ad">JOIN BRAD'S<br>VIP SIGNALS GROUP<div style="font-size:20px;margin-top:12px;color:#fff">now only $499/month</div></div>` });
+["#s5a","#s5b","#s5c"].forEach((s, i) => $(s).insertAdjacentHTML("beforeend", `<div class="vg">${NK.toast(s.slice(1) + "t", i === 1 ? "Subscribed · Inverse" : "Subscribed · Mirror", ["tidecraft","roommate_ape","quietkoi"][i], "✓")}</div>`));
+$("#endlogo").innerHTML = NK.logo(90);
+const brad = { h:"bigbrad", c:"#ef4444", roi:"-91.4%", win:"8.3%", up:false, seed:9, ago:"2M AGO", pnl:"-$412,880.4", pnlShort:"-$412K",
+  pos:[["BTC","Long","50x","$88,201.0","-$41,220.3"],["SOL","Long","25x","$22,410.6","-$9,812.5"],["DOGE","Long","20x","$9,880.2","-$4,402.9"]] };
+const fjord = { h:"fjordcapital", c:"#22a6f0", roi:"+312.4%", win:"94.1%", seed:33, pnl:"$1,842,600.5", pnlShort:"$1.84M",
+  pos:[["BTC","Long","5x","$41,494.9","+$71,828.8"],["ETH","Short","3x","$21,403.8","+$40,059.8"],["XAU","Long","10x","$11,889.8","+$14,441.3"],["NVDA","Long","3x","$9,328.0","+$10,285.7"]] };
+$("#phone").innerHTML =
+  NK.strategies([brad], { id:"q", search:true }) + NK.detail(brad, { id:"bd" }) + NK.sheet(brad, { id:"bs" }) + NK.success("Subscribed", "Inverse · bigbrad · $250", "ok1") +
+  NK.portfolio([{ h:"bigbrad", c:"#ef4444", mode:"Inverse", val:"$250.00" }], { id:"p1", value:"$250.00" }) +
+  NK.detail(fjord, { id:"fd" }) + NK.sheet(fjord, { id:"fs" }) + NK.success("Subscribed", "Mirror · fjordcapital · $500", "ok2") +
+  NK.portfolio([{ h:"fjordcapital", c:"#22a6f0", mode:"Mirror", val:"$500.00" }, { h:"bigbrad", c:"#ef4444", mode:"Inverse", val:"$250.00" }], { id:"p2", value:"$750.00" });
+const screens = ["#q","#bd","#bs","#ok1","#p1","#fd","#fs","#ok2","#p2"];
+screens.forEach((s) => gsap.set(s, { opacity: 0 }));
+gsap.set(["#bs","#fs"], { y: 760 });
+gsap.set("#phone", { opacity: 0 });
+gsap.set(["#s1","#s2","#s3","#s4","#s5a","#s5b","#s5c","#s6"], { opacity: 0 });
+
+const tl = gsap.timeline({ paused: true });
+const show = (s, at, d = 0.01) => tl.to(s, { opacity: 1, duration: d }, at);
+const hide = (s, at, d = 0.01) => tl.to(s, { opacity: 0, duration: d }, at);
+const flip = (at) => { tl.to("#flipper", { scaleX: -1, duration: 0.08, ease: "none" }, at); tl.to("#flipper", { scaleX: 1, duration: 0.08, ease: "none" }, at + 0.2); };
+// Scene 1
+show("#s1", 0);
+tl.fromTo("#s1", { scale: 1 }, { scale: 1.08, duration: 7.6, ease: "none", immediateRender: false }, 0);
+tl.to("#c1", { y: -900, duration: 8, ease: "none" }, 0);
+NK.say(tl, "#s1-sub", "“We are so back. Fifty x long.”", 1.2);
+NK.say(tl, "#s1-sub", "“This is the bottom. I have never been wrong.”", 4.2);
+tl.to("#s1", { scale: 1.7, opacity: 0, duration: 0.45, ease: "power2.in" }, 7.6);
+// Scene 2
+show("#s2", 8.0, 0.3);
+tl.to("#rain", { y: 900, duration: 9, ease: "none" }, 8.0);
+tl.to("#phone", { opacity: 1, duration: 0.3 }, 9.6);
+show("#q", 9.6);
+NK.type(tl, "#q-q", "⌕ bigbrad", 10.0, 0.08);
+tl.from("#q-c0", { opacity: 0, y: 20, duration: 0.25 }, 10.8);
+hide("#q", 11.6); show("#bd", 11.6, 0.2);
+show("#bs", 12.3); tl.to("#bs", { y: 0, duration: 0.45, ease: "expo.out" }, 12.3);
+tl.to("#bs-knob", { xPercent: 100, backgroundColor: "#2a1b52", borderColor: "#6d4bd8", duration: 0.2 }, 13.1);
+NK.say(tl, "#bs-hint", "Take the opposite of this trader's positions.", 13.15);
+flip(13.1);
+NK.say(tl, "#s2-sub", "“Every time.”", 13.0);
+NK.say(tl, "#bs-amt", "$2", 14.1); NK.say(tl, "#bs-amt", "$25", 14.3); NK.say(tl, "#bs-amt", "$250", 14.5);
+tl.to("#bs-thumb", { x: 274, duration: 0.6, ease: "power2.inOut" }, 14.9);
+tl.to("#bs-fill", { width: "100%", duration: 0.6, ease: "power2.inOut" }, 14.9);
+hide(["#bd","#bs"], 15.6); show("#ok1", 15.6, 0.15);
+NK.say(tl, "#s2-sub", "", 16.0);
+tl.to(["#s2","#phone"], { opacity: 0, duration: 0.25 }, 16.75);
+hide("#ok1", 17.0);
+// Scene 3
+show("#s3", 17.0, 0.2);
+tl.to("#c3", { y: -700, duration: 8, ease: "none" }, 17.0);
+NK.say(tl, "#s3-sub", "“This is fine. Just a shakeout.”", 18.0);
+show("#p1", 17.1); tl.to("#phone", { opacity: 1, duration: 0.25 }, 17.1);
+NK.count(tl, "#p1-p0", 0, 1184.2, 3.5, 18.3, (v) => "+" + NK.money(v));
+NK.count(tl, "#p1-total", 0, 1184.2, 3.5, 18.3, (v) => "+" + NK.money(v));
+tl.to(["#s3","#phone"], { opacity: 0, duration: 0.3 }, 24.7);
+hide("#p1", 25.0);
+// Scene 4
+show("#s4", 25.0, 0.4);
+show("#fd", 25.6); tl.to("#phone", { opacity: 1, duration: 0.3 }, 25.6);
+NK.count(tl, "#fd-pnl", 0, 1842600.5, 2.2, 26.0, (v) => NK.money(v, 1));
+tl.fromTo("#fd-line", { attr: { "stroke-dashoffset": 1 } }, { attr: { "stroke-dashoffset": 0 }, duration: 2.0, ease: "power2.out", immediateRender: false }, 26.0);
+show("#fs", 29.6); tl.to("#fs", { y: 0, duration: 0.45, ease: "expo.out" }, 29.6);
+NK.say(tl, "#fs-amt", "$5", 30.9); NK.say(tl, "#fs-amt", "$50", 31.1); NK.say(tl, "#fs-amt", "$500", 31.3);
+tl.to("#fs-thumb", { x: 274, duration: 0.6, ease: "power2.inOut" }, 31.8);
+tl.to("#fs-fill", { width: "100%", duration: 0.6, ease: "power2.inOut" }, 31.8);
+hide(["#fd","#fs"], 32.5); show("#ok2", 32.5, 0.15);
+tl.to(["#s4","#phone"], { opacity: 0, duration: 0.3 }, 34.7);
+hide("#ok2", 35.0);
+// Scene 5
+["#s5a","#s5b","#s5c"].forEach((s, i) => {
+  const at = 35.0 + i * 3.33;
+  show(s, at, 0.15);
+  tl.fromTo(s + "t", { opacity: 0, scale: 1.0 }, { opacity: 1, scale: 1.9, duration: 0.35, ease: "back.out(2)", immediateRender: false }, at + 1.4);
+  if (i < 2) hide(s, at + 3.33);
+});
+NK.say(tl, "#s5b-sub", "(the roommate, shouting) “It HAS to bounce!”", 38.6);
+hide("#s5c", 45.0, 0.3);
+// Scene 6
+show("#s6", 45.0, 0.3);
+tl.to("#phone", { x: -1180, duration: 0.01 }, 45.2);
+show("#p2", 45.4); tl.to("#phone", { opacity: 1, duration: 0.3 }, 45.4);
+NK.count(tl, "#p2-p0", 0, 2640.8, 2.5, 46.0, (v) => "+" + NK.money(v));
+NK.count(tl, "#p2-p1", 0, 1184.2, 2.5, 46.0, (v) => "+" + NK.money(v));
+NK.count(tl, "#p2-total", 0, 3825, 2.7, 46.0, (v) => "+" + NK.money(v));
+// Scene 7
+flip(52.6);
+tl.to(["#s6","#phone"], { opacity: 0, duration: 0.01 }, 52.7);
+show("#end", 52.7);
+tl.to("#end .h", { opacity: 1, duration: 0.3, stagger: 0.6 }, 53.2);
+tl.to("#end .mid", { opacity: 1, duration: 0.3 }, 53.2);
+tl.to("#end .lg", { opacity: 1, duration: 0.3 }, 54.6);
+tl.to("#end .st", { opacity: 1, duration: 0.3 }, 55.0);
+tl.to("#end .nk-disc", { opacity: 1, duration: 0.3 }, 55.2);
+window.__timelines = window.__timelines || {};
+window.__timelines.main = tl;
+</script>
+</body>
+</html>

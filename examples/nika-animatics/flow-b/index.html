@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<link rel="stylesheet" href="kit.css">
+<script src="kit.js"></script>
+<style>
+  html, body { margin:0; background:#000; }
+  #root { position:relative; width:1920px; height:1080px; overflow:hidden; background:#000; font-family:"Inter",sans-serif; }
+  .nk-scene { opacity:0; }
+  #held { position:absolute; left:0; right:0; top:470px; text-align:center; font-size:110px; font-weight:700; color:#fff; letter-spacing:-0.03em; text-shadow:0 4px 30px rgba(0,0,0,.35); opacity:0; z-index:20; }
+  #ntf { position:absolute; left:50%; top:150px; transform:translateX(-50%) scale(1.7); transform-origin:50% 0; opacity:0; z-index:21; }
+  #ntf .nk-toast { position:relative; }
+  #void { position:absolute; inset:0; background:#000; opacity:0; z-index:30; }
+  #void p { position:absolute; left:0; right:0; top:500px; margin:0; text-align:center; font-size:56px; font-weight:500; color:#fff; }
+  #take { position:absolute; inset:0; background:radial-gradient(ellipse at 50% 45%, #141a3a 0%, #07080d 70%); opacity:0; z-index:25; }
+  #phone { left:760px; top:107px; opacity:0; z-index:26; }
+  #wipe { position:absolute; top:0; bottom:0; width:900px; left:-1000px; background:linear-gradient(90deg, rgba(34,197,94,0), rgba(34,197,94,.85) 60%, rgba(34,197,94,0)); z-index:40; }
+  #mini { position:absolute; left:50%; top:120px; transform:translateX(-50%) scale(1.5); transform-origin:50% 0; opacity:0; z-index:22; }
+  #mini .nk-panel { width:520px; background:rgba(21,22,29,.82); backdrop-filter:blur(16px); color:#fff; font-family:"Inter",sans-serif; border:1px solid rgba(255,255,255,.12); }
+  #office-phone { left:1340px; top:107px; opacity:0; z-index:26; }
+  #end { position:absolute; inset:0; background:#000; opacity:0; z-index:50; }
+  #end .h { position:absolute; left:0; right:0; top:330px; text-align:center; font-size:110px; font-weight:800; color:#fff; letter-spacing:-0.045em; opacity:0; }
+  #end .lg { position:absolute; left:50%; top:560px; transform:translateX(-50%); opacity:0; }
+  #end .st { position:absolute; left:50%; top:730px; transform:translateX(-50%); opacity:0; }
+  #end .nk-disc { position:absolute; left:0; right:0; bottom:50px; text-align:center; opacity:0; }
+  .vid { position:absolute; left:0; top:0; width:100%; height:100%; object-fit:cover; }
+  #shadeB { position:absolute; left:0; right:0; bottom:0; height:420px; background:linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.6)); }
+  #scenes { position:absolute; inset:0; }
+  #tagA { position:absolute; right:40px; bottom:30px; font-size:15px; font-weight:700; letter-spacing:.14em; color:rgba(255,255,255,.4); z-index:99; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="42" data-width="1920" data-height="1080">
+  <video id="vb01" class="vid" src="assets/b01.mp4" data-start="0" data-duration="5.0" muted playsinline></video><video id="vb02" class="vid" src="assets/b02.mp4" data-start="5.0" data-duration="1.5" muted playsinline></video><video id="vb03" class="vid" src="assets/b03.mp4" data-start="6.5" data-duration="1.5" muted playsinline></video><video id="vb04" class="vid" src="assets/b04.mp4" data-start="8.0" data-duration="1.5" muted playsinline></video><video id="vb05" class="vid" src="assets/b05.mp4" data-start="9.5" data-duration="1.5" muted playsinline></video><video id="vb06" class="vid" src="assets/b06.mp4" data-start="24.75" data-duration="1.75" muted playsinline></video><video id="vb07" class="vid" src="assets/b07.mp4" data-start="26.5" data-duration="1.75" muted playsinline></video><video id="vb08" class="vid" src="assets/b08.mp4" data-start="28.25" data-duration="1.75" muted playsinline></video><video id="vb09" class="vid" src="assets/b09.mp4" data-start="30.0" data-duration="1.75" muted playsinline></video><video id="vb10" class="vid" src="assets/b10.mp4" data-start="31.95" data-duration="2.55" muted playsinline></video><video id="vb11" class="vid" src="assets/b11.mp4" data-start="34.5" data-duration="2.3" muted playsinline></video><div id="shadeB"></div>
+  <div id="scenes"></div>
+  <div id="held">Life is busy.</div>
+  <div id="ntf"></div>
+  <div id="mini"></div>
+  <div id="void"><p>The best traders aren't.</p></div>
+  <div id="take"></div>
+  <div id="phone" class="nk-phone"></div>
+  <div id="office-phone" class="nk-phone"></div>
+  <div id="wipe"></div>
+  <div id="end"><div class="h">Invest with the best.</div><div class="lg" id="endlogo"></div>
+    <div class="st nk-store"><span>Download on the App Store</span><span>Get it on Google Play</span></div>
+    <div class="nk-disc">Illustrative figures. Fictional characters. Trading perpetuals involves risk of loss. Not financial advice.</div></div>
+  <div id="tagA">NIKA · FLOW B · RIPOMATIC · STOCK FOOTAGE FROM MIXKIT</div>
+  <audio id="m1" src="assets/music.mp3" data-start="0" data-duration="11" data-media-start="0" data-volume="0.85" data-fade-out="0.4"></audio>
+  <audio id="m2" src="assets/music.mp3" data-start="13" data-duration="29" data-media-start="30" data-volume="0.85" data-fade-in="0.3" data-fade-out="2.5"></audio>
+</div>
+<script>
+const $ = (s) => document.querySelector(s);
+const lives = [
+  ["s1", "linear-gradient(160deg,#0f3b3a 0%,#1f6f6b 55%,#0b2524 100%)", "Scene 1 · Hospital · 7am", "A surgeon scrubs in. Her phone is in a locker."],
+  ["s2a", "linear-gradient(160deg,#5a1e0b 0%,#c2410c 100%)", "Scene 2 · Restaurant · dinner service", "A chef at the pass. Plates flying."],
+  ["s2b", "linear-gradient(170deg,#0c1b3a 0%,#3b6ea5 100%)", "Scene 2 · Cockpit · dawn", "A pilot runs pre-flight checks."],
+  ["s2c", "linear-gradient(160deg,#1f4d2b 0%,#7fb069 100%)", "Scene 2 · School gate · 8am", "A dad with a twin on each hip."],
+  ["s2d", "linear-gradient(160deg,#3d3229 0%,#cdb79e 100%)", "Scene 2 · Wedding · ceremony", "A photographer crouched in the aisle."],
+];
+const evening = [
+  ["e1", "linear-gradient(160deg,#0b2524 0%,#1f6f6b 100%)", "Scene 5 · Hospital · evening", "She peels off her gloves and finally checks her phone."],
+  ["e2", "linear-gradient(160deg,#2a0f06 0%,#8a2e0a 100%)", "Scene 5 · Restaurant · closing", "He wipes down the pass."],
+  ["e3", "linear-gradient(170deg,#1b2a4a 0%,#e08a5b 100%)", "Scene 5 · Airport · sunset", "She walks across the tarmac."],
+  ["e4", "linear-gradient(160deg,#2f4f2f 0%,#c9a66b 100%)", "Scene 5 · Front steps · evening", "The twins play. He nods at his phone."],
+];
+$("#scenes").innerHTML = [...lives, ...evening].map(([id]) => NK.scene(id, { bg:"transparent", clean:true })).join("") +
+  NK.scene("s6", { bg:"transparent", clean:true });
+$("#ntf").innerHTML = NK.toast("tn", "quietkoi opened BTC long", "Mirrored in your account", "+$0.00");
+$("#mini").innerHTML = `<div class="nk-panel"><div class="nk-row">${NK.av("#f59e0b")}quietkoi<span class="nk-badge m">Mirror</span></div><div class="nk-kv" style="margin-top:12px"><div><small>Put in</small><b>$500.00</b></div><div style="text-align:right"><small>Value</small><b class="nk-g">$1,148.60</b></div></div></div>`;
+$("#endlogo").innerHTML = NK.logo(90);
+const qk = { h:"quietkoi", c:"#f59e0b", roi:"+268.9%", win:"92.6%", seed:44, pnl:"$1,276,410.2", pnlShort:"$1.28M",
+  pos:[["BTC","Long","5x","$31,204.2","+$48,320.1"],["ETH","Long","3x","$18,442.0","+$22,815.6"],["XAU","Long","10x","$12,980.7","+$9,604.4"],["SOL","Short","3x","$7,214.9","+$5,212.8"]] };
+const list = [
+  { h:"deltanova", c:"#7c5cff", roi:"+1,412.8%", win:"96.2%", seed:21 }, { h:"fjordcapital", c:"#22a6f0", roi:"+845.3%", win:"91.0%", seed:33 },
+  { h:"quietkoi", c:"#f59e0b", roi:"+268.9%", win:"92.6%", seed:44 }, { h:"tidecraft", c:"#14b8a6", roi:"+241.0%", win:"88.4%", seed:55 }];
+$("#phone").innerHTML = NK.strategies(list, { id:"st", just:"northdesk" }) + NK.detail(qk, { id:"qd" }) + NK.sheet(qk, { id:"qs" });
+const desk = { h:"deskwarrior", c:"#ef4444", roi:"-74.2%", win:"11.0%", up:false, seed:9, pnl:"-$88,410.6", pnlShort:"-$88K" };
+$("#office-phone").innerHTML = NK.detail(desk, { id:"dd" }) + NK.sheet(desk, { id:"ds" }) + NK.success("Subscribed", "Inverse · deskwarrior · $200", "dok");
+["#qd","#qs","#ds","#dok"].forEach((s) => gsap.set(s, { opacity: 0 }));
+gsap.set(["#qs","#ds"], { y: 760 });
+gsap.set([...lives, ...evening].map((l) => "#" + l[0]).concat(["#s6"]), { opacity: 0 });
+
+const tl = gsap.timeline({ paused: true });
+const show = (s, at, d = 0.01) => tl.to(s, { opacity: 1, duration: d }, at);
+const hide = (s, at, d = 0.01) => tl.to(s, { opacity: 0, duration: d }, at);
+// Scene 1-2: one line and one notification held over busy lives
+show("#s1", 0, 0.3);
+show("#held", 0.6, 0.4);
+show("#ntf", 1.4, 0.3);
+NK.count(tl, "#tn-amt", 0, 212.4, 0.8, 1.6, (v) => "+" + NK.money(v));
+const shots = ["#s2a", "#s2b", "#s2c", "#s2d"], lines = ["quietkoi opened ETH long", "quietkoi opened SOL short", "quietkoi opened Gold long", "quietkoi closed BTC long"], amts = [212.4, 318.9, 365.15, 412.8];
+shots.forEach((s, i) => {
+  const at = 5.0 + i * 1.5;
+  show(s, at); hide(i ? shots[i - 1] : "#s1", at);
+  NK.say(tl, "#tn > div:nth-child(2) b", lines[i], at);
+  if (i) NK.count(tl, "#tn-amt", amts[i - 1], amts[i], 0.6, at + 0.1, (v) => "+" + NK.money(v));
+});
+// Scene 3: void
+show("#void", 11.0); hide(["#held", "#ntf", "#s2d"], 11.0);
+// Scene 4: one take through the app
+hide("#void", 13.0); show("#take", 13.0);
+tl.fromTo("#phone", { opacity: 1, y: 900 }, { opacity: 1, y: 0, duration: 0.6, ease: "expo.out", immediateRender: false }, 13.0);
+tl.fromTo("#st-just", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.3, immediateRender: false }, 13.9);
+tl.to("#st-list", { y: -380, duration: 2.2, ease: "power2.inOut" }, 14.4);
+tl.to("#st-c2", { scale: 1.04, boxShadow: "0 0 0 3px #5662ff", duration: 0.25 }, 16.7);
+hide("#st", 17.3); show("#qd", 17.3, 0.2);
+NK.count(tl, "#qd-pnl", 0, 1276410.2, 1.8, 17.5, (v) => NK.money(v, 1));
+tl.fromTo("#qd-line", { attr: { "stroke-dashoffset": 1 } }, { attr: { "stroke-dashoffset": 0 }, duration: 1.7, ease: "power2.out", immediateRender: false }, 17.5);
+show("#qs", 20.0); tl.to("#qs", { y: 0, duration: 0.45, ease: "expo.out" }, 20.0);
+NK.say(tl, "#qs-amt", "$5", 21.6); NK.say(tl, "#qs-amt", "$50", 21.85); NK.say(tl, "#qs-amt", "$500", 22.1);
+tl.to("#qs-thumb", { x: 274, duration: 0.7, ease: "power2.inOut" }, 23.2);
+tl.to("#qs-fill", { width: "100%", duration: 0.7, ease: "power2.inOut" }, 23.2);
+tl.to("#wipe", { x: 2920, duration: 0.6, ease: "power2.in" }, 24.4);
+hide(["#take", "#phone"], 24.75);
+// Scene 5: end of the day, slower cuts
+const eve = ["#e1", "#e2", "#e3", "#e4"];
+eve.forEach((s, i) => { const at = 24.75 + i * 1.75; show(s, at); if (i) hide(eve[i - 1], at); });
+tl.to("#mini", { opacity: 1, duration: 0.3 }, 25.3);
+hide(["#mini", "#e4"], 31.75, 0.2);
+// Scene 6: the loudest coworker, Inverse
+show("#s6", 31.95, 0.2);
+NK.say(tl, "#s6-sub", "“It has to bounce. It has to.”", 32.1);
+tl.to("#office-phone", { opacity: 1, duration: 0.25 }, 32.4);
+show("#dd", 32.4);
+show("#ds", 33.3); tl.to("#ds", { y: 0, duration: 0.4, ease: "expo.out" }, 33.3);
+tl.to("#ds-knob", { xPercent: 100, backgroundColor: "#2a1b52", borderColor: "#6d4bd8", duration: 0.2 }, 34.4);
+NK.say(tl, "#ds-hint", "Take the opposite of this trader's positions.", 34.45);
+hide(["#dd", "#ds"], 35.5); show("#dok", 35.5, 0.15);
+// Scene 7
+tl.to(["#s6", "#office-phone"], { opacity: 0, duration: 0.3 }, 36.8);
+show("#end", 37.0, 0.2);
+tl.to("#end .h", { opacity: 1, duration: 0.3 }, 37.3);
+tl.to("#end .lg", { opacity: 1, duration: 0.3 }, 38.1);
+tl.to("#end .st", { opacity: 1, duration: 0.3 }, 38.5);
+tl.to("#end .nk-disc", { opacity: 1, duration: 0.3 }, 38.7);
+window.__timelines = window.__timelines || {};
+window.__timelines.main = tl;
+</script>
+</body>
+</html>
