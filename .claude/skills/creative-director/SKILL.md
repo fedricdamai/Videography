@@ -107,7 +107,7 @@ Then write the **transition chain**: for every cut in the key sequence, name wha
 
 Borrow the thinking, never the look. Translate each principle into the product's own world: ask "if our product's core action were an object, what is it?", and "why *this* place?" for every background.
 
-`examples/thread-demo/` is a working HyperFrames build of these threads (coin hero object, card anchor swap, ring shape match, $1,000 inversion, void, bookend).
+`examples/thread-demo/` is a working HyperFrames build of these threads (coin hero object, card anchor swap, ring shape match, thousand-dollar inversion, void, bookend).
 
 ## 5. Shots
 
