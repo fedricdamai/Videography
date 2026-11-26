@@ -14,14 +14,14 @@ cut() { # out id offset dur [width]
 }
 mkdir -p flow-a/assets flow-b/assets flow-c/assets
 A=flow-a/assets
-cut $A/a01.mp4 35540 3 2.6;  cut $A/a02.mp4 34469 2 5.4;  cut $A/a03.mp4 20311 4 1.5;  cut $A/a04.mp4 46700 6 7.5
-cut $A/a05.mp4 45735 1 4.0 960; cut $A/a06.mp4 9607 2 4.0 960; cut $A/a07.mp4 8657 5 2.5; cut $A/a08.mp4 8211 10 3.0
-cut $A/a09.mp4 39800 1 4.5;  cut $A/a10.mp4 43241 2 3.33; cut $A/a11.mp4 51611 4 3.34; cut $A/a12.mp4 32043 2 3.33
-cut $A/a13.mp4 46702 5 3.0;  cut $A/a14.mp4 46612 2 4.7
+cut $A/n01.mp4 34469 1 5.5;  cut $A/n02.mp4 41175 2 1.83; cut $A/n03.mp4 31413 2 1.83; cut $A/n04.mp4 29959 2 1.84
+cut $A/n05.mp4 46700 3 8;    cut $A/n06.mp4 9607 2 1.5;   cut $A/n07.mp4 34469 9 3;    cut $A/n08.mp4 45735 3.5 2
+cut $A/n09.mp4 46700 18 8
 B=flow-b/assets
 cut $B/b01.mp4 13109 2 5.0;  cut $B/b02.mp4 39535 3 1.5;  cut $B/b03.mp4 6753 3 1.5;   cut $B/b04.mp4 7674 2 1.5
 cut $B/b05.mp4 5188 2 1.5;   cut $B/b06.mp4 17601 3 1.75; cut $B/b07.mp4 15875 1 1.75; cut $B/b08.mp4 27760 2 1.75
-cut $B/b09.mp4 15167 3 1.75; cut $B/b10.mp4 24352 4 2.55; cut $B/b11.mp4 11529 2 2.3
+cut $B/b09.mp4 15167 3 1.75; cut $B/b10.mp4 24352 4 2.5;  cut $B/b11.mp4 11529 2 2.5
+cut $B/b12.mp4 17464 2 3.2;  cut $B/b13.mp4 32617 3 3.2;  cut $B/b14.mp4 22568 2 3.2
 curl -sfL -o flow-a/assets/music.mp3 https://assets.mixkit.co/music/267/267.mp3   # Trap Hamza, 112 BPM
 curl -sfL -o flow-b/assets/music.mp3 https://assets.mixkit.co/music/33/33.mp3     # Motivating Mornings, 123 BPM
 curl -sfL -o flow-c/assets/music.mp3 https://assets.mixkit.co/music/126/126.mp3   # Trap Electro Vibes, 112 BPM
