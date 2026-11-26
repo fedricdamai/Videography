@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    html, body { margin: 0; background: #f7f7f4; }
+    #root { position: relative; width: 1080px; height: 1080px; overflow: hidden; background: #f7f7f4; font-family: "Inter", sans-serif; color: #141414; }
+    #brand { position: absolute; left: 54px; top: 54px; display: flex; align-items: center; gap: 12px; font-size: 30px; }
+    #brand i { width: 30px; height: 30px; border-radius: 50%; border: 3px solid #141414; box-sizing: border-box; }
+    #value { position: absolute; left: 50px; top: 150px; font-size: 200px; letter-spacing: -0.045em; line-height: 1; font-variant-numeric: tabular-nums; }
+    #label { position: absolute; left: 62px; top: 375px; font-size: 44px; letter-spacing: -0.01em; }
+    #chart { position: absolute; left: 0; top: 470px; }
+    #note { position: absolute; left: 56px; bottom: 44px; font-size: 18px; color: #8a8a85; }
+    #tip { position: absolute; padding: 8px 14px; background: #1f2a22; color: #fff; font-size: 22px; border-radius: 6px; transform: translate(-50%, -100%); opacity: 0; font-variant-numeric: tabular-nums; }
+    .ax { font-size: 20px; fill: #6d6d68; }
+  </style>
+</head>
+<body>
+  <div id="root" data-composition-id="main" data-start="0" data-duration="9" data-width="1080" data-height="1080">
+    <div id="brand"><i></i>Your Brand</div>
+    <div id="value">$0M</div>
+    <div id="label">Cumulative volume</div>
+    <svg id="chart" width="1080" height="470" viewBox="0 0 1080 470">
+      <defs>
+        <linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2fbf4f" stop-opacity="0.18"/>
+          <stop offset="1" stop-color="#2fbf4f" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <g id="grid"></g>
+      <path id="area" fill="url(#fill)"/>
+      <path id="line" fill="none" stroke="#2fbf4f" stroke-width="4" stroke-linejoin="round"/>
+      <line id="cursor" stroke="#141414" stroke-width="2" stroke-dasharray="5 6"/>
+      <circle id="dot" r="8" fill="#2fbf4f" stroke="#f7f7f4" stroke-width="3"/>
+    </svg>
+    <div id="tip">$101.9M</div>
+    <div id="note">Sample data. Swap DATA in the script for your real numbers.</div>
+  </div>
+  <script>
+    // ---- CONFIG: replace with real data ----
+    const FINAL = 101.9;                 // last value, in millions
+    const DAYS = 138;                    // number of daily points
+    const MONTHS = [[-3, "Jun 1"], [27, "Jul 1"], [58, "Aug 1"], [89, "Sep 1"], [119, "Oct 1"]];
+    const END_LABEL = "Oct 19";
+    // deterministic sample curve: slow start, two bursts
+    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const inc = []; for (let i = 0; i < DAYS; i++) { let v = 0.15 + rnd() * 0.25; if (rnd() < 0.18) v += rnd() * 1.2; if (i > 80 && i < 86) v += 2.2; if (i > 100 && i < 106) v += 3.5; inc.push(v); }
+    const sum = inc.reduce((a, b) => a + b, 0); let acc = 0;
+    const DATA = inc.map(v => (acc += v * FINAL / sum));
+    // ---- layout ----
+    const X0 = 56, X1 = 930, Y0 = 400, Y1 = 30, NS = "http://www.w3.org/2000/svg";
+    const $ = id => document.getElementById(id);
+    const niceStep = m => { const raw = m / 4.2, p = Math.pow(10, Math.floor(Math.log10(raw))); const n = raw / p; return (n < 1.5 ? 1 : n < 3.5 ? 2.5 : n < 7.5 ? 5 : 10) * p; };
+    const fmtM = v => { const r = Math.round(v * 10) / 10; return (r % 1 ? r.toFixed(1) : r) + "M"; };
+    function render(p) {
+      const k = Math.max(1, p * (DAYS - 1));             // fractional index of the head
+      const i = Math.floor(k), f = k - i;
+      const head = i + 1 < DAYS ? DATA[i] + (DATA[i + 1] - DATA[i]) * f : DATA[DAYS - 1];
+      const xMax = Math.max(k, 28) * 1.04, yMax = Math.max(head * 1.12, 2);
+      const sx = d => X0 + (d / xMax) * (X1 - X0), sy = v => Y0 - (v / yMax) * (Y0 - Y1);
+      let pts = []; for (let j = 0; j <= i; j++) pts.push([sx(j), sy(DATA[j])]); pts.push([sx(k), sy(head)]);
+      const line = "M" + pts.map(q => q[0].toFixed(1) + "," + q[1].toFixed(1)).join("L");
+      $("line").setAttribute("d", line);
+      $("area").setAttribute("d", line + `L${sx(k).toFixed(1)},${Y0}L${X0},${Y0}Z`);
+      $("dot").setAttribute("cx", sx(k)); $("dot").setAttribute("cy", sy(head));
+      $("cursor").setAttribute("x1", sx(k)); $("cursor").setAttribute("x2", sx(k)); $("cursor").setAttribute("y1", sy(head)); $("cursor").setAttribute("y2", Y0);
+      // grid: month lines slide left as the x axis grows, y ticks rescale
+      let g = "";
+      for (const [d, t] of MONTHS) { if (d < 0 && k < 3) continue; const x = sx(Math.max(d, 0)); if (x > X1 - 40 || x > sx(k) - 30 && d > 0) continue; g += `<line x1="${x}" x2="${x}" y1="${Y1}" y2="${Y0}" stroke="#c9c9c4" stroke-dasharray="4 6"/><text class="ax" x="${x}" y="${Y0 + 36}" text-anchor="middle">${t}</text>`; }
+      g += `<text class="ax" x="${sx(k)}" y="${Y0 + 36}" text-anchor="middle" fill="#141414" style="fill:#141414">${p >= 1 ? END_LABEL : ""}</text>`;
+      const st = niceStep(yMax); for (let v = 0; v <= yMax; v += st) g += `<text class="ax" x="${X1 + 60}" y="${sy(v) + 7}" text-anchor="start">${v === 0 ? "0" : fmtM(v)}</text>`;
+      $("grid").innerHTML = g;
+      $("value").textContent = "$" + (head >= 100 ? 100 : Math.round(head)) + "M";
+      const tip = $("tip"); tip.style.left = sx(k) + "px"; tip.style.top = (470 + sy(head) - 18) + "px";
+    }
+    const prog = { p: 0 }; render(0);
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#value, #label", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", stagger: 0.08 }, 0.1);
+    tl.fromTo(prog, { p: 0 }, { p: 1, duration: 6.4, ease: "power1.inOut", onUpdate: () => render(prog.p) }, 0.5);
+    tl.fromTo("#tip", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)", immediateRender: false }, 7.0);
+    window.__timelines = window.__timelines || {};
+    window.__timelines.main = tl;
+  </script>
+</body>
+</html>

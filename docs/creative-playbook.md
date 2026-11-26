@@ -1,8 +1,10 @@
 # Launch Film Playbook
 
-How Cero, Predictstreet and Motoswap built their launch videos, and how we make our own.
+How Cero, Predictstreet, Motoswap and Plasma built their launch videos, and how we make our own.
 
-Three films from 2026. Together they pulled 3.08M views on X. Every timing and audio number below was measured from the source files with ffmpeg, not eyeballed.
+Nine videos from 2026. Together they pulled 4.21M views on X. Every timing and audio number below was measured from the source files with ffmpeg, not eyeballed.
+
+Two schools show up. Cero, Predictstreet and Motoswap are **loud**: fast cuts, one hot accent color, 3D rewards, big type. Plasma is **quiet**: white space, small type, a silver card, cinematic lifestyle. Sections 1 to 3 cover loud. Section 3b covers quiet. Pick one per brand and stay in it.
 
 ---
 
@@ -112,6 +114,55 @@ The live action is AI-generated cinema: shallow depth of field, warm practical l
 
 ---
 
+## 3b. Plasma, the quiet school
+
+[@plasma](https://x.com/plasma) is a stablecoin neobank (Plasma One card and app). 230K followers. Six of their top videos, measured:
+
+| Video | Views | Format | Length | Cuts | Median shot | Loudness |
+|---|---|---|---|---|---|---|
+| [Year One](https://x.com/plasma/status/2103107655376269729) | 465K | 1920x1080, 23.976fps | 67.6s | 50 | 0.67s | -14.4 LUFS |
+| [Zero FX fees with Platinum](https://x.com/plasma/status/2100578363521802659) | 260K | 1920x1080, 30fps | 21.9s | 5 | 4.40s | -23.6 LUFS |
+| [Plasma One is now open to everyone](https://x.com/plasma/status/2102764201219596555) | 212K | 1920x1080, 23.976fps | 38.4s | 20 | 1.46s | -18.7 LUFS |
+| [Aurora partnership](https://x.com/plasma/status/2102792796885197310) | 109K | 3840x2160, 25fps | 80.4s | 66 | 0.88s | -17.9 LUFS |
+| [Business waitlist](https://x.com/plasma/status/2122708492150824961) | 52K | 1080x1350, 30fps | 10.1s | 1 | one shot | -25.0 LUFS |
+| [$100M moved](https://x.com/plasma/status/2112923666325340182) | 32K | 1920x1920, 60fps | 18.2s | 0 | one shot | -13.0 LUFS |
+
+### The look
+
+- **No accent color.** Off-white or black backgrounds, a brushed silver card, and green only inside charts. Restraint is the brand.
+- **Small type, centered, sentence case, full stop.** "Now open." "Add money and start spending." "Do more." Never more than five words on screen.
+- **Words write on one at a time.** "Wherever" holds, then becomes "Wherever you are." "Only with" becomes "Only with Platinum." The pause does the work a bold font does in the loud school.
+- **Glass UI chips float in the footage.** A man checks his phone in a gym and a frosted card hangs in the air beside him: `+$130.23 from Eight Sleep`. Tracked to the scene, not slapped on top.
+- **The silver card is the hero object.** It plays the role the foil pack plays for Cero and Predictstreet, but rotates slowly with a light sweep instead of exploding.
+
+### Four films, four jobs
+
+**Zero FX fees (21.9s).** Four overhead shots of a card tapping a terminal: a New York hot dog stand, a red Paris café table, a candlelit restaurant, a Japanese convenience store counter. Four seconds each, no words. Then white: "0% FX fees." / "Wherever you are." / "Only with Platinum." The claim is shown as geography before it is ever said.
+
+**Now open to everyone (38.4s).** Logo, "Now open.", then lifestyle footage (street, sauna, gym, Tuscany road, sunset swim, yacht) with one short line each and a balance chip ticking up. Ends on the app icon with store badges. Shots land every 1.1 to 1.25s, the same rhythm as the loud school.
+
+**Year One (67.6s).** A stats-and-logos year in review. Deposit numbers (`$500M`, `$1B`, `$7.00B+`) on full-bleed slides, partner logos cut every 10 frames (0.417s, which is 144 BPM at 23.976fps), product footage, real usage charts, "We're just getting started." It also uses real press footage of public officials. That's licensed news archive, not AI lookalikes, and it still needs clearance.
+
+**$100M moved (18.2s).** One shot. A huge number counts up while a line chart draws beneath it, and both axes rescale as it grows, so the curve always fills the frame. Ends with a tooltip on the last point. **We rebuilt this as a template: `examples/milestone-chart/index.html`.** Swap `FINAL`, `DAYS`, `MONTHS` and the data and it renders a 9-second 1080x1080 video in 14 seconds.
+
+### How they post
+
+- Video post first, then a **reply** carrying the link and any legal line ("Plasma is not a bank…"). The video post stays clean.
+- Every reply link has its own campaign slug: `plasma.org/TRLLNS`, `/AEDONE`, `/DUBAIP`, `/111111`. Every film is tracked separately.
+- Formats match the content: 16:9 for films, 4:5 for UI demos, 1:1 for data.
+
+### Loud or quiet?
+
+| Use loud when | Use quiet when |
+|---|---|
+| The audience is crypto-native or under 30 | The product holds people's salary or savings |
+| The hook is a reward, a game, a points race | The hook is trust, fees, access, status |
+| You need to win the scroll against memes | You need to look like a bank that isn't boring |
+
+Quiet spots mix low (-18 to -25 LUFS) on purpose, for an ambient mood. They also play quieter than everything around them in the feed. Our default stays -14 unless the brand is deliberately quiet.
+
+---
+
 ## 4. The production stack
 
 Each film is five layers. Here is what makes each one and where our tools fit.
@@ -126,7 +177,7 @@ Each film is five layers. Here is what makes each one and where our tools fit.
 
 Layers C and D are where code beats After Effects. They are 40 to 60% of the screen time in Cero and Predictstreet, they change every launch, and HTML means the real brand fonts, real numbers and real UI tokens with no rebuild.
 
-Proof it works: `examples/stat-slam/index.html` rebuilds Motoswap's 0:13 stat slam (punch-in with blur, counter, one-frame white flash on the cut). It renders to 1080p MP4 in 43 seconds in this repo's cloud container.
+Proof it works: `examples/stat-slam/index.html` rebuilds Motoswap's 0:13 stat slam (punch-in with blur, counter, one-frame white flash on the cut). It renders to 1080p MP4 in 43 seconds in this repo's cloud container. `examples/milestone-chart/index.html` rebuilds Plasma's number-plus-chart milestone film as a reusable template.
 
 ---
 
@@ -224,6 +275,7 @@ Checklist before posting:
 - Second line is the product in plain words. "Motoswap is live on Ethereum."
 - Third line is the promise. "The house pays the players."
 - Link last. Upload the video natively.
+- Or Plasma's way: video post with no link, then a reply with the link, its own tracking slug, and any legal line.
 
 ---
 
