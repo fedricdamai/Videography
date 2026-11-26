@@ -126,6 +126,10 @@ The live action is AI-generated cinema: shallow depth of field, warm practical l
 | [Aurora partnership](https://x.com/plasma/status/2102792796885197310) | 109K | 3840x2160, 25fps | 80.4s | 66 | 0.88s | -17.9 LUFS |
 | [Business waitlist](https://x.com/plasma/status/2122708492150824961) | 52K | 1080x1350, 30fps | 10.1s | 1 | one shot | -25.0 LUFS |
 | [$100M moved](https://x.com/plasma/status/2112923666325340182) | 32K | 1920x1920, 60fps | 18.2s | 0 | one shot | -13.0 LUFS |
+| Plasma × Deel, "Get paid in stablecoins" | local file | 1920x1080, 23.976fps | 28.1s | 18 | 1.29s | -13.8 LUFS |
+| Plasma One, live on Android | local file | 1920x1080, 23.976fps | 28.7s | 3 | one 25.5s UI take | -21.8 LUFS |
+
+The last two came from our own sample folder and were analyzed locally. That analysis measured three of the same files I did (Cero, Motoswap, "Now open"), and its cut times and loudness matched mine exactly.
 
 ### The look
 
@@ -144,6 +148,16 @@ The live action is AI-generated cinema: shallow depth of field, warm practical l
 **Year One (67.6s).** A stats-and-logos year in review. Deposit numbers (`$500M`, `$1B`, `$7.00B+`) on full-bleed slides, partner logos cut every 10 frames (0.417s, which is 144 BPM at 23.976fps), product footage, real usage charts, "We're just getting started." It also uses real press footage of public officials. That's licensed news archive, not AI lookalikes, and it still needs clearance.
 
 **$100M moved (18.2s).** One shot. A huge number counts up while a line chart draws beneath it, and both axes rescale as it grows, so the curve always fills the frame. Ends with a tooltip on the last point. **We rebuilt this as a template: `examples/milestone-chart/index.html`.** Swap `FINAL`, `DAYS`, `MONTHS` and the data and it renders a 9-second 1080x1080 video in 14 seconds.
+
+**Plasma × Deel (28.1s).** "Work happens" holds over a home office and a sunroom. "everywhere." lands over a café and a beach camper. The sentence is unfinished for 2.7 seconds, and that wait is the hook. Then frosted toasts on four locations: `+$3,714.76 from Deel` at an airport, `+$750.00` on a mountain, `+$2,743.40` in a workshop, `+$1,250.00` on a Tokyo platform. Then "Spend in stablecoins." stays fixed on screen while five shots cut underneath it in 3.3 seconds. The first six cuts sit on a 1.33s grid, two beats at 90 BPM.
+
+**Live on Android (28.7s).** Three live shots in 3.2 seconds, then the entire rest of the ad is one continuous take of the app: balance, an "Earn $10" card, a progress bar filling, a scrolling list of real purchases each with its cashback (`Tesla supercharger -$12.41 +$0.37`, `ChatGPT -$20.00 +$1.00`), a "You earned $10!" toast, and the balance ticking `$410.96` to `$420.96`. The reward loop is told in the UI itself. This is the exact job `/stageshow` exists for.
+
+### Three moves to copy from Plasma
+
+1. **Hold one line of text while the footage cuts under it.** "Spend in stablecoins." over five places reads as "everywhere" without saying it.
+2. **Cycle one word slot.** "Add [USD]" becomes "Add [MXN]" becomes "Add money". You show breadth in four seconds without writing a list.
+3. **Use toasts as testimonials.** `+$130.23 from Eight Sleep` over a real person in a real place gives you social proof with no quotes and no faces to clear.
 
 ### How they post
 
