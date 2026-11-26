@@ -67,7 +67,7 @@ Write three concepts, each from a **different** device. Each concept is one sent
 | Proof before claim | Show it until it's obvious, say it once at the end | Plasma Zero FX, four countries | Fees, speed, coverage | The proof isn't visible on camera |
 | One sentence, many shots | One line holds while footage cuts underneath | Plasma × Deel | "Anywhere / anytime" benefits | The sentence is long |
 | Subtract | Remove sound, color or motion right before the reveal | Plasma "Now open." on black | Launches, announcements | Used more than once |
-| Receipts | Numbers are the plot; growth is the climax | Plasma Year One, $100M chart | Milestones, anniversaries | Numbers are small or vague |
+| Receipts | Numbers are the plot; growth is the climax | Plasma Year One, the 100M volume chart | Milestones, anniversaries | Numbers are small or vague |
 | The product is the story | One continuous move through the real UI, numbers ticking | Plasma Android | Features with a clear loop | Cluttered UI or a slow payoff |
 
 For each concept give: the one sentence, the hook (first 2 seconds, what we **see**), the last line, and the device. Then recommend one and say why the other two lose. Kill a concept if a competitor's logo could replace ours and it would still make sense.
@@ -116,7 +116,7 @@ For every shot, answer: **what does the viewer learn or feel here?** Cut any sho
 Useful moves (examples in the playbook):
 - A line of text held while 3 to 5 shots cut underneath
 - A cycling word slot ("Add USD" → "Add MXN" → "Add money")
-- "+$130.23 from Brand" toasts on real-world shots, as testimonials
+- "+130.23 from Brand" money toasts on real-world shots, as testimonials
 - A stat slam: big number, punch-in, a one-frame flash on the cut
 - A number and a chart in sync (`examples/milestone-chart`)
 - A cold open on the payoff, then "Six months earlier."
