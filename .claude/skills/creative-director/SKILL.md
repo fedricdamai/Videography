@@ -1,13 +1,32 @@
 ---
 name: creative-director
-description: Come up with, structure and critique launch films, product videos, teasers and social ads before and after they are built. Use whenever someone asks for a video idea, concept, script, storyboard, hook, ad or launch film, wants a video "better", "more creative" or "less generic", or before /hyperframes or /stageshow builds something new. Holds the eight concept devices and the measured flow rules learned from the Cero, Predictstreet, Motoswap and Plasma films, plus a scoring rubric.
+description: Come up with, structure and critique launch films, product videos, teasers and social ads before and after they are built. Use whenever someone asks for a video idea, concept, script, storyboard, hook, ad or launch film, wants a video "better", "more creative" or "less generic", or before /hyperframes or /stageshow builds something new. Holds three launch formats (founder-led launch, brand film, motion manifesto), the founder launch script template and comment-to-get distribution engine learned from Shown Media and BLVD, the eight concept devices and measured flow rules from the Cero, Predictstreet, Motoswap and Plasma films, and a scoring rubric.
 ---
 
 # Creative director
 
-Work in this order: **truth, idea, flow, threads, shots, build, measure, critique.** Never start at shots. A film that starts as a shot list ends as a feature list.
+Work in this order: **format, truth, idea, flow, threads, shots, build, measure, critique, launch.** Never start at shots. A film that starts as a shot list ends as a feature list.
 
-Evidence and examples for everything here: `docs/creative-thinking.md` (why), `docs/visual-grammar.md` (shot by shot, how it moves) and `docs/creative-playbook.md` (production). Read both before the first concept in a session.
+Evidence and examples for everything here: `docs/launch-video-formula.md` (founder-led launches and how they go viral), `docs/creative-thinking.md` (why brand films work), `docs/visual-grammar.md` (shot by shot, how it moves) and `docs/creative-playbook.md` (production). Read the ones your format needs before the first concept in a session.
+
+## 0. Pick the format
+
+| Format | Length | Use when | Engine | Reference |
+|---|---|---|---|---|
+| **Founder-led launch** | 95-125s | A startup launches, raises, or ships a big feature and wants signups now | Script: claim, "Let me show you how it works.", persona, features, enemy, gift, comment-to-get CTA | Slash, Contra, Meridian (Shown Media) |
+| **Brand film** | 20-40s | Brand awareness, a product line, a market launch | Concept device and flow (steps 2-4) | Cero, Predictstreet, Motoswap, Plasma |
+| **Motion manifesto** | 40-50s | No founder story; switching users away from an incumbent | One line broken into one word per beat, competitor-UI morph, features as verbs | Phantom (BLVD) |
+
+A "VERY GOOD LAUNCH VIDEO" for a startup is usually the **founder-led launch**, with a brand film cut down from its cutaways for paid and repeat posts.
+
+**For a founder-led launch:** fill `templates/founder-launch-script.md` first (280-320 words, 155-180 wpm), then do steps 1, 4 and 5 with these rules:
+
+- **Say it, see it.** List every noun and number in the script; each gets its own visual within half a second of being spoken. Product nouns are real UI (`/stageshow`), abstract nouns become metaphor objects, numbers roll.
+- **One material.** Every cutaway is made of one substance in brand color (Slash: gold metal on black; Contra: white paper and saturated color; Meridian: white with orange threads).
+- **The founder appears on four beats only:** claim, pivot, promise or enemy, CTA. Name and title lower third on first appearance.
+- **Cut to the voice, not the music.** Captions on every line.
+- **End on the reply box** with the keyword being typed.
+- Skip the energy-shape and beat-lock rules in step 3; the voice sets the rhythm.
 
 ## 1. Find the product truth
 
@@ -120,7 +139,25 @@ Score the draft pass/fail and show the evidence for each line:
 11. Every cut in the key sequence has a carrier (object, anchor, shape, color, beat).
 12. The film opens and closes on the same hero object or shape.
 
+For a founder-led launch, also check:
+
+13. The claim lands in the first 6 seconds, in one sentence.
+14. "Let me show you how it works." lands by 30% of the runtime.
+15. Every noun and number in the script has its own visual.
+16. There is an enemy, one joke, and a gift with a one-word comment CTA.
+17. The last shot shows the reply box with the keyword typed in.
+
 Fix the failures, re-render, measure again. Two passes, then ship.
+
+## 9. Launch: the distribution engine
+
+A launch video is only half built until its post is designed.
+
+- **The gift:** something useful to people who won't buy yet: a free score or audit, a secret list or spreadsheet, a time-boxed bonus. It must be ready to send the minute the post goes live.
+- **The keyword:** one word, ideally the brand name. "Comment [KEYWORD] and we'll DM you [gift]." Add "Retweet and" on X.
+- **Post copy:** line 1 is the claim sentence. Line 2 is the comment-to-get instruction. No link in the main post (the DMs carry it).
+- **Ops:** someone sends DMs as comments arrive, from the first minute.
+- **Cut-downs:** a 30-40s brand film and 9:16 clips from the founder beats, for days 2-14.
 
 ## Guardrails
 
