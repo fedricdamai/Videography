@@ -5,9 +5,9 @@ description: Come up with, structure and critique launch films, product videos, 
 
 # Creative director
 
-Work in this order: **truth, idea, flow, shots, build, measure, critique.** Never start at shots. A film that starts as a shot list ends as a feature list.
+Work in this order: **truth, idea, flow, threads, shots, build, measure, critique.** Never start at shots. A film that starts as a shot list ends as a feature list.
 
-Evidence and examples for everything here: `docs/creative-thinking.md` (why) and `docs/creative-playbook.md` (how). Read both before the first concept in a session.
+Evidence and examples for everything here: `docs/creative-thinking.md` (why), `docs/visual-grammar.md` (shot by shot, how it moves) and `docs/creative-playbook.md` (production). Read both before the first concept in a session.
 
 ## 1. Find the product truth
 
@@ -58,7 +58,23 @@ Measured rules from the reference films. Treat them as defaults, and break one o
 
 Then write the beat sheet: `time | beat | what we see | text on screen | sound | energy (1-5)`. The energy column should trace the chosen shape.
 
-## 4. Shots
+## 4. Threads: what holds the film together
+
+Read `docs/visual-grammar.md` (the twelve principles, frame-level evidence, and a worked example). Before listing shots, decide:
+
+- **Hero object:** the product's core action made into a thing you can hold (Cero's coin = flip for cashback). It opens the film and closes it.
+- **Shape:** usually the hero object's outline or the logo. Every mask, gauge, button and transition uses it.
+- **Anchor:** the one thing that stays locked on screen while the world swaps, for the "everywhere / every currency" section.
+- **Milestone:** the one moment the whole frame inverts (palette flip, sunburst), not just the number.
+- **Void:** where the single black or silent beat goes.
+
+Then write the **transition chain**: for every cut in the key sequence, name what carries the eye. Options: object carry, object as wipe, anchor swap, shape match, color wipe, word per beat, hard cut on beat (montages only), void (once). A cut with no carrier is a dead cut. Fix it or move it into a montage.
+
+Borrow the thinking, never the look. Translate each principle into the product's own world: ask "if our product's core action were an object, what is it?", and "why *this* place?" for every background.
+
+`examples/thread-demo/` is a working HyperFrames build of these threads (coin hero object, card anchor swap, ring shape match, $1,000 inversion, void, bookend).
+
+## 5. Shots
 
 For every shot, answer: **what does the viewer learn or feel here?** Cut any shot that only looks good. Prefer verbs you can film: tap, rip open, zoom, count up. Avoid adjectives.
 
@@ -71,13 +87,13 @@ Useful moves (examples in the playbook):
 - A cold open on the payoff, then "Six months earlier."
 - The reward as a physical object (pack, card, ticket)
 
-## 5. Build
+## 6. Build
 
 - Choose the music first and note its BPM. Plan durations in beats.
 - Kinetic type, stats, charts and assembly: `/hyperframes`. Product UI, phones, dashboards: `/stageshow`. Check `/hyperframes-registry` before hand-building an effect.
 - One accent color (loud) or none (quiet). One display font.
 
-## 6. Measure
+## 7. Measure
 
 Run the draft, and the reference it's meant to rival, through the flow tool:
 
@@ -87,7 +103,7 @@ Run the draft, and the reference it's meant to rival, through the flow tool:
 
 Setup, once: `python3 -m venv .venv && .venv/bin/pip install librosa matplotlib`. Look at the chart. Does the curve match the chosen shape?
 
-## 7. Critique
+## 8. Critique
 
 Score the draft pass/fail and show the evidence for each line:
 
@@ -101,6 +117,8 @@ Score the draft pass/fail and show the evidence for each line:
 8. Silence used at most once, and on the key line.
 9. Read with the sound off, from one frame per second, the story still lands.
 10. The end card holds 4 to 6 seconds with one clear action.
+11. Every cut in the key sequence has a carrier (object, anchor, shape, color, beat).
+12. The film opens and closes on the same hero object or shape.
 
 Fix the failures, re-render, measure again. Two passes, then ship.
 
