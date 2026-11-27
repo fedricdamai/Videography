@@ -18,10 +18,10 @@ cut $A/n01.mp4 34469 1 5.5;  cut $A/n02.mp4 41175 2 1.83; cut $A/n03.mp4 31413 2
 cut $A/n05.mp4 46700 3 8;    cut $A/n06.mp4 9607 2 1.5;   cut $A/n07.mp4 34469 9 3;    cut $A/n08.mp4 45735 3.5 2
 cut $A/n09.mp4 46700 18 8
 B=flow-b/assets
-cut $B/y01.mp4 48165 1 1.84; cut $B/y02.mp4 13109 2 1.84; cut $B/y03.mp4 41856 1 1.84; cut $B/y04.mp4 6753 3 1.84
-cut $B/y05.mp4 4566 0.5 1.84; cut $B/y06.mp4 7674 2 1.84;  cut $B/y07.mp4 9094 1 7.0;   cut $B/y08.mp4 24352 4 2.6
-cut $B/y09.mp4 29948 11 4.8; cut $B/y10.mp4 22051 3 1.65; cut $B/y11.mp4 17601 3 1.65; cut $B/y12.mp4 8741 2 1.65
-cut $B/y13.mp4 15167 3 1.7
+cut $B/z01.mp4 13109 2 1.5; cut $B/z02.mp4 14088 2 1.5; cut $B/z03.mp4 52088 2 1.5; cut $B/z04.mp4 6753 3 1.5
+cut $B/z05.mp4 46653 3 1.5; cut $B/z06.mp4 7674 2 1.5;  cut $B/z07.mp4 32590 2 7.0; cut $B/z08.mp4 34469 2 3.0
+cut $B/z09.mp4 39788 2 4.8; cut $B/z10.mp4 46378 2 1.5; cut $B/z11.mp4 43524 2 1.5; cut $B/z12.mp4 14084 1 1.5
+cut $B/z13.mp4 4537 3 1.5
 curl -sfL -o flow-a/assets/music.mp3 https://assets.mixkit.co/music/267/267.mp3   # Trap Hamza, 112 BPM
 curl -sfL -o flow-b/assets/music.mp3 https://assets.mixkit.co/music/33/33.mp3     # Motivating Mornings, 123 BPM
 curl -sfL -o flow-c/assets/music.mp3 https://assets.mixkit.co/music/126/126.mp3   # Trap Electro Vibes, 112 BPM

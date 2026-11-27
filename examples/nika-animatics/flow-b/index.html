@@ -12,8 +12,6 @@
   .vid { position:absolute; left:0; top:0; width:100%; height:100%; object-fit:cover; }
   #shadeB { position:absolute; left:0; right:0; bottom:0; height:480px; background:linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.65)); }
   #shadeT { position:absolute; left:0; right:0; top:0; height:300px; background:linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,0)); }
-  .chip { position:absolute; left:90px; bottom:96px; font-size:40px; font-weight:600; letter-spacing:-0.01em; opacity:0; }
-  .chip b { font-weight:800; font-variant-numeric:tabular-nums; margin-right:14px; }
   #ntf { position:absolute; left:50%; top:110px; transform:translateX(-50%) scale(1.6); transform-origin:50% 0; opacity:0; }
   #ntf .nk-toast { position:relative; }
   .card { position:absolute; inset:0; background:var(--paper); opacity:0; color:#111; }
@@ -24,18 +22,32 @@
   #pill .l { left:0; color:#fff; } #pill .r { left:350px; }
   .big { position:absolute; left:90px; bottom:130px; font-size:124px; font-weight:800; letter-spacing:-0.045em; line-height:1; white-space:nowrap; text-shadow:0 4px 30px rgba(0,0,0,.45); }
   .bar { position:absolute; left:94px; bottom:104px; height:10px; width:0; border-radius:5px; }
-  .stat { position:absolute; left:90px; top:110px; opacity:0; text-shadow:0 4px 24px rgba(0,0,0,.45); }
-  .stat small { display:block; font-size:34px; font-weight:600; opacity:.9; }
-  .stat b { display:block; font-size:150px; font-weight:800; letter-spacing:-0.05em; line-height:1; font-variant-numeric:tabular-nums; }
-  #loud { position:absolute; left:0; right:0; top:330px; text-align:center; font-size:170px; font-weight:900; letter-spacing:-0.04em; text-shadow:0 6px 40px rgba(0,0,0,.6); }
-  #redchip { position:absolute; left:90px; top:110px; font-size:40px; font-weight:700; background:rgba(0,0,0,.55); padding:12px 22px; border-radius:14px; opacity:0; }
+  /* leaderboard: gives Mirror its context */
+  #lb { position:absolute; left:90px; top:120px; width:760px; opacity:0; }
+  #lb .t { font-size:64px; font-weight:800; letter-spacing:-0.035em; margin-bottom:26px; text-shadow:0 4px 24px rgba(0,0,0,.5); white-space:nowrap; }
+  #lb .r { display:flex; align-items:center; gap:22px; padding:22px 28px; border-radius:24px; background:rgba(15,16,22,.82); backdrop-filter:blur(16px); border:2px solid rgba(255,255,255,.1); margin-bottom:16px; font-size:40px; font-weight:700; }
+  #lb .r .n { width:56px; color:#9aa0b8; } #lb .r .a { width:56px; height:56px; border-radius:50%; } #lb .r .v { margin-left:auto; color:var(--mirror); font-variant-numeric:tabular-nums; }
+  #lb .r1 { border-color:var(--mirror); box-shadow:0 0 0 4px rgba(34,197,94,.35); }
+  /* streamer: gives Inverse its context */
+  .live { position:absolute; left:90px; top:110px; display:flex; gap:14px; align-items:center; font-weight:800; font-size:30px; opacity:0; }
+  .live b { background:#ef4444; padding:8px 16px; border-radius:10px; } .live span { background:rgba(0,0,0,.55); padding:8px 16px; border-radius:10px; }
+  #callchip { position:absolute; left:90px; top:180px; font-size:34px; font-weight:800; background:rgba(0,0,0,.55); padding:10px 18px; border-radius:12px; opacity:0; }
+  #loud { position:absolute; left:0; right:0; top:420px; text-align:center; font-size:150px; font-weight:900; letter-spacing:-0.04em; text-shadow:0 6px 40px rgba(0,0,0,.6); }
+  #prof { position:absolute; right:90px; top:110px; width:600px; padding:28px; border-radius:28px; background:rgba(15,16,22,.88); border:2px solid #7f1d1d; opacity:0; }
+  #prof .h { display:flex; align-items:center; gap:18px; font-size:40px; font-weight:800; }
+  #prof .h i { width:64px; height:64px; border-radius:50%; background:#ef4444; display:block; }
+  #prof .kv { display:flex; justify-content:space-between; margin-top:22px; } #prof .kv small { display:block; font-size:24px; color:#9aa0b8; } #prof .kv b { font-size:52px; color:#f87171; }
+  #prof .w { margin-top:18px; font-size:34px; font-weight:700; color:#fca5a5; }
+  #pipw { position:absolute; left:90px; top:110px; width:480px; height:270px; border-radius:20px; overflow:hidden; border:3px solid rgba(255,255,255,.85); box-shadow:0 20px 60px rgba(0,0,0,.5); opacity:0; }
+  #pipw .pv { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  #pipw b { position:absolute; left:14px; top:12px; background:#ef4444; padding:4px 10px; border-radius:8px; font-size:20px; font-weight:800; z-index:2; }
+  #pipw span { position:absolute; left:14px; bottom:12px; font-size:22px; font-weight:700; z-index:2; text-shadow:0 2px 8px rgba(0,0,0,.8); }
   #phone { left:1340px; top:107px; opacity:0; }
   #thatsit { position:absolute; left:90px; top:110px; font-size:120px; font-weight:800; letter-spacing:-0.045em; text-shadow:0 4px 30px rgba(0,0,0,.5); }
   #pf { position:absolute; left:1240px; top:120px; width:560px; opacity:0; }
   #pf .nk-panel { background:rgba(21,22,29,.85); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,.12); padding:22px; margin-bottom:16px; }
   #pf .nk-row { font-size:24px; } #pf .nk-kv b { font-size:30px; } #pf .nk-kv small { font-size:16px; }
   #end .e1 { top:300px; } #end .e2 { top:440px; }
-  #end .w { transition:none; }
   #elogo { position:absolute; left:50%; top:690px; transform:translateX(-50%); opacity:0; }
   #elogo .nk-logo { color:#111; }
   #end .nk-store { position:absolute; left:50%; top:850px; transform:translateX(-50%); opacity:0; }
@@ -46,49 +58,43 @@
 </head>
 <body>
 <div id="root" data-composition-id="main" data-start="0" data-duration="40" data-width="1920" data-height="1080">
-  <video id="vy01" class="vid" src="assets/y01.mp4" data-start="0" data-duration="1.5" muted playsinline></video>
-  <video id="vy02" class="vid" src="assets/y02.mp4" data-start="1.5" data-duration="1.5" muted playsinline></video>
-  <video id="vy03" class="vid" src="assets/y03.mp4" data-start="3" data-duration="1.5" muted playsinline></video>
-  <video id="vy04" class="vid" src="assets/y04.mp4" data-start="4.5" data-duration="1.5" muted playsinline></video>
-  <video id="vy05" class="vid" src="assets/y05.mp4" data-start="6" data-duration="1.5" muted playsinline></video>
-  <video id="vy06" class="vid" src="assets/y06.mp4" data-start="7.5" data-duration="1.5" muted playsinline></video>
-  <video id="vy07" class="vid" src="assets/y07.mp4" data-start="12.6" data-duration="7" muted playsinline></video>
-  <video id="vy08" class="vid" src="assets/y08.mp4" data-start="19.6" data-duration="2.6" muted playsinline></video>
-  <video id="vy09" class="vid" src="assets/y09.mp4" data-start="22.2" data-duration="4.8" muted playsinline></video>
-  <video id="vy13" class="vid" src="assets/y13.mp4" data-start="27" data-duration="1.6" muted playsinline></video>
-  <video id="vy10" class="vid" src="assets/y10.mp4" data-start="28.6" data-duration="1.6" muted playsinline></video>
-  <video id="vy11" class="vid" src="assets/y11.mp4" data-start="30.2" data-duration="1.6" muted playsinline></video>
-  <video id="vy12" class="vid" src="assets/y12.mp4" data-start="31.8" data-duration="1.6" muted playsinline></video>
+  <video id="vz01" class="vid" src="assets/z01.mp4" data-start="0" data-duration="1.5" muted playsinline></video>
+  <video id="vz02" class="vid" src="assets/z02.mp4" data-start="1.5" data-duration="1.5" muted playsinline></video>
+  <video id="vz03" class="vid" src="assets/z03.mp4" data-start="3" data-duration="1.5" muted playsinline></video>
+  <video id="vz04" class="vid" src="assets/z04.mp4" data-start="4.5" data-duration="1.5" muted playsinline></video>
+  <video id="vz05" class="vid" src="assets/z05.mp4" data-start="6" data-duration="1.5" muted playsinline></video>
+  <video id="vz06" class="vid" src="assets/z06.mp4" data-start="7.5" data-duration="1.5" muted playsinline></video>
+  <video id="vz07" class="vid" src="assets/z07.mp4" data-start="12.6" data-duration="7" muted playsinline></video>
+  <video id="vz08" class="vid" src="assets/z08.mp4" data-start="19.6" data-duration="3" muted playsinline></video>
+  <video id="vz09" class="vid" src="assets/z09.mp4" data-start="22.6" data-duration="4.8" muted playsinline></video>
+  <video id="vz10" class="vid" src="assets/z10.mp4" data-start="27.4" data-duration="1.5" muted playsinline></video>
+  <video id="vz11" class="vid" src="assets/z11.mp4" data-start="28.9" data-duration="1.5" muted playsinline></video>
+  <video id="vz12" class="vid" src="assets/z12.mp4" data-start="30.4" data-duration="1.5" muted playsinline></video>
+  <video id="vz13" class="vid" src="assets/z13.mp4" data-start="31.9" data-duration="1.5" muted playsinline></video>
   <div id="shadeT"></div><div id="shadeB"></div>
-  <!-- 1. A busy day: time chips + one notification earning across the day -->
-  <div class="chip" id="c1"><b>09:00</b><span id="c1t">Lecture</span></div>
-  <div class="chip" id="c2"><b>11:30</b><span id="c2t">Surgery</span></div>
-  <div class="chip" id="c3"><b>13:00</b><span id="c3t">Double shift</span></div>
-  <div class="chip" id="c4"><b>15:40</b><span id="c4t">Boarding</span></div>
-  <div class="chip" id="c5"><b>17:00</b><span id="c5t">Study group</span></div>
-  <div class="chip" id="c6"><b>18:30</b><span id="c6t">School run</span></div>
   <div id="ntf"></div>
-  <!-- 2. Type cards -->
   <div class="card" id="k1"><div class="ln" id="k1t" style="top:440px">Life is busy.</div></div>
   <div class="card" id="k2"><div class="ln" id="k2t" style="top:380px">So copy trading is two buttons.</div>
     <div id="pill"><i id="knob"></i><span class="l" id="pl">Mirror</span><span class="r" id="pr">Inverse</span></div></div>
-  <!-- 3. Mirror -->
-  <div class="stat" id="st1"><small>quietkoi · 30 days</small><b id="st1v">+0.0%</b></div>
+  <!-- Mirror: who is "the best" -->
+  <div id="lb"><div class="t" id="lbt">Top traders this month</div>
+    <div class="r r1" id="lr1"><span class="n">#1</span><i class="a" style="background:#f59e0b"></i>quietkoi<span class="v">+268.9%</span></div>
+    <div class="r" id="lr2"><span class="n">#2</span><i class="a" style="background:#22a6f0"></i>fjordcapital<span class="v">+211.4%</span></div>
+    <div class="r" id="lr3"><span class="n">#3</span><i class="a" style="background:#14b8a6"></i>tidecraft<span class="v">+184.0%</span></div></div>
   <div class="big" id="bm" style="opacity:0">Mirror the best.</div><div class="bar" id="barm" style="background:var(--mirror)"></div>
-  <!-- 4. The loudest -->
-  <div id="redchip">deskwarrior · <span style="color:#f87171">−74.2%</span> · 30D</div>
-  <div id="loud" style="opacity:0">IT HAS TO BOUNCE.</div>
-  <!-- 5. Inverse -->
+  <!-- Inverse: who is "the rest" -->
+  <div class="live" id="live"><b>LIVE</b><span>61.9K watching</span></div>
+  <div id="callchip">BTC · <span style="color:#4ade80">50x LONG</span></div>
+  <div id="loud" style="opacity:0">THIS IS THE BOTTOM.</div>
+  <div id="prof"><div class="h"><i></i>loudlarry</div>
+    <div class="kv"><div><small>Win rate</small><b>11%</b></div><div style="text-align:right"><small>30D</small><b>−74.2%</b></div></div>
+    <div class="w" id="profw">Wrong 9 times out of 10.</div></div>
+  <div id="pipw"><video id="vpip" class="pv" src="assets/z08.mp4" data-start="22.6" data-duration="2" muted playsinline></video><b>LIVE</b><span>loudlarry</span></div>
   <div class="big" id="bi" style="opacity:0">Inverse the rest.</div><div class="bar" id="bari" style="background:var(--inverse)"></div>
-  <!-- 6. Payoff -->
-  <div class="chip" id="c7"><b>19:30</b><span id="c7t">Park</span></div>
-  <div class="chip" id="c8"><b>20:00</b><span id="c8t">Dinner with friends</span></div>
-  <div class="chip" id="c9"><b>21:15</b><span id="c9t">Off shift</span></div>
-  <div class="chip" id="c10"><b>22:40</b><span id="c10t">Night in</span></div>
+  <!-- Payoff -->
   <div id="thatsit" style="opacity:0">That's it.</div>
   <div id="pf"></div>
   <div id="phone" class="nk-phone"></div>
-  <!-- 7. End: the sentence assembles -->
   <div class="card" id="end">
     <div class="ln e1" id="e1">Mirror the best.</div>
     <div class="ln e2" id="e2">Inverse the rest.</div>
@@ -96,18 +102,18 @@
     <div class="nk-store"><span>Download on the App Store</span><span>Get it on Google Play</span></div>
     <div class="nk-disc">Illustrative figures. Fictional characters. Trading perpetuals involves risk of loss. Not financial advice.</div>
   </div>
-  <div id="tagA">NIKA · FLOW B v5 · RIPOMATIC · STOCK FOOTAGE FROM MIXKIT</div>
+  <div id="tagA">NIKA · FLOW B v6 · RIPOMATIC · STOCK FOOTAGE FROM MIXKIT</div>
   <audio id="m1" src="assets/music.mp3" data-start="0" data-duration="10.6" data-media-start="0" data-volume="0.8" data-fade-out="0.3"></audio>
   <audio id="m2" src="assets/music.mp3" data-start="12.6" data-duration="27.4" data-media-start="30" data-volume="0.8" data-fade-in="0.2" data-fade-out="2.5"></audio>
   <audio id="fx1" src="assets/sfx-1492.mp3" data-start="12.1" data-duration="1.2" data-volume="0.7"></audio>
-  <audio id="fx2" src="assets/sfx-2364.mp3" data-start="14.8" data-duration="0.6" data-volume="0.6"></audio>
-  <audio id="fx3" src="assets/sfx-2870.mp3" data-start="17.5" data-duration="1.6" data-volume="0.55"></audio>
-  <audio id="fx4" src="assets/sfx-2364.mp3" data-start="19.75" data-duration="0.5" data-volume="0.7"></audio>
-  <audio id="fx5" src="assets/sfx-2364.mp3" data-start="19.93" data-duration="0.5" data-volume="0.7"></audio>
-  <audio id="fx6" src="assets/sfx-2364.mp3" data-start="20.11" data-duration="0.5" data-volume="0.7"></audio>
-  <audio id="fx7" src="assets/sfx-2364.mp3" data-start="20.29" data-duration="0.5" data-volume="0.7"></audio>
-  <audio id="fx8" src="assets/sfx-1492.mp3" data-start="22.9" data-duration="1.2" data-volume="0.8"></audio>
-  <audio id="fx9" src="assets/sfx-2870.mp3" data-start="25.2" data-duration="1.6" data-volume="0.55"></audio>
+  <audio id="fx2" src="assets/sfx-2364.mp3" data-start="15.9" data-duration="0.6" data-volume="0.6"></audio>
+  <audio id="fx3" src="assets/sfx-2870.mp3" data-start="17.9" data-duration="1.6" data-volume="0.55"></audio>
+  <audio id="fx4" src="assets/sfx-2364.mp3" data-start="19.85" data-duration="0.5" data-volume="0.7"></audio>
+  <audio id="fx5" src="assets/sfx-2364.mp3" data-start="20.03" data-duration="0.5" data-volume="0.7"></audio>
+  <audio id="fx6" src="assets/sfx-2364.mp3" data-start="20.21" data-duration="0.5" data-volume="0.7"></audio>
+  <audio id="fx7" src="assets/sfx-2364.mp3" data-start="20.39" data-duration="0.5" data-volume="0.7"></audio>
+  <audio id="fx8" src="assets/sfx-1492.mp3" data-start="23.4" data-duration="1.2" data-volume="0.8"></audio>
+  <audio id="fx9" src="assets/sfx-2870.mp3" data-start="25.6" data-duration="1.6" data-volume="0.55"></audio>
   <audio id="fx10" src="assets/sfx-1485.mp3" data-start="35.3" data-duration="0.5" data-volume="0.9"></audio>
 </div>
 <script>
@@ -115,24 +121,22 @@ const $ = (s) => document.querySelector(s);
 $("#ntf").innerHTML = NK.toast("tn", "quietkoi opened BTC long", "Mirrored in your account", "+$0.00");
 $("#elogo").innerHTML = NK.logo(96);
 $("#pf").innerHTML = `<div class="nk-panel"><div class="nk-row">${NK.av("#f59e0b")}quietkoi<span class="nk-badge m">Mirror</span></div><div class="nk-kv" style="margin-top:14px"><div><small>Put in</small><b>$500.00</b></div><div style="text-align:right"><small>Total PnL</small><b class="nk-g" id="pfm">+$0.00</b></div></div></div>
-  <div class="nk-panel"><div class="nk-row">${NK.av("#ef4444")}deskwarrior<span class="nk-badge i">Inverse</span></div><div class="nk-kv" style="margin-top:14px"><div><small>Put in</small><b>$200.00</b></div><div style="text-align:right"><small>Total PnL</small><b class="nk-g" id="pfi">+$0.00</b></div></div></div>`;
+  <div class="nk-panel"><div class="nk-row">${NK.av("#ef4444")}loudlarry<span class="nk-badge i">Inverse</span></div><div class="nk-kv" style="margin-top:14px"><div><small>Put in</small><b>$200.00</b></div><div style="text-align:right"><small>Total PnL</small><b class="nk-g" id="pfi">+$0.00</b></div></div></div>`;
 const qk = { h:"quietkoi", c:"#f59e0b", roi:"+268.9%", win:"92.6%", seed:44, pnl:"$1,276,410.2", pnlShort:"$1.28M",
   pos:[["BTC","Long","5x","$31,204.2","+$48,320.1"],["ETH","Long","3x","$18,442.0","+$22,815.6"],["XAU","Long","10x","$12,980.7","+$9,604.4"]] };
-const desk = { h:"deskwarrior", c:"#ef4444", roi:"-74.2%", win:"11.0%", up:false, seed:9, pnl:"-$88,410.6", pnlShort:"-$88K",
+const larry = { h:"loudlarry", c:"#ef4444", roi:"-74.2%", win:"11.0%", up:false, seed:9, pnl:"-$88,410.6", pnlShort:"-$88K",
   pos:[["BTC","Long","50x","$22,201.0","-$9,220.3"],["SOL","Long","25x","$8,410.6","-$3,812.5"],["DOGE","Long","20x","$4,880.2","-$2,402.9"]] };
 $("#phone").innerHTML = NK.detail(qk, { id:"qd" }) + NK.sheet(qk, { id:"qs" }) + NK.success("Mirroring quietkoi", "$500 · Copying every trade", "ok1") +
-  NK.detail(desk, { id:"dd" }) + NK.sheet(desk, { id:"ds" }) + NK.success("Inversing deskwarrior", "$200 · Opposite of every trade", "ok2");
+  NK.detail(larry, { id:"dd" }) + NK.sheet(larry, { id:"ds" }) + NK.success("Inversing loudlarry", "$200 · Opposite of every trade", "ok2");
 ["#qd","#qs","#ok1","#dd","#ds","#ok2"].forEach((s) => gsap.set(s, { opacity: 0 }));
 gsap.set(["#qs","#ds"], { y: 760 });
-gsap.set(["#k1","#k2","#end"], { opacity: 0 });
+gsap.set(["#k1","#k2","#end","#lb","#prof","#pipw"], { opacity: 0 });
 
 const tl = gsap.timeline({ paused: true });
 const on = (s, at, d = 0.01) => tl.to(s, { opacity: 1, duration: d }, at);
 const off = (s, at, d = 0.01) => tl.to(s, { opacity: 0, duration: d }, at);
 const NIKA = "#3b49f0", MIR = "#22c55e", INV = "#8b5cf6";
-// 1. A busy day (0-9): each shot gets a time chip typed on; one notification earns across the day
-const chips = ["#c1","#c2","#c3","#c4","#c5","#c6"];
-chips.forEach((c, i) => { const at = i * 1.5; on(c, at); NK.typeOn(tl, c + "t", at + 0.08, { color: NIKA, dur: 0.45, seed: i + 3 }); off(c, at + 1.5); });
+// 1. Busy lives (0-9): surgeon first; one notification earning across all of them
 on("#ntf", 0.5, 0.25);
 const tr = ["quietkoi opened BTC long","quietkoi opened ETH long","quietkoi opened SOL short","quietkoi opened Gold long","quietkoi closed BTC long","quietkoi closed ETH long"];
 const amts = [0, 74.2, 212.4, 318.9, 365.15, 412.8];
@@ -147,48 +151,53 @@ tl.to("#pl", { color: "#111", duration: 0.01 }, 12.2); tl.to("#pr", { color: "#f
 tl.to("#knob", { x: 0, backgroundColor: MIR, duration: 0.25, ease: "power3.inOut" }, 12.4);
 tl.to("#pl", { color: "#fff", duration: 0.01 }, 12.5); tl.to("#pr", { color: "#111", duration: 0.01 }, 12.5);
 off("#k2", 12.6);
-// 3. Mirror the best (12.6-19.6): the library student
-on("#phone", 12.7, 0.25); on("#qd", 12.7);
-on("#st1", 12.9, 0.2); NK.count(tl, "#st1v", 0, 268.9, 1.4, 12.9, (v) => "+" + v.toFixed(1) + "%");
-NK.count(tl, "#qd-pnl", 0, 1276410.2, 1.6, 12.9, (v) => NK.money(v, 1));
-tl.fromTo("#qd-line", { attr: { "stroke-dashoffset": 1 } }, { attr: { "stroke-dashoffset": 0 }, duration: 1.5, ease: "power2.out", immediateRender: false }, 12.9);
-off("#st1", 14.6, 0.2);
-on("#qs", 14.5); tl.to("#qs", { y: 0, duration: 0.35, ease: "expo.out" }, 14.5);
-tl.to("#qs-knob", { scale: 1.08, duration: 0.12, yoyo: true, repeat: 1 }, 14.8);
-on("#bm", 15.0); NK.typeOn(tl, "#bm", 15.0, { color: MIR, dur: 0.9, seed: 31 });
-NK.say(tl, "#qs-amt", "$500", 16.4);
-tl.to("#qs-thumb", { x: 274, duration: 0.5, ease: "power2.inOut" }, 16.9); tl.to("#qs-fill", { width: "100%", duration: 0.5, ease: "power2.inOut" }, 16.9);
-off(["#qd", "#qs"], 17.5); on("#ok1", 17.5, 0.15);
-tl.to("#barm", { width: 860, duration: 0.5, ease: "power3.out" }, 17.6);
+// 3. Mirror the best (12.6-19.6): at a concert, she finds the #1 trader and mirrors her
+on("#lb", 12.7); NK.typeOn(tl, "#lbt", 12.7, { color: NIKA, dur: 0.6, seed: 30 });
+["#lr1","#lr2","#lr3"].forEach((r, i) => tl.fromTo(r, { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.3, ease: "expo.out", immediateRender: false }, 13.3 + i * 0.15));
+tl.to("#lr1", { scale: 1.05, duration: 0.2, yoyo: true, repeat: 1, transformOrigin: "0 50%" }, 14.0);
+off("#lb", 14.8, 0.2);
+on("#phone", 14.7, 0.25); on("#qd", 14.7);
+NK.count(tl, "#qd-pnl", 0, 1276410.2, 1.2, 14.8, (v) => NK.money(v, 1));
+tl.fromTo("#qd-line", { attr: { "stroke-dashoffset": 1 } }, { attr: { "stroke-dashoffset": 0 }, duration: 1.1, ease: "power2.out", immediateRender: false }, 14.8);
+on("#qs", 15.5); tl.to("#qs", { y: 0, duration: 0.35, ease: "expo.out" }, 15.5);
+tl.to("#qs-knob", { scale: 1.08, duration: 0.12, yoyo: true, repeat: 1 }, 15.9);
+on("#bm", 15.9); NK.typeOn(tl, "#bm", 15.9, { color: MIR, dur: 0.9, seed: 31 });
+NK.say(tl, "#qs-amt", "$500", 17.0);
+tl.to("#qs-thumb", { x: 274, duration: 0.5, ease: "power2.inOut" }, 17.3); tl.to("#qs-fill", { width: "100%", duration: 0.5, ease: "power2.inOut" }, 17.3);
+off(["#qd", "#qs"], 17.9); on("#ok1", 17.9, 0.15);
+tl.to("#barm", { width: 860, duration: 0.5, ease: "power3.out" }, 18.0);
 off(["#phone", "#bm", "#barm"], 19.6); off("#ok1", 19.6);
-// 4. The loudest (19.6-22.2)
-on("#redchip", 19.65); NK.typeOn(tl, "#redchip", 19.65, { color: "#ef4444", dur: 0.6, seed: 41 });
-on("#loud", 19.7); NK.slamWords(tl, "#loud", 19.75, 0.18);
-tl.to("#loud", { x: 8, duration: 0.05, yoyo: true, repeat: 9, ease: "none" }, 20.5);
-off(["#loud", "#redchip"], 22.2);
-// 5. Inverse the rest (22.2-27): types right to left
-on("#phone", 22.25, 0.2); on("#dd", 22.25);
-on("#ds", 22.5); tl.to("#ds", { y: 0, duration: 0.35, ease: "expo.out" }, 22.5);
-tl.to("#ds-knob", { xPercent: 100, backgroundColor: "#2a1b52", borderColor: "#6d4bd8", duration: 0.25 }, 22.95);
-NK.say(tl, "#ds-hint", "Take the opposite of this trader's positions.", 23.0);
-on("#bi", 23.1); NK.typeOn(tl, "#bi", 23.1, { color: INV, dir: "rtl", dur: 0.9, seed: 51 });
-NK.say(tl, "#ds-amt", "$200", 24.2);
-tl.to("#ds-thumb", { x: 274, duration: 0.5, ease: "power2.inOut" }, 24.6); tl.to("#ds-fill", { width: "100%", duration: 0.5, ease: "power2.inOut" }, 24.6);
-off(["#dd", "#ds"], 25.2); on("#ok2", 25.2, 0.15);
-tl.fromTo("#bari", { width: 0, x: 860 }, { width: 860, x: 0, duration: 0.5, ease: "power3.out", immediateRender: false }, 25.3);
-off(["#phone", "#bi", "#bari"], 27); off("#ok2", 27);
-// 6. Payoff (27-33.4)
-["#c7","#c8","#c9","#c10"].forEach((c, i) => { const at = 27 + i * 1.6; on(c, at); NK.typeOn(tl, c + "t", at + 0.08, { color: NIKA, dur: 0.5, seed: 60 + i }); off(c, at + 1.6); });
-on("#thatsit", 27.2); NK.typeOn(tl, "#thatsit", 27.2, { color: NIKA, cursors: 2, dur: 0.6, seed: 71 });
-tl.fromTo("#pf", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.35, immediateRender: false }, 27.5);
-NK.count(tl, "#pfm", 0, 648.6, 5.2, 27.8, (v) => "+" + NK.money(v));
-NK.count(tl, "#pfi", 0, 412.3, 5.2, 27.8, (v) => "+" + NK.money(v));
+// 4. The loudest (19.6-22.6): a streamer with bad calls, and his record on Nika
+on(["#live", "#callchip"], 19.6, 0.15);
+on("#loud", 19.75); NK.slamWords(tl, "#loud", 19.85, 0.18);
+tl.to("#loud", { x: 8, duration: 0.05, yoyo: true, repeat: 7, ease: "none" }, 20.6);
+off("#loud", 21.2, 0.15);
+tl.fromTo("#prof", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)", immediateRender: false }, 21.2);
+NK.typeOn(tl, "#profw", 21.5, { color: "#ef4444", dur: 0.7, seed: 41 });
+off(["#prof", "#live", "#callchip"], 22.6);
+// 5. Inverse the rest (22.6-27.4): she's watching him live, laughs, and inverses him
+tl.fromTo("#pipw", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)", immediateRender: false }, 22.65);
+off("#pipw", 24.6, 0.2);
+on("#phone", 22.9, 0.2); on("#dd", 22.9);
+on("#ds", 23.0); tl.to("#ds", { y: 0, duration: 0.35, ease: "expo.out" }, 23.0);
+tl.to("#ds-knob", { xPercent: 100, backgroundColor: "#2a1b52", borderColor: "#6d4bd8", duration: 0.25 }, 23.4);
+NK.say(tl, "#ds-hint", "Take the opposite of this trader's positions.", 23.45);
+on("#bi", 23.5); NK.typeOn(tl, "#bi", 23.5, { color: INV, dir: "rtl", dur: 0.9, seed: 51 });
+NK.say(tl, "#ds-amt", "$200", 24.6);
+tl.to("#ds-thumb", { x: 274, duration: 0.5, ease: "power2.inOut" }, 25.0); tl.to("#ds-fill", { width: "100%", duration: 0.5, ease: "power2.inOut" }, 25.0);
+off(["#dd", "#ds"], 25.6); on("#ok2", 25.6, 0.15);
+tl.fromTo("#bari", { width: 0, x: 860 }, { width: 860, x: 0, duration: 0.5, ease: "power3.out", immediateRender: false }, 25.7);
+off(["#phone", "#bi", "#bari"], 27.4); off("#ok2", 27.4);
+// 6. That's it (27.4-33.4): their nights out and in; both strategies paying
+on("#thatsit", 27.5); NK.typeOn(tl, "#thatsit", 27.5, { color: NIKA, cursors: 2, dur: 0.6, seed: 71 });
+tl.fromTo("#pf", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.35, immediateRender: false }, 27.8);
+NK.count(tl, "#pfm", 0, 648.6, 5.0, 28.0, (v) => "+" + NK.money(v));
+NK.count(tl, "#pfi", 0, 412.3, 5.0, 28.0, (v) => "+" + NK.money(v));
 off(["#thatsit", "#pf"], 33.4);
-// 7. End (33.4-40): the two halves the viewer already saw assemble into the line
+// 7. End (33.4-40): the sentence assembles from the two halves already seen
 on("#end", 33.4, 0.15);
 NK.typeOn(tl, "#e1", 33.6, { color: MIR, dur: 0.8, seed: 81 });
 NK.typeOn(tl, "#e2", 34.5, { color: INV, dir: "rtl", dur: 0.8, seed: 82 });
-tl.to("#end .e1", { y: -10, duration: 0.25, ease: "power2.out" }, 35.3);
 tl.fromTo("#e1", { color: "#111" }, { color: "#15803d", duration: 0.3, immediateRender: false }, 35.4);
 tl.fromTo("#e2", { color: "#111" }, { color: "#6d28d9", duration: 0.3, immediateRender: false }, 35.4);
 tl.fromTo("#elogo", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, immediateRender: false }, 36.1);
