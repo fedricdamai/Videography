@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<link rel="stylesheet" href="kit.css">
+<script src="kit.js"></script>
+<style>
+  /* Three phone screens rendered side by side at 2x, then cropped apart and warped onto
+     real green-screen footage by tools/screen_replace.py. Each column matches its clip's screen shape.
+     s1 = 36802 over-the-shoulder (0.45), s2 = 9078 hand tap (0.555), s3 = 100060 couch (0.516). */
+  html, body { margin:0; background:#000; }
+  #root { position:relative; width:2280px; height:1692px; overflow:hidden; background:#000; font-family:"Inter",sans-serif; color:var(--text); }
+  .scr { position:absolute; top:0; width:380px; overflow:hidden; background:var(--bg); transform:scale(2); transform-origin:0 0; }
+  #s1 { left:0; height:846px; } #s2 { left:760px; height:685px; } #s3 { left:1520px; height:736px; }
+  .scr .nk-keys, .scr .nk-quick { display:none; }
+  .scr .nk-sheet { top:70px; }
+  .scr .nk-amt { margin:6px 0 18px; }
+  #s1 .nk-card { transition:none; }
+  .scr .nk-ok { z-index:20; }
+  #s3 .nk-ok .c { background:var(--purple); color:#1b0f3a; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="4.4" data-width="2280" data-height="1692">
+  <div class="scr" id="s1"></div>
+  <div class="scr" id="s2"></div>
+  <div class="scr" id="s3"></div>
+</div>
+<script>
+const $ = (s) => document.querySelector(s);
+const qk = { h:"quietkoi", c:"#f59e0b", roi:"+268.9%", win:"92.6%", seed:44, pnl:"$1,276,410.2", pnlShort:"$1.28M", ago:"2M AGO",
+  pos:[["BTC","Long","5x","$31,204.2","+$48,320.1"],["ETH","Long","3x","$18,442.0","+$22,815.6"],["XAU","Long","10x","$12,980.7","+$9,604.4"]] };
+const fj = { h:"fjordcapital", c:"#22a6f0", roi:"+211.4%", win:"88.1%", seed:12, ago:"9M AGO" };
+const td = { h:"tidecraft", c:"#14b8a6", roi:"+184.0%", win:"84.7%", seed:27, ago:"31M AGO" };
+const larry = { h:"loudlarry", c:"#ef4444", roi:"-74.2%", win:"11.0%", up:false, seed:9, pnl:"-$88,410.6", pnlShort:"-$88K",
+  pos:[["BTC","Long","50x","$22,201.0","-$9,220.3"],["SOL","Long","25x","$8,410.6","-$3,812.5"],["DOGE","Long","20x","$4,880.2","-$2,402.9"]] };
+
+$("#s1").innerHTML = NK.strategies([qk, fj, td], { id:"s1l" }) + NK.detail(qk, { id:"s1d" });
+$("#s2").innerHTML = NK.detail(qk, { id:"s2d" }) + NK.sheet(qk, { id:"s2s" }) + NK.success("Mirroring quietkoi", "$500 · Copying every trade", "s2ok");
+$("#s3").innerHTML = NK.detail(larry, { id:"s3d" }) + NK.sheet(larry, { id:"s3s" }) + NK.success("Inversing loudlarry", "$200 · Opposite of every trade", "s3ok");
+$("#s2s-amt").textContent = "$500";
+$("#s3s-amt").textContent = "$200";
+gsap.set(["#s1d", "#s2ok", "#s3ok"], { opacity: 0 });
+gsap.set("#s3s", { y: 700 });
+
+const tl = gsap.timeline({ paused: true });
+const MIR = "#22c55e", INV = "#8b5cf6";
+
+// s1 (2.6 s, over-the-shoulder wide): the leaderboard, #1 lights up, she opens quietkoi
+tl.fromTo("#s1l-list", { y: 0 }, { y: -18, duration: 1.0, ease: "power2.inOut", immediateRender: false }, 0.1);
+tl.fromTo("#s1l-c0", { boxShadow: "0 0 0 0px rgba(34,197,94,0)" }, { boxShadow: "0 0 0 3px rgba(34,197,94,1)", duration: 0.2, immediateRender: false }, 1.1);
+tl.fromTo("#s1d", { opacity: 0, x: 380 }, { opacity: 1, x: 0, duration: 0.3, ease: "expo.out", immediateRender: false }, 1.45);
+NK.count(tl, "#s1d-pnl", 0, 1276410.2, 1.0, 1.55, (v) => NK.money(v, 1));
+tl.fromTo("#s1d-line", { attr: { "stroke-dashoffset": 1 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.9, ease: "power2.out", immediateRender: false }, 1.55);
+
+// s2 (4.4 s, the hand tap): Mirror on, $500 set; the finger lands at 1.8 and slides; success at 2.2
+tl.fromTo("#s2s-thumb", { x: 0 }, { x: 274, duration: 0.35, ease: "power2.inOut", immediateRender: false }, 1.8);
+tl.fromTo("#s2s-fill", { width: "0%" }, { width: "100%", duration: 0.35, ease: "power2.inOut", immediateRender: false }, 1.8);
+tl.fromTo("#s2ok", { opacity: 0 }, { opacity: 1, duration: 0.12, immediateRender: false }, 2.2);
+tl.fromTo("#s2ok .c", { scale: 0.5 }, { scale: 1, duration: 0.35, ease: "back.out(3)", immediateRender: false }, 2.2);
+
+// s3 (3.0 s, couch): his record, the sheet, the thumb flips Mirror to Inverse at 1.55, slide, success
+tl.fromTo("#s3d-line", { attr: { "stroke-dashoffset": 1 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.8, ease: "power2.out", immediateRender: false }, 0.05);
+tl.fromTo("#s3s", { y: 700 }, { y: 0, duration: 0.35, ease: "expo.out", immediateRender: false }, 0.9);
+tl.fromTo("#s3s-knob", { xPercent: 0, backgroundColor: "#123d27", borderColor: "#1f6b43" }, { xPercent: 100, backgroundColor: "#2a1b52", borderColor: "#6d4bd8", duration: 0.22, ease: "power3.inOut", immediateRender: false }, 1.55);
+NK.say(tl, "#s3s-hint", "Take the opposite of this trader's positions.", 1.62);
+tl.fromTo("#s3s-thumb", { x: 0, backgroundColor: MIR }, { x: 274, backgroundColor: INV, duration: 0.35, ease: "power2.inOut", immediateRender: false }, 1.95);
+tl.fromTo("#s3s-fill", { width: "0%", backgroundColor: "rgba(139,92,246,.35)" }, { width: "100%", backgroundColor: "rgba(139,92,246,.35)", duration: 0.35, ease: "power2.inOut", immediateRender: false }, 1.95);
+tl.fromTo("#s3ok", { opacity: 0 }, { opacity: 1, duration: 0.12, immediateRender: false }, 2.35);
+tl.fromTo("#s3ok .c", { scale: 0.5 }, { scale: 1, duration: 0.35, ease: "back.out(3)", immediateRender: false }, 2.35);
+
+window.__timelines = window.__timelines || {};
+window.__timelines.main = tl;
+</script>
+</body>
+</html>

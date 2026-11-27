@@ -31,4 +31,17 @@ curl -sfL -o flow-c2/assets/music.mp3 https://assets.mixkit.co/music/126/126.mp3
 for id in 2354 2364 1492 1485 2870; do curl -sfL -o flow-c2/assets/sfx-$id.mp3 https://assets.mixkit.co/active_storage/sfx/$id/$id-preview.mp3; done
 for id in 1492 2870 2364 1485; do curl -sfL -o flow-b/assets/sfx-$id.mp3 https://assets.mixkit.co/active_storage/sfx/$id/$id-preview.mp3; done
 for f in a b c c2; do cp kit/kit.css kit/kit.js flow-$f/; done
+# Flow B V2 (hybrid): reuses Flow B's assets, plus three real-phone shots made from green-screen stock.
+# Needs: python3 with opencv-python-headless and numpy (pip install opencv-python-headless numpy).
+V=flow-b-v2/assets; mkdir -p $V; cp flow-b/assets/*.mp3 flow-b/assets/z0[1-6].mp4 flow-b/assets/z08.mp4 flow-b/assets/z09.mp4 flow-b/assets/z1?.mp4 $V/
+cp kit/kit.css kit/kit.js flow-b-v2/; cp kit/kit.css kit/kit.js flow-b-v2/screens/
+get 36802; get 9078
+curl -sfL -o "$tmp/100060.mp4" https://assets.mixkit.co/active_storage/video_items/100060/1719878673/100060-video-720.mp4
+npx hyperframes render flow-b-v2/screens -o "$tmp/screens.mp4"
+ffmpeg -v error -y -i "$tmp/screens.mp4" -filter_complex "[0]crop=760:1692:0:0,trim=0:2.6,setpts=PTS-STARTPTS[a];[0]crop=760:1370:760:0,trim=0:4.4,setpts=PTS-STARTPTS[b];[0]crop=760:1472:1520:0,trim=0:3.0,setpts=PTS-STARTPTS[c]" \
+  -map "[a]" -crf 14 -pix_fmt yuv420p "$tmp/ui1.mp4" -map "[b]" -crf 14 -pix_fmt yuv420p "$tmp/ui2.mp4" -map "[c]" -crf 14 -pix_fmt yuv420p "$tmp/ui3.mp4"
+SR=../../tools/screen_replace.py
+python3 $SR comp "$tmp/36802.mp4" "$tmp/ui1.mp4" $V/r1.mp4 --start 2 --dur 2.6
+python3 $SR comp "$tmp/9078.mp4" "$tmp/ui2.mp4" $V/r2.mp4 --start 0.7 --dur 4.4 --crop 167,80,1067,600
+python3 $SR comp "$tmp/100060.mp4" "$tmp/ui3.mp4" $V/r3.mp4 --start 1.0 --dur 3.0 --crop 227,240,800,450
 rm -rf "$tmp"; echo "assets ready"

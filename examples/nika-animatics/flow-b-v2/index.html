@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<link rel="stylesheet" href="kit.css">
+<script src="kit.js"></script>
+<style>
+  :root { --mirror:#22c55e; --inverse:#8b5cf6; --nika:#3b49f0; --paper:#f3f4f7; }
+  html, body { margin:0; background:#000; }
+  #root { position:relative; width:1920px; height:1080px; overflow:hidden; background:#000; font-family:"Inter",sans-serif; color:#fff; }
+  .vid { position:absolute; left:0; top:0; width:100%; height:100%; object-fit:cover; }
+  #shadeB { position:absolute; left:0; right:0; bottom:0; height:480px; background:linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.65)); }
+  #shadeT { position:absolute; left:0; right:0; top:0; height:300px; background:linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,0)); }
+  #ntf { position:absolute; left:50%; top:110px; transform:translateX(-50%) scale(1.6); transform-origin:50% 0; opacity:0; }
+  #ntf .nk-toast { position:relative; }
+  .card { position:absolute; inset:0; background:var(--paper); opacity:0; color:#111; }
+  .card .ln { position:absolute; left:0; right:0; text-align:center; font-size:110px; font-weight:600; letter-spacing:-0.035em; white-space:nowrap; }
+  #pill { position:absolute; left:610px; top:640px; width:700px; height:140px; border-radius:70px; background:#fff; box-shadow:0 20px 60px rgba(17,17,17,.12); opacity:0; }
+  #pill i { position:absolute; left:8px; top:8px; width:342px; height:124px; border-radius:62px; background:var(--mirror); }
+  #pill span { position:absolute; top:0; width:350px; height:140px; line-height:140px; text-align:center; font-size:52px; font-weight:800; z-index:2; color:#111; }
+  #pill .l { left:0; color:#fff; } #pill .r { left:350px; }
+  .big { position:absolute; left:90px; bottom:130px; font-size:124px; font-weight:800; letter-spacing:-0.045em; line-height:1; white-space:nowrap; text-shadow:0 4px 30px rgba(0,0,0,.45); }
+  .bar { position:absolute; left:94px; bottom:104px; height:10px; width:0; border-radius:5px; }
+  /* leaderboard: gives Mirror its context */
+  #lb { position:absolute; left:1400px; top:150px; width:760px; opacity:0; transform:scale(.62); transform-origin:0 0; }
+  #lb .t { font-size:64px; font-weight:800; letter-spacing:-0.035em; margin-bottom:26px; text-shadow:0 4px 24px rgba(0,0,0,.5); white-space:nowrap; }
+  #lb .r { display:flex; align-items:center; gap:22px; padding:22px 28px; border-radius:24px; background:rgba(15,16,22,.82); backdrop-filter:blur(16px); border:2px solid rgba(255,255,255,.1); margin-bottom:16px; font-size:40px; font-weight:700; }
+  #lb .r .n { width:56px; color:#9aa0b8; } #lb .r .a { width:56px; height:56px; border-radius:50%; } #lb .r .v { margin-left:auto; color:var(--mirror); font-variant-numeric:tabular-nums; }
+  #lb .r1 { border-color:var(--mirror); box-shadow:0 0 0 4px rgba(34,197,94,.35); }
+  /* streamer: gives Inverse its context */
+  .live { position:absolute; left:90px; top:110px; display:flex; gap:14px; align-items:center; font-weight:800; font-size:30px; opacity:0; }
+  .live b { background:#ef4444; padding:8px 16px; border-radius:10px; } .live span { background:rgba(0,0,0,.55); padding:8px 16px; border-radius:10px; }
+  #callchip { position:absolute; left:90px; top:180px; font-size:34px; font-weight:800; background:rgba(0,0,0,.55); padding:10px 18px; border-radius:12px; opacity:0; }
+  .cap { position:absolute; left:50%; bottom:80px; transform:translateX(-50%); max-width:1400px; text-align:center; font-size:52px; font-weight:700; line-height:1.25; padding:14px 28px; border-radius:16px; background:rgba(0,0,0,.6); white-space:nowrap; opacity:0; }
+  #pipcap { position:absolute; left:90px; top:396px; width:480px; font-size:30px; font-weight:700; line-height:1.3; text-shadow:0 2px 12px rgba(0,0,0,.8); opacity:0; }
+  #loud { position:absolute; left:0; right:0; top:420px; text-align:center; font-size:150px; font-weight:900; letter-spacing:-0.04em; text-shadow:0 6px 40px rgba(0,0,0,.6); }
+  #prof { position:absolute; right:90px; top:110px; width:600px; padding:28px; border-radius:28px; background:rgba(15,16,22,.88); border:2px solid #7f1d1d; opacity:0; }
+  #prof .h { display:flex; align-items:center; gap:18px; font-size:40px; font-weight:800; }
+  #prof .h i { width:64px; height:64px; border-radius:50%; background:#ef4444; display:block; }
+  #prof .kv { display:flex; justify-content:space-between; margin-top:22px; } #prof .kv small { display:block; font-size:24px; color:#9aa0b8; } #prof .kv b { font-size:52px; color:#f87171; }
+  #prof .w { margin-top:18px; font-size:34px; font-weight:700; color:#fca5a5; }
+  #pipw { position:absolute; left:90px; top:110px; width:480px; height:270px; border-radius:20px; overflow:hidden; border:3px solid rgba(255,255,255,.85); box-shadow:0 20px 60px rgba(0,0,0,.5); opacity:0; }
+  #pipw .pv { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  #pipw b { position:absolute; left:14px; top:12px; background:#ef4444; padding:4px 10px; border-radius:8px; font-size:20px; font-weight:800; z-index:2; }
+  #pipw span { position:absolute; left:14px; bottom:12px; font-size:22px; font-weight:700; z-index:2; text-shadow:0 2px 8px rgba(0,0,0,.8); }
+  /* two-line beat lines beside the real phone: Mirror on the left, Inverse on the right (typed right to left) */
+  .b2 { position:absolute; font-size:132px; font-weight:800; letter-spacing:-0.045em; line-height:1; white-space:nowrap; text-shadow:0 4px 30px rgba(0,0,0,.55); opacity:0; }
+  #bm1, #bm2 { left:90px; } #bm1 { bottom:282px; } #bm2 { bottom:140px; }
+  #bi1, #bi2 { right:90px; text-align:right; } #bi1 { bottom:282px; } #bi2 { bottom:140px; }
+  #barm { left:94px; bottom:108px; } #bari { left:auto; right:94px; bottom:108px; }
+  #shadeL { position:absolute; left:0; top:0; bottom:0; width:900px; background:linear-gradient(90deg, rgba(0,0,0,.6), rgba(0,0,0,0)); opacity:0; }
+  #rp { position:absolute; right:40px; bottom:56px; font-size:15px; font-weight:800; letter-spacing:.14em; color:#fff; background:rgba(0,0,0,.45); padding:6px 10px; border-radius:6px; opacity:0; }
+  #thatsit { position:absolute; left:90px; top:110px; font-size:120px; font-weight:800; letter-spacing:-0.045em; text-shadow:0 4px 30px rgba(0,0,0,.5); }
+  #pf { position:absolute; left:1240px; top:120px; width:560px; opacity:0; }
+  #pf .nk-panel { background:rgba(21,22,29,.85); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,.12); padding:22px; margin-bottom:16px; }
+  #pf .nk-row { font-size:24px; } #pf .nk-kv b { font-size:30px; } #pf .nk-kv small { font-size:16px; }
+  #end .e1 { top:300px; } #end .e2 { top:440px; }
+  #elogo { position:absolute; left:50%; top:690px; transform:translateX(-50%); opacity:0; }
+  #elogo .nk-logo { color:#111; }
+  #end .nk-store { position:absolute; left:50%; top:850px; transform:translateX(-50%); opacity:0; }
+  #end .nk-store span { color:#111; border-color:#111; }
+  #end .nk-disc { position:absolute; left:0; right:0; bottom:40px; text-align:center; opacity:0; color:#6b6e7c; }
+  #tagA { position:absolute; right:40px; bottom:24px; font-size:15px; font-weight:700; letter-spacing:.14em; color:rgba(210,212,218,.85); text-shadow:0 1px 4px rgba(0,0,0,.8); }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="40" data-width="1920" data-height="1080">
+  <video id="vz01" class="vid" src="assets/z01.mp4" data-start="0" data-duration="1.9" muted playsinline></video>
+  <video id="vz02" class="vid" src="assets/z02.mp4" data-start="1.9" data-duration="1.7" muted playsinline></video>
+  <video id="vz03" class="vid" src="assets/z03.mp4" data-start="3.6" data-duration="1.5" muted playsinline></video>
+  <video id="vz04" class="vid" src="assets/z04.mp4" data-start="5.1" data-duration="1.4" muted playsinline></video>
+  <video id="vz05" class="vid" src="assets/z05.mp4" data-start="6.5" data-duration="1.3" muted playsinline></video>
+  <video id="vz06" class="vid" src="assets/z06.mp4" data-start="7.8" data-duration="1.2" muted playsinline></video>
+  <!-- Real phone shots: green-screen stock, screen replaced by tools/screen_replace.py -->
+  <video id="vr1" class="vid" src="assets/r1.mp4" data-start="12.6" data-duration="2.6" muted playsinline></video>
+  <video id="vr2" class="vid" src="assets/r2.mp4" data-start="15.2" data-duration="4.4" muted playsinline></video>
+  <video id="vz08" class="vid" src="assets/z08.mp4" data-start="19.6" data-duration="4" muted playsinline></video>
+  <video id="vz09" class="vid" src="assets/z09.mp4" data-start="23.6" data-duration="1.4" muted playsinline></video>
+  <video id="vr3" class="vid" src="assets/r3.mp4" data-start="25" data-duration="3" muted playsinline></video>
+  <video id="vz10" class="vid" src="assets/z10.mp4" data-start="28" data-duration="1.35" muted playsinline></video>
+  <video id="vz11" class="vid" src="assets/z11.mp4" data-start="29.35" data-duration="1.35" muted playsinline></video>
+  <video id="vz12" class="vid" src="assets/z12.mp4" data-start="30.7" data-duration="1.35" muted playsinline></video>
+  <video id="vz13" class="vid" src="assets/z13.mp4" data-start="32.05" data-duration="1.35" muted playsinline></video>
+  <div id="shadeT"></div><div id="shadeB"></div><div id="shadeL"></div>
+  <div id="ntf"></div>
+  <div class="card" id="k1"><div class="ln" id="k1t" style="top:440px">Life is busy.</div></div>
+  <div class="card" id="k2"><div class="ln" id="k2t" style="top:380px">So copy trading is two buttons.</div>
+    <div id="pill"><i id="knob"></i><span class="l" id="pl">Mirror</span><span class="r" id="pr">Inverse</span></div></div>
+  <!-- Mirror: who is "the best" -->
+  <div id="lb"><div class="t" id="lbt">Top traders this month</div>
+    <div class="r r1" id="lr1"><span class="n">#1</span><i class="a" style="background:#f59e0b"></i>quietkoi<span class="v">+268.9%</span></div>
+    <div class="r" id="lr2"><span class="n">#2</span><i class="a" style="background:#22a6f0"></i>fjordcapital<span class="v">+211.4%</span></div>
+    <div class="r" id="lr3"><span class="n">#3</span><i class="a" style="background:#14b8a6"></i>tidecraft<span class="v">+184.0%</span></div></div>
+  <div class="b2" id="bm1">Mirror</div><div class="b2" id="bm2">the best.</div><div class="bar" id="barm" style="background:var(--mirror)"></div>
+  <!-- Inverse: who is "the rest" -->
+  <div class="live" id="live"><b>LIVE</b><span>61.9K watching</span></div>
+  <div id="callchip">BTC · <span style="color:#4ade80">50x LONG</span></div>
+  <div id="cap" class="cap"></div>
+  <div id="prof"><div class="h"><i></i>loudlarry</div>
+    <div class="kv"><div><small>Win rate</small><b>11%</b></div><div style="text-align:right"><small>30D</small><b>−74.2%</b></div></div>
+    <div class="w" id="profw">Wrong 9 times out of 10.</div></div>
+  <div id="pipw"><video id="vpip" class="pv" src="assets/z08.mp4" data-start="23.6" data-duration="2.1" data-media-start="0.6" muted playsinline></video><b>LIVE</b><span>loudlarry</span></div>
+  <div id="pipcap"></div>
+  <div class="b2" id="bi1">Inverse</div><div class="b2" id="bi2">the rest.</div><div class="bar" id="bari" style="background:var(--inverse)"></div>
+  <!-- Payoff -->
+  <div id="thatsit" style="opacity:0">That's it.</div>
+  <div id="pf"></div>
+  <div class="card" id="end">
+    <div class="ln e1" id="e1">Mirror the best.</div>
+    <div class="ln e2" id="e2">Inverse the rest.</div>
+    <div id="elogo"></div>
+    <div class="nk-store"><span>Download on the App Store</span><span>Get it on Google Play</span></div>
+    <div class="nk-disc">Illustrative figures. Fictional characters. Trading perpetuals involves risk of loss. Not financial advice.</div>
+  </div>
+  <div id="rp">REAL PHONE SHOT · SCREEN REPLACED IN POST</div>
+  <div id="tagA">NIKA · FLOW B V2 · HYBRID RIPOMATIC · STOCK FOOTAGE FROM MIXKIT</div>
+  <audio id="m1" src="assets/music.mp3" data-start="0" data-duration="10.6" data-media-start="0" data-volume="0.8" data-fade-out="0.3"></audio>
+  <audio id="m2" src="assets/music.mp3" data-start="12.6" data-duration="7" data-media-start="30" data-volume="0.8" data-fade-in="0.2" data-fade-out="0.25"></audio>
+  <audio id="m3" src="assets/music.mp3" data-start="19.6" data-duration="5.8" data-media-start="37" data-volume="0.3" data-fade-in="0.25" data-fade-out="0.25"></audio>
+  <audio id="m4" src="assets/music.mp3" data-start="25.4" data-duration="14.6" data-media-start="42.8" data-volume="0.8" data-fade-in="0.25" data-fade-out="2.5"></audio>
+  <audio id="vo1" src="assets/vo-larry1.mp3" data-start="19.75" data-duration="3.45" data-volume="1.6"></audio>
+  <audio id="vo2" src="assets/vo-larry2.mp3" data-start="23.75" data-duration="1.7" data-volume="1.3"></audio>
+  <audio id="vo3" src="assets/vo-end1.mp3" data-start="33.6" data-duration="1.25" data-volume="1.5"></audio>
+  <audio id="vo4" src="assets/vo-end2.mp3" data-start="34.5" data-duration="1.45" data-volume="1.5"></audio>
+  <audio id="fx1" src="assets/sfx-1492.mp3" data-start="12.1" data-duration="1.2" data-volume="0.7"></audio>
+  <audio id="fx2" src="assets/sfx-2364.mp3" data-start="15.35" data-duration="0.6" data-volume="0.6"></audio>
+  <audio id="fx3" src="assets/sfx-2870.mp3" data-start="17.4" data-duration="1.6" data-volume="0.55"></audio>
+  <audio id="fx8" src="assets/sfx-1492.mp3" data-start="26.55" data-duration="1.2" data-volume="0.8"></audio>
+  <audio id="fx9" src="assets/sfx-2870.mp3" data-start="27.35" data-duration="1.6" data-volume="0.55"></audio>
+  <audio id="fx10" src="assets/sfx-1485.mp3" data-start="35.3" data-duration="0.5" data-volume="0.9"></audio>
+</div>
+<script>
+const $ = (s) => document.querySelector(s);
+$("#ntf").innerHTML = NK.toast("tn", "quietkoi opened BTC long", "Mirrored in your account", "+$0.00");
+$("#elogo").innerHTML = NK.logo(96);
+$("#pf").innerHTML = `<div class="nk-panel"><div class="nk-row">${NK.av("#f59e0b")}quietkoi<span class="nk-badge m">Mirror</span></div><div class="nk-kv" style="margin-top:14px"><div><small>Put in</small><b>$500.00</b></div><div style="text-align:right"><small>Total PnL</small><b class="nk-g" id="pfm">+$0.00</b></div></div></div>
+  <div class="nk-panel"><div class="nk-row">${NK.av("#ef4444")}loudlarry<span class="nk-badge i">Inverse</span></div><div class="nk-kv" style="margin-top:14px"><div><small>Put in</small><b>$200.00</b></div><div style="text-align:right"><small>Total PnL</small><b class="nk-g" id="pfi">+$0.00</b></div></div></div>`;
+gsap.set(["#k1","#k2","#end","#lb","#prof","#pipw"], { opacity: 0 });
+
+const tl = gsap.timeline({ paused: true });
+const on = (s, at, d = 0.01) => tl.to(s, { opacity: 1, duration: d }, at);
+const off = (s, at, d = 0.01) => tl.to(s, { opacity: 0, duration: d }, at);
+const NIKA = "#3b49f0", MIR = "#22c55e", INV = "#8b5cf6";
+// 1. Busy lives (0-9): surgeon first; one notification earning across all of them
+on("#ntf", 0.5, 0.25);
+const tr = ["quietkoi opened BTC long","quietkoi opened ETH long","quietkoi opened SOL short","quietkoi opened Gold long","quietkoi closed BTC long","quietkoi closed ETH long"];
+const amts = [0, 74.2, 212.4, 318.9, 365.15, 412.8];
+const cutT = [0, 1.9, 3.6, 5.1, 6.5, 7.8];
+tr.forEach((l, i) => { const at = cutT[i] + 0.1; NK.say(tl, "#tn > div:nth-child(2) b", l, at); if (i) NK.count(tl, "#tn-amt", amts[i - 1], amts[i], 0.6, at + 0.1, (v) => "+" + NK.money(v)); });
+off("#ntf", 9);
+// 2. Type cards (9-12.6)
+on("#k1", 9); NK.typeOn(tl, "#k1t", 9.1, { color: NIKA, cursors: 2, dur: 0.7, seed: 21 });
+off("#k1", 10.6); on("#k2", 10.6); NK.typeOn(tl, "#k2t", 10.7, { color: NIKA, cursors: 2, dur: 0.9, seed: 22 });
+tl.fromTo("#pill", { opacity: 0, scale: 0.4, y: -40 }, { opacity: 1, scale: 1, y: 0, duration: 0.35, ease: "back.out(2)", immediateRender: false }, 11.7);
+tl.to("#knob", { x: 342, backgroundColor: INV, duration: 0.25, ease: "power3.inOut" }, 12.1);
+tl.to("#pl", { color: "#111", duration: 0.01 }, 12.2); tl.to("#pr", { color: "#fff", duration: 0.01 }, 12.2);
+tl.to("#knob", { x: 0, backgroundColor: MIR, duration: 0.25, ease: "power3.inOut" }, 12.4);
+tl.to("#pl", { color: "#fff", duration: 0.01 }, 12.5); tl.to("#pr", { color: "#111", duration: 0.01 }, 12.5);
+off("#k2", 12.6);
+// 3. Mirror the best (12.6-19.6): real over-the-shoulder shot, then her real tap. Screens are composited in.
+on("#rp", 12.6); off("#rp", 19.6);
+on("#lb", 12.7); NK.typeOn(tl, "#lbt", 12.7, { color: NIKA, dur: 0.6, seed: 30 });
+["#lr1","#lr2","#lr3"].forEach((r, i) => tl.fromTo(r, { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.3, ease: "expo.out", immediateRender: false }, 13.2 + i * 0.12));
+tl.to("#lr1", { scale: 1.05, duration: 0.2, yoyo: true, repeat: 1, transformOrigin: "0 50%" }, 13.7);
+off("#lb", 15.2);
+on("#shadeL", 15.2, 0.15);
+on("#bm1", 15.35); NK.typeOn(tl, "#bm1", 15.35, { color: MIR, dur: 0.45, seed: 31 });
+on("#bm2", 15.8); NK.typeOn(tl, "#bm2", 15.8, { color: MIR, dur: 0.55, seed: 32 });
+tl.to("#barm", { width: 600, duration: 0.5, ease: "power3.out" }, 17.45);
+off(["#bm1", "#bm2", "#barm", "#shadeL"], 19.6);
+// 4. The loudest (19.6-23.6): a streamer's bad call, spoken (VO + captions), then his record on Nika
+on(["#live", "#callchip"], 19.6, 0.15);
+on("#cap", 19.75, 0.1);
+NK.say(tl, "#cap", "\u201CChat, listen to me.\u201D", 19.75);
+NK.say(tl, "#cap", "\u201CFifty x long, right now.\u201D", 20.75);
+NK.say(tl, "#cap", "\u201CThis is the bottom.\u201D", 22.0);
+off("#cap", 23.3, 0.1);
+tl.fromTo("#prof", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)", immediateRender: false }, 21.9);
+NK.typeOn(tl, "#profw", 22.2, { color: "#ef4444", dur: 0.7, seed: 41 });
+off(["#prof", "#live", "#callchip"], 23.6);
+// 5. Inverse the rest (23.6-28): she laughs at his stream, then on her phone flips Mirror to Inverse (real phone shot)
+tl.fromTo("#pipw", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)", immediateRender: false }, 23.65);
+on("#pipcap", 23.75, 0.1); NK.say(tl, "#pipcap", "\u201CTrust me. I have never been wrong.\u201D", 23.75);
+off(["#pipw", "#pipcap"], 25.0);
+on("#rp", 25.0); off("#rp", 28);
+on("#bi2", 26.5); NK.typeOn(tl, "#bi2", 26.5, { color: INV, dir: "rtl", dur: 0.5, seed: 51 });
+on("#bi1", 27.0); NK.typeOn(tl, "#bi1", 27.0, { color: INV, dir: "rtl", dur: 0.4, seed: 52 });
+tl.fromTo("#bari", { width: 0 }, { width: 600, duration: 0.5, ease: "power3.out", immediateRender: false }, 27.4);
+off(["#bi1", "#bi2", "#bari"], 28);
+// 6. That's it (27.4-33.4): their nights out and in; both strategies paying
+on("#thatsit", 28.1); NK.typeOn(tl, "#thatsit", 28.1, { color: NIKA, cursors: 2, dur: 0.6, seed: 71 });
+tl.fromTo("#pf", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.35, immediateRender: false }, 28.3);
+NK.count(tl, "#pfm", 0, 648.6, 4.6, 28.5, (v) => "+" + NK.money(v));
+NK.count(tl, "#pfi", 0, 412.3, 4.6, 28.5, (v) => "+" + NK.money(v));
+off(["#thatsit", "#pf"], 33.4);
+// 7. End (33.4-40): the sentence assembles from the two halves already seen
+on("#end", 33.4, 0.15); off("#tagA", 33.4);
+NK.typeOn(tl, "#e1", 33.6, { color: MIR, dur: 0.8, seed: 81 });
+NK.typeOn(tl, "#e2", 34.5, { color: INV, dir: "rtl", dur: 0.8, seed: 82 });
+tl.fromTo("#e1", { color: "#111" }, { color: "#15803d", duration: 0.3, immediateRender: false }, 35.4);
+tl.fromTo("#e2", { color: "#111" }, { color: "#6d28d9", duration: 0.3, immediateRender: false }, 35.4);
+tl.fromTo("#elogo", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, immediateRender: false }, 36.1);
+on("#end .nk-store", 36.7, 0.3); on("#end .nk-disc", 36.9, 0.3);
+window.__timelines = window.__timelines || {};
+window.__timelines.main = tl;
+</script>
+</body>
+</html>

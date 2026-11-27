@@ -128,6 +128,7 @@ Useful moves (examples in the playbook):
 - Moving text (type-on, slammed words, chips, stats, end-line assembly): `/kinetic-type`. Make the end line the payoff: plant each half earlier, assemble it at the end.
 - Kinetic type, stats, charts and assembly: `/hyperframes`. Product UI, phones, dashboards: `/stageshow`. Check `/hyperframes-registry` before hand-building an effect.
 - One accent color (loud) or none (quiet). One display font.
+- **Real phone or overlay?** Film a real phone where the hand is the story (choosing, tapping, flipping a toggle). Use a UI overlay where the information is the story (rankings, records, totals), because overlays stay readable and editable. Usually that means one or two real-phone shots per film. Shoot them on a green screen with tracking crosses; for animatics, `tools/screen_replace.py` puts a rendered UI onto green-screen stock with fingers kept on top (worked example: `examples/nika-animatics/flow-b-v2`).
 
 ## 7. Measure
 
