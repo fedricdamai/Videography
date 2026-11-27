@@ -20,13 +20,14 @@ cut $A/n09.mp4 46700 18 8
 B=flow-b/assets
 cut $B/b01.mp4 13109 2 5.0;  cut $B/b02.mp4 39535 3 1.5;  cut $B/b03.mp4 6753 3 1.5;   cut $B/b04.mp4 7674 2 1.5
 cut $B/b05.mp4 5188 2 1.5;   cut $B/b06.mp4 17601 3 1.75; cut $B/b07.mp4 15875 1 1.75; cut $B/b08.mp4 27760 2 1.75
-cut $B/b09.mp4 15167 3 1.75; cut $B/b10.mp4 24352 4 2.5;  cut $B/b11.mp4 11529 2 2.5
-cut $B/b12.mp4 17464 2 3.2;  cut $B/b13.mp4 32617 3 3.2;  cut $B/b14.mp4 22568 2 3.2
+cut $B/b09.mp4 15167 3 1.75; cut $B/b10.mp4 24352 4 2.5;  cut $B/b11.mp4 11529 2 4.0
+cut $B/b12.mp4 17464 2 6.5
 curl -sfL -o flow-a/assets/music.mp3 https://assets.mixkit.co/music/267/267.mp3   # Trap Hamza, 112 BPM
 curl -sfL -o flow-b/assets/music.mp3 https://assets.mixkit.co/music/33/33.mp3     # Motivating Mornings, 123 BPM
 curl -sfL -o flow-c/assets/music.mp3 https://assets.mixkit.co/music/126/126.mp3   # Trap Electro Vibes, 112 BPM
 mkdir -p flow-c2/assets
 curl -sfL -o flow-c2/assets/music.mp3 https://assets.mixkit.co/music/126/126.mp3
 for id in 2354 2364 1492 1485 2870; do curl -sfL -o flow-c2/assets/sfx-$id.mp3 https://assets.mixkit.co/active_storage/sfx/$id/$id-preview.mp3; done
+for id in 1492 2870 2364; do curl -sfL -o flow-b/assets/sfx-$id.mp3 https://assets.mixkit.co/active_storage/sfx/$id/$id-preview.mp3; done
 for f in a b c c2; do cp kit/kit.css kit/kit.js flow-$f/; done
 rm -rf "$tmp"; echo "assets ready"

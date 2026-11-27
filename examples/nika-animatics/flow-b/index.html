@@ -9,26 +9,33 @@
   html, body { margin:0; background:#000; }
   #root { position:relative; width:1920px; height:1080px; overflow:hidden; background:#000; font-family:"Inter",sans-serif; color:#fff; }
   .vid { position:absolute; left:0; top:0; width:100%; height:100%; object-fit:cover; }
-  #shadeB { position:absolute; left:0; right:0; bottom:0; height:420px; background:linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.65)); }
+  #shadeB { position:absolute; left:0; right:0; bottom:0; height:460px; background:linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.7)); }
   #held { position:absolute; left:0; right:0; top:470px; text-align:center; font-size:110px; font-weight:700; letter-spacing:-0.03em; text-shadow:0 4px 30px rgba(0,0,0,.35); opacity:0; }
   #ntf { position:absolute; left:50%; top:150px; transform:translateX(-50%) scale(1.7); transform-origin:50% 0; opacity:0; }
   #ntf .nk-toast { position:relative; }
-  #void { position:absolute; inset:0; background:#000; opacity:0; }
-  #void p { position:absolute; left:0; right:0; top:500px; margin:0; text-align:center; font-size:56px; font-weight:500; }
-  .between { position:absolute; left:90px; bottom:120px; font-size:96px; font-weight:700; letter-spacing:-0.03em; text-shadow:0 4px 30px rgba(0,0,0,.45); opacity:0; }
-  .step { position:absolute; left:94px; bottom:240px; font-size:30px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#c7ccff; opacity:0; }
+  #void { position:absolute; inset:0; background:radial-gradient(ellipse at 50% 50%, #141a3a 0%, #07080d 70%); opacity:0; }
+  #void p { position:absolute; left:0; right:0; top:300px; margin:0; text-align:center; font-size:64px; font-weight:600; letter-spacing:-0.02em; }
+  #pill { position:absolute; left:510px; top:470px; width:900px; height:170px; border-radius:85px; background:#15161d; border:2px solid #2c2f3a; opacity:0; }
+  #pill i { position:absolute; left:8px; top:8px; width:442px; height:150px; border-radius:76px; background:#123d27; border:2px solid #1f6b43; box-sizing:border-box; }
+  #pill span { position:absolute; top:0; width:450px; height:170px; line-height:170px; text-align:center; font-size:64px; font-weight:800; z-index:2; }
+  #pill .l { left:0; } #pill .r { left:450px; }
+  .cap { position:absolute; left:90px; bottom:120px; opacity:0; text-shadow:0 4px 30px rgba(0,0,0,.5); }
+  .cap b { display:block; font-size:170px; font-weight:800; letter-spacing:-0.05em; line-height:1; }
+  .cap span { display:block; font-size:44px; font-weight:600; margin-top:14px; }
+  .cap em { display:inline-block; font-style:normal; font-size:24px; font-weight:800; letter-spacing:.14em; padding:8px 14px; border-radius:10px; margin-top:20px; }
+  #capM em { background:#123d27; color:#4ade80; } #capI em { background:#2a1b52; color:#b49cff; }
   #phone { left:1340px; top:107px; opacity:0; }
-  #mini { position:absolute; left:50%; top:120px; transform:translateX(-50%) scale(1.5); transform-origin:50% 0; opacity:0; }
-  #mini .nk-panel { width:520px; background:rgba(21,22,29,.82); backdrop-filter:blur(16px); color:#fff; border:1px solid rgba(255,255,255,.12); }
   .subt { position:absolute; left:0; right:0; bottom:70px; text-align:center; font-size:40px; font-weight:600; text-shadow:0 2px 12px rgba(0,0,0,.8); }
-  #end { position:absolute; inset:0; background:#000; opacity:0; }
-  #end .h { position:absolute; left:0; right:0; top:330px; text-align:center; font-size:110px; font-weight:800; letter-spacing:-0.045em; opacity:0; }
-  #end .lg { position:absolute; left:50%; top:560px; transform:translateX(-50%); opacity:0; }
-  #end .st { position:absolute; left:50%; top:730px; transform:translateX(-50%); opacity:0; }
+  #done { position:absolute; left:90px; top:110px; font-size:120px; font-weight:800; letter-spacing:-0.04em; text-shadow:0 4px 30px rgba(0,0,0,.5); opacity:0; }
+  #pf { position:absolute; left:1240px; top:120px; width:560px; opacity:0; }
+  #pf .nk-panel { background:rgba(21,22,29,.85); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,.12); padding:22px; margin-bottom:16px; }
+  #pf .nk-row { font-size:24px; } #pf .nk-kv b { font-size:30px; } #pf .nk-kv small { font-size:16px; }
+  #end { position:absolute; inset:0; background:#07080d; opacity:0; }
+  #end .h { position:absolute; top:330px; width:960px; font-size:92px; font-weight:800; letter-spacing:-0.04em; text-align:center; opacity:0; }
+  #end .mid { position:absolute; left:958px; top:290px; height:220px; width:3px; background:#5662ff; opacity:0; }
+  #end .lg { position:absolute; left:50%; top:610px; transform:translateX(-50%); opacity:0; }
+  #end .st { position:absolute; left:50%; top:770px; transform:translateX(-50%); opacity:0; }
   #end .nk-disc { position:absolute; left:0; right:0; bottom:50px; text-align:center; opacity:0; }
-  #st::before { content:""; position:absolute; left:0; right:0; top:0; height:292px; background:#0a0b10; z-index:1; }
-  #st .nk-h1, #st .nk-tabs, #st .nk-filters, #st .nk-just, #st .nk-status { position:relative; z-index:2; }
-  #st .nk-status { position:absolute; }
   #tagA { position:absolute; right:40px; bottom:24px; font-size:15px; font-weight:700; letter-spacing:.14em; color:rgba(255,255,255,.4); }
 </style>
 </head>
@@ -39,86 +46,97 @@
   <video id="v03" class="vid" src="assets/b03.mp4" data-start="6.5" data-duration="1.5" muted playsinline></video>
   <video id="v04" class="vid" src="assets/b04.mp4" data-start="8" data-duration="1.5" muted playsinline></video>
   <video id="v05" class="vid" src="assets/b05.mp4" data-start="9.5" data-duration="1.5" muted playsinline></video>
-  <video id="v12" class="vid" src="assets/b12.mp4" data-start="12.5" data-duration="3.2" muted playsinline></video>
-  <video id="v13" class="vid" src="assets/b13.mp4" data-start="15.7" data-duration="3.2" muted playsinline></video>
-  <video id="v14" class="vid" src="assets/b14.mp4" data-start="18.9" data-duration="3.2" muted playsinline></video>
-  <video id="v06" class="vid" src="assets/b06.mp4" data-start="22.1" data-duration="1.75" muted playsinline></video>
-  <video id="v07" class="vid" src="assets/b07.mp4" data-start="23.85" data-duration="1.75" muted playsinline></video>
-  <video id="v08" class="vid" src="assets/b08.mp4" data-start="25.6" data-duration="1.75" muted playsinline></video>
-  <video id="v09" class="vid" src="assets/b09.mp4" data-start="27.35" data-duration="1.75" muted playsinline></video>
-  <video id="v10" class="vid" src="assets/b10.mp4" data-start="29.1" data-duration="2.5" muted playsinline></video>
-  <video id="v11" class="vid" src="assets/b11.mp4" data-start="31.6" data-duration="2.5" muted playsinline></video>
+  <video id="v12" class="vid" src="assets/b12.mp4" data-start="14" data-duration="6.5" muted playsinline></video>
+  <video id="v10" class="vid" src="assets/b10.mp4" data-start="20.5" data-duration="2.5" muted playsinline></video>
+  <video id="v11" class="vid" src="assets/b11.mp4" data-start="23" data-duration="4" muted playsinline></video>
+  <video id="v06" class="vid" src="assets/b06.mp4" data-start="27" data-duration="1.6" muted playsinline></video>
+  <video id="v07" class="vid" src="assets/b07.mp4" data-start="28.6" data-duration="1.6" muted playsinline></video>
+  <video id="v08" class="vid" src="assets/b08.mp4" data-start="30.2" data-duration="1.6" muted playsinline></video>
+  <video id="v09" class="vid" src="assets/b09.mp4" data-start="31.8" data-duration="1.7" muted playsinline></video>
   <div id="shadeB"></div>
   <div id="held">Life is busy.</div>
   <div id="ntf"></div>
-  <div id="void"><p>The best traders aren't.</p></div>
-  <div class="step" id="st1">Step 1 · Find a top trader</div><div class="between" id="bw1">Between patients.</div>
-  <div class="step" id="st2">Step 2 · Check the track record</div><div class="between" id="bw2">Between errands.</div>
-  <div class="step" id="st3">Step 3 · Mirror. $500. Slide.</div><div class="between" id="bw3">Between coffees.</div>
-  <div id="mini"></div>
-  <div class="subt" id="sub6"></div>
+  <div id="void"><p id="vline">Copy trading is two buttons.</p><div id="pill"><i id="knob"></i><span class="l">Mirror</span><span class="r">Inverse</span></div></div>
+  <div class="cap" id="capM"><b>Mirror.</b><span>Copy someone who's great.</span><em>ONE TAP</em></div>
+  <div class="cap" id="capI"><b>Inverse.</b><span>Do the opposite of someone who's always wrong.</span><em>ONE TAP</em></div>
+  <div class="subt" id="sub"></div>
   <div id="phone" class="nk-phone"></div>
-  <div id="end"><div class="h">Invest with the best.</div><div class="lg" id="endlogo"></div>
-    <div class="st nk-store"><span>Download on the App Store</span><span>Get it on Google Play</span></div>
+  <div id="done">That's it.</div>
+  <div id="pf"></div>
+  <div id="end"><div class="h" style="left:0">Mirror the best.</div><div class="mid"></div><div class="h" style="left:960px;color:#b49cff">Inverse the rest.</div>
+    <div class="lg" id="endlogo"></div><div class="st nk-store"><span>Download on the App Store</span><span>Get it on Google Play</span></div>
     <div class="nk-disc">Illustrative figures. Fictional characters. Trading perpetuals involves risk of loss. Not financial advice.</div></div>
-  <div id="tagA">NIKA · FLOW B v2 · RIPOMATIC · STOCK FOOTAGE FROM MIXKIT</div>
-  <audio id="m1" src="assets/music.mp3" data-start="0" data-duration="11" data-media-start="0" data-volume="0.85" data-fade-out="0.4"></audio>
-  <audio id="m2" src="assets/music.mp3" data-start="12.5" data-duration="26.5" data-media-start="30" data-volume="0.85" data-fade-in="0.3" data-fade-out="2.5"></audio>
+  <div id="tagA">NIKA · FLOW B v3 · RIPOMATIC · STOCK FOOTAGE FROM MIXKIT</div>
+  <audio id="m1" src="assets/music.mp3" data-start="0" data-duration="11" data-media-start="0" data-volume="0.8" data-fade-out="0.4"></audio>
+  <audio id="m2" src="assets/music.mp3" data-start="12.5" data-duration="26.5" data-media-start="30" data-volume="0.8" data-fade-in="0.3" data-fade-out="2.5"></audio>
+  <audio id="fx1" src="assets/sfx-1492.mp3" data-start="13.0" data-duration="1.2" data-volume="0.6"></audio>
+  <audio id="fx2" src="assets/sfx-2364.mp3" data-start="16.2" data-duration="0.6" data-volume="0.6"></audio>
+  <audio id="fx3" src="assets/sfx-2870.mp3" data-start="18.4" data-duration="1.6" data-volume="0.55"></audio>
+  <audio id="fx4" src="assets/sfx-1492.mp3" data-start="24.5" data-duration="1.2" data-volume="0.7"></audio>
+  <audio id="fx5" src="assets/sfx-2870.mp3" data-start="26.2" data-duration="1.6" data-volume="0.55"></audio>
 </div>
 <script>
 const $ = (s) => document.querySelector(s);
 $("#ntf").innerHTML = NK.toast("tn", "quietkoi opened BTC long", "Mirrored in your account", "+$0.00");
-$("#mini").innerHTML = `<div class="nk-panel"><div class="nk-row">${NK.av("#f59e0b")}quietkoi<span class="nk-badge m">Mirror</span></div><div class="nk-kv" style="margin-top:12px"><div><small>Put in</small><b>$500.00</b></div><div style="text-align:right"><small>Value</small><b class="nk-g" id="miniV">$500.00</b></div></div></div>`;
 $("#endlogo").innerHTML = NK.logo(90);
+$("#pf").innerHTML = `<div class="nk-panel"><div class="nk-row">${NK.av("#f59e0b")}quietkoi<span class="nk-badge m">Mirror</span></div><div class="nk-kv" style="margin-top:14px"><div><small>Put in</small><b>$500.00</b></div><div style="text-align:right"><small>Total PnL</small><b class="nk-g" id="pfm">+$0.00</b></div></div></div>
+  <div class="nk-panel"><div class="nk-row">${NK.av("#ef4444")}deskwarrior<span class="nk-badge i">Inverse</span></div><div class="nk-kv" style="margin-top:14px"><div><small>Put in</small><b>$200.00</b></div><div style="text-align:right"><small>Total PnL</small><b class="nk-g" id="pfi">+$0.00</b></div></div></div>`;
 const qk = { h:"quietkoi", c:"#f59e0b", roi:"+268.9%", win:"92.6%", seed:44, pnl:"$1,276,410.2", pnlShort:"$1.28M",
-  pos:[["BTC","Long","5x","$31,204.2","+$48,320.1"],["ETH","Long","3x","$18,442.0","+$22,815.6"],["XAU","Long","10x","$12,980.7","+$9,604.4"],["SOL","Short","3x","$7,214.9","+$5,212.8"]] };
-const list = [{ h:"deltanova", c:"#7c5cff", roi:"+1,412.8%", win:"96.2%", seed:21 }, { h:"fjordcapital", c:"#22a6f0", roi:"+845.3%", win:"91.0%", seed:33 },
-  { h:"quietkoi", c:"#f59e0b", roi:"+268.9%", win:"92.6%", seed:44 }, { h:"tidecraft", c:"#14b8a6", roi:"+241.0%", win:"88.4%", seed:55 }];
-const desk = { h:"deskwarrior", c:"#ef4444", roi:"-74.2%", win:"11.0%", up:false, seed:9, pnl:"-$88,410.6", pnlShort:"-$88K" };
-$("#phone").innerHTML = NK.strategies(list, { id:"st", just:"northdesk" }) + NK.detail(qk, { id:"qd" }) + NK.sheet(qk, { id:"qs" }) +
-  NK.success("Subscribed", "Mirror · quietkoi · $500", "ok1") + NK.sheet(desk, { id:"ds" }) + NK.success("Subscribed", "Inverse · deskwarrior · $200", "ok2");
-["#st","#qd","#qs","#ok1","#ds","#ok2"].forEach((s) => gsap.set(s, { opacity: 0 }));
+  pos:[["BTC","Long","5x","$31,204.2","+$48,320.1"],["ETH","Long","3x","$18,442.0","+$22,815.6"],["XAU","Long","10x","$12,980.7","+$9,604.4"]] };
+const desk = { h:"deskwarrior", c:"#ef4444", roi:"-74.2%", win:"11.0%", up:false, seed:9, pnl:"-$88,410.6", pnlShort:"-$88K",
+  pos:[["BTC","Long","50x","$22,201.0","-$9,220.3"],["SOL","Long","25x","$8,410.6","-$3,812.5"],["DOGE","Long","20x","$4,880.2","-$2,402.9"]] };
+$("#phone").innerHTML = NK.detail(qk, { id:"qd" }) + NK.sheet(qk, { id:"qs" }) + NK.success("Mirroring quietkoi", "$500 · Copying every trade", "ok1") +
+  NK.detail(desk, { id:"dd" }) + NK.sheet(desk, { id:"ds" }) + NK.success("Inversing deskwarrior", "$200 · Opposite of every trade", "ok2");
+["#qd","#qs","#ok1","#dd","#ds","#ok2"].forEach((s) => gsap.set(s, { opacity: 0 }));
 gsap.set(["#qs","#ds"], { y: 760 });
 
 const tl = gsap.timeline({ paused: true });
 const on = (s, at, d = 0.01) => tl.to(s, { opacity: 1, duration: d }, at);
 const off = (s, at, d = 0.01) => tl.to(s, { opacity: 0, duration: d }, at);
-// Busy lives: one line, one notification, profit ticking (0-11)
+// 1. Busy lives (0-11)
 on("#held", 0.6, 0.4); on("#ntf", 1.4, 0.3);
 NK.count(tl, "#tn-amt", 0, 212.4, 0.8, 1.6, (v) => "+" + NK.money(v));
 const lines = ["quietkoi opened ETH long", "quietkoi opened SOL short", "quietkoi opened Gold long", "quietkoi closed BTC long"], amts = [212.4, 318.9, 365.15, 412.8];
 lines.forEach((l, i) => { const at = 5 + i * 1.5; NK.say(tl, "#tn > div:nth-child(2) b", l, at); if (i) NK.count(tl, "#tn-amt", amts[i - 1], amts[i], 0.6, at + 0.1, (v) => "+" + NK.money(v)); });
-// Void (11-12.5)
-on("#void", 11); off(["#held", "#ntf"], 11); off("#void", 12.5);
-// Stolen moments (12.5-22.1)
-on("#phone", 12.5, 0.25); on("#st", 12.5);
-on(["#st1", "#bw1"], 12.6, 0.25);
-tl.to("#st-list", { y: -380, duration: 1.6, ease: "power2.inOut" }, 13.0);
-tl.to("#st-c2", { boxShadow: "0 0 0 3px #5662ff", duration: 0.2 }, 14.7);
-off(["#st1", "#bw1"], 15.7); off("#st", 15.7); on("#qd", 15.7);
-on(["#st2", "#bw2"], 15.8, 0.25);
-NK.count(tl, "#qd-pnl", 0, 1276410.2, 1.8, 15.9, (v) => NK.money(v, 1));
-tl.fromTo("#qd-line", { attr: { "stroke-dashoffset": 1 } }, { attr: { "stroke-dashoffset": 0 }, duration: 1.7, ease: "power2.out", immediateRender: false }, 15.9);
-off(["#st2", "#bw2"], 18.9); on("#qs", 18.9); tl.to("#qs", { y: 0, duration: 0.35, ease: "expo.out" }, 18.9);
-on(["#st3", "#bw3"], 19.0, 0.25);
-NK.say(tl, "#qs-amt", "$5", 19.6); NK.say(tl, "#qs-amt", "$50", 19.8); NK.say(tl, "#qs-amt", "$500", 20.0);
-tl.to("#qs-thumb", { x: 274, duration: 0.5, ease: "power2.inOut" }, 20.4); tl.to("#qs-fill", { width: "100%", duration: 0.5, ease: "power2.inOut" }, 20.4);
-off(["#qd", "#qs"], 21.0); on("#ok1", 21.0, 0.15);
-off(["#st3", "#bw3", "#phone"], 22.1); off("#ok1", 22.1);
-// End of the day (22.1-29.1)
-on("#mini", 22.3, 0.3);
-NK.count(tl, "#miniV", 500, 1148.6, 5.5, 22.5, (v) => NK.money(v));
-off("#mini", 29.1, 0.2);
-// The loudest coworker (29.1-34.1)
-NK.say(tl, "#sub6", "“It has to bounce. It has to.”", 29.3);
-NK.say(tl, "#sub6", "", 31.6);
-on("#phone", 31.6, 0.2); on("#ds", 31.6); tl.to("#ds", { y: 0, duration: 0.35, ease: "expo.out" }, 31.6);
-tl.to("#ds-knob", { xPercent: 100, backgroundColor: "#2a1b52", borderColor: "#6d4bd8", duration: 0.25 }, 32.3);
-NK.say(tl, "#ds-hint", "Take the opposite of this trader's positions.", 32.35);
-off("#ds", 33.2); on("#ok2", 33.2, 0.15);
-// End card (34.1-39)
-off("#phone", 34.1, 0.25); on("#end", 34.1, 0.25);
-on("#end .h", 34.4, 0.3); on("#end .lg", 35.2, 0.3); on("#end .st", 35.6, 0.3); on("#end .nk-disc", 35.8, 0.3);
+// 2. Two buttons (11-14)
+on("#void", 11); off(["#held", "#ntf"], 11);
+tl.fromTo("#vline", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, immediateRender: false }, 11.2);
+tl.fromTo("#pill", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)", immediateRender: false }, 12.4);
+tl.to("#knob", { x: 434, backgroundColor: "#2a1b52", borderColor: "#6d4bd8", duration: 0.3, ease: "power3.inOut" }, 13.0);
+tl.to("#knob", { x: 0, backgroundColor: "#123d27", borderColor: "#1f6b43", duration: 0.3, ease: "power3.inOut" }, 13.5);
+off("#void", 14);
+// 3. Mirror (14-20.5): the doctor, between patients
+on("#phone", 14.1, 0.25); on("#qd", 14.1);
+NK.count(tl, "#qd-pnl", 0, 1276410.2, 1.6, 14.3, (v) => NK.money(v, 1));
+tl.fromTo("#qd-line", { attr: { "stroke-dashoffset": 1 } }, { attr: { "stroke-dashoffset": 0 }, duration: 1.5, ease: "power2.out", immediateRender: false }, 14.3);
+on("#qs", 15.8); tl.to("#qs", { y: 0, duration: 0.35, ease: "expo.out" }, 15.8);
+tl.fromTo("#capM", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.35, ease: "expo.out", immediateRender: false }, 16.2);
+tl.to("#qs-knob", { scale: 1.06, duration: 0.12, yoyo: true, repeat: 1 }, 16.2);
+NK.say(tl, "#qs-amt", "$500", 17.0);
+tl.to("#qs-thumb", { x: 274, duration: 0.5, ease: "power2.inOut" }, 17.7); tl.to("#qs-fill", { width: "100%", duration: 0.5, ease: "power2.inOut" }, 17.7);
+off(["#qd", "#qs"], 18.4); on("#ok1", 18.4, 0.15);
+off(["#phone", "#capM"], 20.5, 0.2); off("#ok1", 20.7);
+// 4. Inverse (20.5-27): the loudest guy in the office
+NK.say(tl, "#sub", "“It has to bounce. It has to.”", 20.7); NK.say(tl, "#sub", "", 23.0);
+on("#phone", 23.0, 0.2); on("#dd", 23.0);
+on("#ds", 23.8); tl.to("#ds", { y: 0, duration: 0.35, ease: "expo.out" }, 23.8);
+tl.to("#ds-knob", { xPercent: 100, backgroundColor: "#2a1b52", borderColor: "#6d4bd8", duration: 0.25 }, 24.5);
+NK.say(tl, "#ds-hint", "Take the opposite of this trader's positions.", 24.55);
+tl.fromTo("#capI", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.35, ease: "expo.out", immediateRender: false }, 24.5);
+NK.say(tl, "#ds-amt", "$200", 25.0);
+tl.to("#ds-thumb", { x: 274, duration: 0.5, ease: "power2.inOut" }, 25.5); tl.to("#ds-fill", { width: "100%", duration: 0.5, ease: "power2.inOut" }, 25.5);
+off(["#dd", "#ds"], 26.2); on("#ok2", 26.2, 0.15);
+off(["#phone", "#capI"], 27.0, 0.2);
+// 5. That's it: both pay over the evening (27-33.5)
+tl.fromTo("#done", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35, immediateRender: false }, 27.2);
+tl.fromTo("#pf", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.35, immediateRender: false }, 27.5);
+NK.count(tl, "#pfm", 0, 648.6, 5.0, 27.8, (v) => "+" + NK.money(v));
+NK.count(tl, "#pfi", 0, 412.3, 5.0, 27.8, (v) => "+" + NK.money(v));
+off(["#done", "#pf"], 33.5, 0.2);
+// 6. End card (33.5-39)
+on("#end", 33.5, 0.3);
+tl.to("#end .h", { opacity: 1, duration: 0.3, stagger: 0.6 }, 33.8); on("#end .mid", 33.8, 0.3);
+on("#end .lg", 35.0, 0.3); on("#end .st", 35.4, 0.3); on("#end .nk-disc", 35.6, 0.3);
 window.__timelines = window.__timelines || {};
 window.__timelines.main = tl;
 </script>
