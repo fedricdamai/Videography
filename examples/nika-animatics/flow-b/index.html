@@ -32,6 +32,8 @@
   .live { position:absolute; left:90px; top:110px; display:flex; gap:14px; align-items:center; font-weight:800; font-size:30px; opacity:0; }
   .live b { background:#ef4444; padding:8px 16px; border-radius:10px; } .live span { background:rgba(0,0,0,.55); padding:8px 16px; border-radius:10px; }
   #callchip { position:absolute; left:90px; top:180px; font-size:34px; font-weight:800; background:rgba(0,0,0,.55); padding:10px 18px; border-radius:12px; opacity:0; }
+  .cap { position:absolute; left:50%; bottom:80px; transform:translateX(-50%); max-width:1400px; text-align:center; font-size:52px; font-weight:700; line-height:1.25; padding:14px 28px; border-radius:16px; background:rgba(0,0,0,.6); white-space:nowrap; opacity:0; }
+  #pipcap { position:absolute; left:90px; top:396px; width:480px; font-size:30px; font-weight:700; line-height:1.3; text-shadow:0 2px 12px rgba(0,0,0,.8); opacity:0; }
   #loud { position:absolute; left:0; right:0; top:420px; text-align:center; font-size:150px; font-weight:900; letter-spacing:-0.04em; text-shadow:0 6px 40px rgba(0,0,0,.6); }
   #prof { position:absolute; right:90px; top:110px; width:600px; padding:28px; border-radius:28px; background:rgba(15,16,22,.88); border:2px solid #7f1d1d; opacity:0; }
   #prof .h { display:flex; align-items:center; gap:18px; font-size:40px; font-weight:800; }
@@ -58,19 +60,19 @@
 </head>
 <body>
 <div id="root" data-composition-id="main" data-start="0" data-duration="40" data-width="1920" data-height="1080">
-  <video id="vz01" class="vid" src="assets/z01.mp4" data-start="0" data-duration="1.5" muted playsinline></video>
-  <video id="vz02" class="vid" src="assets/z02.mp4" data-start="1.5" data-duration="1.5" muted playsinline></video>
-  <video id="vz03" class="vid" src="assets/z03.mp4" data-start="3" data-duration="1.5" muted playsinline></video>
-  <video id="vz04" class="vid" src="assets/z04.mp4" data-start="4.5" data-duration="1.5" muted playsinline></video>
-  <video id="vz05" class="vid" src="assets/z05.mp4" data-start="6" data-duration="1.5" muted playsinline></video>
-  <video id="vz06" class="vid" src="assets/z06.mp4" data-start="7.5" data-duration="1.5" muted playsinline></video>
+  <video id="vz01" class="vid" src="assets/z01.mp4" data-start="0" data-duration="1.9" muted playsinline></video>
+  <video id="vz02" class="vid" src="assets/z02.mp4" data-start="1.9" data-duration="1.7" muted playsinline></video>
+  <video id="vz03" class="vid" src="assets/z03.mp4" data-start="3.6" data-duration="1.5" muted playsinline></video>
+  <video id="vz04" class="vid" src="assets/z04.mp4" data-start="5.1" data-duration="1.4" muted playsinline></video>
+  <video id="vz05" class="vid" src="assets/z05.mp4" data-start="6.5" data-duration="1.3" muted playsinline></video>
+  <video id="vz06" class="vid" src="assets/z06.mp4" data-start="7.8" data-duration="1.2" muted playsinline></video>
   <video id="vz07" class="vid" src="assets/z07.mp4" data-start="12.6" data-duration="7" muted playsinline></video>
-  <video id="vz08" class="vid" src="assets/z08.mp4" data-start="19.6" data-duration="3" muted playsinline></video>
-  <video id="vz09" class="vid" src="assets/z09.mp4" data-start="22.6" data-duration="4.8" muted playsinline></video>
-  <video id="vz10" class="vid" src="assets/z10.mp4" data-start="27.4" data-duration="1.5" muted playsinline></video>
-  <video id="vz11" class="vid" src="assets/z11.mp4" data-start="28.9" data-duration="1.5" muted playsinline></video>
-  <video id="vz12" class="vid" src="assets/z12.mp4" data-start="30.4" data-duration="1.5" muted playsinline></video>
-  <video id="vz13" class="vid" src="assets/z13.mp4" data-start="31.9" data-duration="1.5" muted playsinline></video>
+  <video id="vz08" class="vid" src="assets/z08.mp4" data-start="19.6" data-duration="4" muted playsinline></video>
+  <video id="vz09" class="vid" src="assets/z09.mp4" data-start="23.6" data-duration="4.4" muted playsinline></video>
+  <video id="vz10" class="vid" src="assets/z10.mp4" data-start="28" data-duration="1.35" muted playsinline></video>
+  <video id="vz11" class="vid" src="assets/z11.mp4" data-start="29.35" data-duration="1.35" muted playsinline></video>
+  <video id="vz12" class="vid" src="assets/z12.mp4" data-start="30.7" data-duration="1.35" muted playsinline></video>
+  <video id="vz13" class="vid" src="assets/z13.mp4" data-start="32.05" data-duration="1.35" muted playsinline></video>
   <div id="shadeT"></div><div id="shadeB"></div>
   <div id="ntf"></div>
   <div class="card" id="k1"><div class="ln" id="k1t" style="top:440px">Life is busy.</div></div>
@@ -85,11 +87,12 @@
   <!-- Inverse: who is "the rest" -->
   <div class="live" id="live"><b>LIVE</b><span>61.9K watching</span></div>
   <div id="callchip">BTC · <span style="color:#4ade80">50x LONG</span></div>
-  <div id="loud" style="opacity:0">THIS IS THE BOTTOM.</div>
+  <div id="cap" class="cap"></div>
   <div id="prof"><div class="h"><i></i>loudlarry</div>
     <div class="kv"><div><small>Win rate</small><b>11%</b></div><div style="text-align:right"><small>30D</small><b>−74.2%</b></div></div>
     <div class="w" id="profw">Wrong 9 times out of 10.</div></div>
-  <div id="pipw"><video id="vpip" class="pv" src="assets/z08.mp4" data-start="22.6" data-duration="2" muted playsinline></video><b>LIVE</b><span>loudlarry</span></div>
+  <div id="pipw"><video id="vpip" class="pv" src="assets/z08.mp4" data-start="23.6" data-duration="2.1" data-media-start="0.6" muted playsinline></video><b>LIVE</b><span>loudlarry</span></div>
+  <div id="pipcap"></div>
   <div class="big" id="bi" style="opacity:0">Inverse the rest.</div><div class="bar" id="bari" style="background:var(--inverse)"></div>
   <!-- Payoff -->
   <div id="thatsit" style="opacity:0">That's it.</div>
@@ -102,18 +105,20 @@
     <div class="nk-store"><span>Download on the App Store</span><span>Get it on Google Play</span></div>
     <div class="nk-disc">Illustrative figures. Fictional characters. Trading perpetuals involves risk of loss. Not financial advice.</div>
   </div>
-  <div id="tagA">NIKA · FLOW B v6 · RIPOMATIC · STOCK FOOTAGE FROM MIXKIT</div>
+  <div id="tagA">NIKA · FLOW B v7 · RIPOMATIC · STOCK FOOTAGE FROM MIXKIT</div>
   <audio id="m1" src="assets/music.mp3" data-start="0" data-duration="10.6" data-media-start="0" data-volume="0.8" data-fade-out="0.3"></audio>
-  <audio id="m2" src="assets/music.mp3" data-start="12.6" data-duration="27.4" data-media-start="30" data-volume="0.8" data-fade-in="0.2" data-fade-out="2.5"></audio>
+  <audio id="m2" src="assets/music.mp3" data-start="12.6" data-duration="7" data-media-start="30" data-volume="0.8" data-fade-in="0.2" data-fade-out="0.25"></audio>
+  <audio id="m3" src="assets/music.mp3" data-start="19.6" data-duration="5.8" data-media-start="37" data-volume="0.3" data-fade-in="0.25" data-fade-out="0.25"></audio>
+  <audio id="m4" src="assets/music.mp3" data-start="25.4" data-duration="14.6" data-media-start="42.8" data-volume="0.8" data-fade-in="0.25" data-fade-out="2.5"></audio>
+  <audio id="vo1" src="assets/vo-larry1.mp3" data-start="19.75" data-duration="3.45" data-volume="1.6"></audio>
+  <audio id="vo2" src="assets/vo-larry2.mp3" data-start="23.75" data-duration="1.7" data-volume="1.3"></audio>
+  <audio id="vo3" src="assets/vo-end1.mp3" data-start="33.6" data-duration="1.25" data-volume="1.5"></audio>
+  <audio id="vo4" src="assets/vo-end2.mp3" data-start="34.5" data-duration="1.45" data-volume="1.5"></audio>
   <audio id="fx1" src="assets/sfx-1492.mp3" data-start="12.1" data-duration="1.2" data-volume="0.7"></audio>
   <audio id="fx2" src="assets/sfx-2364.mp3" data-start="15.9" data-duration="0.6" data-volume="0.6"></audio>
   <audio id="fx3" src="assets/sfx-2870.mp3" data-start="17.9" data-duration="1.6" data-volume="0.55"></audio>
-  <audio id="fx4" src="assets/sfx-2364.mp3" data-start="19.85" data-duration="0.5" data-volume="0.7"></audio>
-  <audio id="fx5" src="assets/sfx-2364.mp3" data-start="20.03" data-duration="0.5" data-volume="0.7"></audio>
-  <audio id="fx6" src="assets/sfx-2364.mp3" data-start="20.21" data-duration="0.5" data-volume="0.7"></audio>
-  <audio id="fx7" src="assets/sfx-2364.mp3" data-start="20.39" data-duration="0.5" data-volume="0.7"></audio>
-  <audio id="fx8" src="assets/sfx-1492.mp3" data-start="23.4" data-duration="1.2" data-volume="0.8"></audio>
-  <audio id="fx9" src="assets/sfx-2870.mp3" data-start="25.6" data-duration="1.6" data-volume="0.55"></audio>
+  <audio id="fx8" src="assets/sfx-1492.mp3" data-start="24.3" data-duration="1.2" data-volume="0.8"></audio>
+  <audio id="fx9" src="assets/sfx-2870.mp3" data-start="26.2" data-duration="1.6" data-volume="0.55"></audio>
   <audio id="fx10" src="assets/sfx-1485.mp3" data-start="35.3" data-duration="0.5" data-volume="0.9"></audio>
 </div>
 <script>
@@ -140,7 +145,8 @@ const NIKA = "#3b49f0", MIR = "#22c55e", INV = "#8b5cf6";
 on("#ntf", 0.5, 0.25);
 const tr = ["quietkoi opened BTC long","quietkoi opened ETH long","quietkoi opened SOL short","quietkoi opened Gold long","quietkoi closed BTC long","quietkoi closed ETH long"];
 const amts = [0, 74.2, 212.4, 318.9, 365.15, 412.8];
-tr.forEach((l, i) => { const at = i * 1.5 + 0.1; NK.say(tl, "#tn > div:nth-child(2) b", l, at); if (i) NK.count(tl, "#tn-amt", amts[i - 1], amts[i], 0.6, at + 0.1, (v) => "+" + NK.money(v)); });
+const cutT = [0, 1.9, 3.6, 5.1, 6.5, 7.8];
+tr.forEach((l, i) => { const at = cutT[i] + 0.1; NK.say(tl, "#tn > div:nth-child(2) b", l, at); if (i) NK.count(tl, "#tn-amt", amts[i - 1], amts[i], 0.6, at + 0.1, (v) => "+" + NK.money(v)); });
 off("#ntf", 9);
 // 2. Type cards (9-12.6)
 on("#k1", 9); NK.typeOn(tl, "#k1t", 9.1, { color: NIKA, cursors: 2, dur: 0.7, seed: 21 });
@@ -167,32 +173,35 @@ tl.to("#qs-thumb", { x: 274, duration: 0.5, ease: "power2.inOut" }, 17.3); tl.to
 off(["#qd", "#qs"], 17.9); on("#ok1", 17.9, 0.15);
 tl.to("#barm", { width: 860, duration: 0.5, ease: "power3.out" }, 18.0);
 off(["#phone", "#bm", "#barm"], 19.6); off("#ok1", 19.6);
-// 4. The loudest (19.6-22.6): a streamer with bad calls, and his record on Nika
+// 4. The loudest (19.6-23.6): a streamer's bad call, spoken (VO + captions), then his record on Nika
 on(["#live", "#callchip"], 19.6, 0.15);
-on("#loud", 19.75); NK.slamWords(tl, "#loud", 19.85, 0.18);
-tl.to("#loud", { x: 8, duration: 0.05, yoyo: true, repeat: 7, ease: "none" }, 20.6);
-off("#loud", 21.2, 0.15);
-tl.fromTo("#prof", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)", immediateRender: false }, 21.2);
-NK.typeOn(tl, "#profw", 21.5, { color: "#ef4444", dur: 0.7, seed: 41 });
-off(["#prof", "#live", "#callchip"], 22.6);
-// 5. Inverse the rest (22.6-27.4): she's watching him live, laughs, and inverses him
-tl.fromTo("#pipw", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)", immediateRender: false }, 22.65);
-off("#pipw", 24.6, 0.2);
-on("#phone", 22.9, 0.2); on("#dd", 22.9);
-on("#ds", 23.0); tl.to("#ds", { y: 0, duration: 0.35, ease: "expo.out" }, 23.0);
-tl.to("#ds-knob", { xPercent: 100, backgroundColor: "#2a1b52", borderColor: "#6d4bd8", duration: 0.25 }, 23.4);
-NK.say(tl, "#ds-hint", "Take the opposite of this trader's positions.", 23.45);
-on("#bi", 23.5); NK.typeOn(tl, "#bi", 23.5, { color: INV, dir: "rtl", dur: 0.9, seed: 51 });
-NK.say(tl, "#ds-amt", "$200", 24.6);
-tl.to("#ds-thumb", { x: 274, duration: 0.5, ease: "power2.inOut" }, 25.0); tl.to("#ds-fill", { width: "100%", duration: 0.5, ease: "power2.inOut" }, 25.0);
-off(["#dd", "#ds"], 25.6); on("#ok2", 25.6, 0.15);
-tl.fromTo("#bari", { width: 0, x: 860 }, { width: 860, x: 0, duration: 0.5, ease: "power3.out", immediateRender: false }, 25.7);
-off(["#phone", "#bi", "#bari"], 27.4); off("#ok2", 27.4);
+on("#cap", 19.75, 0.1);
+NK.say(tl, "#cap", "\u201CChat, listen to me.\u201D", 19.75);
+NK.say(tl, "#cap", "\u201CFifty x long, right now.\u201D", 20.75);
+NK.say(tl, "#cap", "\u201CThis is the bottom.\u201D", 22.0);
+off("#cap", 23.3, 0.1);
+tl.fromTo("#prof", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)", immediateRender: false }, 21.9);
+NK.typeOn(tl, "#profw", 22.2, { color: "#ef4444", dur: 0.7, seed: 41 });
+off(["#prof", "#live", "#callchip"], 23.6);
+// 5. Inverse the rest (23.6-28): she is watching him live, laughs, and inverses him
+tl.fromTo("#pipw", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)", immediateRender: false }, 23.65);
+on("#pipcap", 23.75, 0.1); NK.say(tl, "#pipcap", "\u201CTrust me. I have never been wrong.\u201D", 23.75);
+off(["#pipw", "#pipcap"], 25.5, 0.2);
+on("#phone", 23.8, 0.2); on("#dd", 23.8);
+on("#ds", 23.9); tl.to("#ds", { y: 0, duration: 0.35, ease: "expo.out" }, 23.9);
+tl.to("#ds-knob", { xPercent: 100, backgroundColor: "#2a1b52", borderColor: "#6d4bd8", duration: 0.25 }, 24.3);
+NK.say(tl, "#ds-hint", "Take the opposite of this trader's positions.", 24.35);
+on("#bi", 24.4); NK.typeOn(tl, "#bi", 24.4, { color: INV, dir: "rtl", dur: 0.9, seed: 51 });
+NK.say(tl, "#ds-amt", "$200", 25.3);
+tl.to("#ds-thumb", { x: 274, duration: 0.5, ease: "power2.inOut" }, 25.6); tl.to("#ds-fill", { width: "100%", duration: 0.5, ease: "power2.inOut" }, 25.6);
+off(["#dd", "#ds"], 26.2); on("#ok2", 26.2, 0.15);
+tl.fromTo("#bari", { width: 0, x: 860 }, { width: 860, x: 0, duration: 0.5, ease: "power3.out", immediateRender: false }, 26.3);
+off(["#phone", "#bi", "#bari"], 28); off("#ok2", 28);
 // 6. That's it (27.4-33.4): their nights out and in; both strategies paying
-on("#thatsit", 27.5); NK.typeOn(tl, "#thatsit", 27.5, { color: NIKA, cursors: 2, dur: 0.6, seed: 71 });
-tl.fromTo("#pf", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.35, immediateRender: false }, 27.8);
-NK.count(tl, "#pfm", 0, 648.6, 5.0, 28.0, (v) => "+" + NK.money(v));
-NK.count(tl, "#pfi", 0, 412.3, 5.0, 28.0, (v) => "+" + NK.money(v));
+on("#thatsit", 28.1); NK.typeOn(tl, "#thatsit", 28.1, { color: NIKA, cursors: 2, dur: 0.6, seed: 71 });
+tl.fromTo("#pf", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.35, immediateRender: false }, 28.3);
+NK.count(tl, "#pfm", 0, 648.6, 4.6, 28.5, (v) => "+" + NK.money(v));
+NK.count(tl, "#pfi", 0, 412.3, 4.6, 28.5, (v) => "+" + NK.money(v));
 off(["#thatsit", "#pf"], 33.4);
 // 7. End (33.4-40): the sentence assembles from the two halves already seen
 on("#end", 33.4, 0.15);

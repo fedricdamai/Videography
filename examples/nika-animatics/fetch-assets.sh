@@ -18,10 +18,11 @@ cut $A/n01.mp4 34469 1 5.5;  cut $A/n02.mp4 41175 2 1.83; cut $A/n03.mp4 31413 2
 cut $A/n05.mp4 46700 3 8;    cut $A/n06.mp4 9607 2 1.5;   cut $A/n07.mp4 34469 9 3;    cut $A/n08.mp4 45735 3.5 2
 cut $A/n09.mp4 46700 18 8
 B=flow-b/assets
-cut $B/z01.mp4 13109 2 1.5; cut $B/z02.mp4 14088 2 1.5; cut $B/z03.mp4 52088 2 1.5; cut $B/z04.mp4 6753 3 1.5
-cut $B/z05.mp4 46653 3 1.5; cut $B/z06.mp4 7674 2 1.5;  cut $B/z07.mp4 32590 2 7.0; cut $B/z08.mp4 34469 2 3.0
-cut $B/z09.mp4 39788 2 4.8; cut $B/z10.mp4 46378 2 1.5; cut $B/z11.mp4 43524 2 1.5; cut $B/z12.mp4 14084 1 1.5
-cut $B/z13.mp4 4537 3 1.5
+cut $B/z01.mp4 13109 2 1.9;  cut $B/z02.mp4 6753 3 1.7;  cut $B/z03.mp4 7674 2 1.5;  cut $B/z04.mp4 46653 3 1.4
+cut $B/z05.mp4 52088 2 1.3;  cut $B/z06.mp4 14088 2 1.2; cut $B/z07.mp4 32005 4.5 7.0; cut $B/z08.mp4 34469 2 4.0
+cut $B/z09.mp4 39788 2 4.4;  cut $B/z10.mp4 46378 2 1.35; cut $B/z11.mp4 43524 2 1.35; cut $B/z12.mp4 22051 3 1.35
+cut $B/z13.mp4 4537 3 1.35
+# Voice lines are generated locally: npx hyperframes tts (Kokoro). See flow-b/index.html for the script.
 curl -sfL -o flow-a/assets/music.mp3 https://assets.mixkit.co/music/267/267.mp3   # Trap Hamza, 112 BPM
 curl -sfL -o flow-b/assets/music.mp3 https://assets.mixkit.co/music/33/33.mp3     # Motivating Mornings, 123 BPM
 curl -sfL -o flow-c/assets/music.mp3 https://assets.mixkit.co/music/126/126.mp3   # Trap Electro Vibes, 112 BPM
