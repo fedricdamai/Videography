@@ -74,3 +74,55 @@
   };
   K.say = (tl, sel, text, at) => tl.to(sel, { textContent: text, duration: 0.001 }, at);
 })();
+
+/* ---------- Kinetic type: block-cursor type-on (learned from Base, Nika-skinned) ----------
+   NK.typeOn(tl, sel, at, opts) reveals the text already inside `sel` letter by letter.
+   - A colored block cursor runs at the reveal front with a scrambled glyph inside.
+   - Unrevealed letters keep their space (layout never jumps).
+   - opts.dir: "ltr" (default) or "rtl" (types backwards: the Inverse move).
+   - opts.cursors: 1 or 2 (two fronts typing at once, split at the middle space).
+   - opts.dur: seconds for the whole line (default 0.05 s per letter, 0.6 to 1.2 s).
+   - opts.color: cursor color. Seek-safe: driven by a progress tween, not callbacks. */
+(function () {
+  const K = window.NK;
+  const GLYPHS = "▖▗▘▙▚▛▜▝▞▟▀▄▌▐#$%&*+=?@<>";
+  K.typeOn = (tl, sel, at, o = {}) => {
+    const el = document.querySelector(sel);
+    const text = el.textContent; const n = text.length;
+    el.innerHTML = [...text].map((c) => `<span class="tc">${c === " " ? "&nbsp;" : c}</span>`).join("");
+    const spans = [...el.querySelectorAll(".tc")];
+    const color = o.color || "#3b49f0", dir = o.dir || "ltr", dur = o.dur || Math.min(1.2, Math.max(0.6, n * 0.05));
+    let fronts;
+    if ((o.cursors || 1) === 2) {
+      const mid = text.lastIndexOf(" ", Math.floor(n / 2)) > 0 ? text.lastIndexOf(" ", Math.floor(n / 2)) + 1 : Math.floor(n / 2);
+      fronts = [[0, mid], [mid, n]];
+    } else fronts = [[0, n]];
+    const rng = K.rng(o.seed || 11); const scr = [...Array(400)].map(() => GLYPHS[Math.floor(rng() * GLYPHS.length)]);
+    const render = (p) => {
+      spans.forEach((s) => { s.style.visibility = "hidden"; s.classList.remove("tcur"); s.style.background = ""; s.style.boxShadow = ""; s.textContent = s.dataset.c || (s.dataset.c = s.textContent); });
+      fronts.forEach(([a, b], fi) => {
+        const len = b - a, k = Math.floor(p * (len + 1));
+        for (let j = 0; j < Math.min(k, len); j++) { const idx = dir === "rtl" ? b - 1 - j : a + j; spans[idx].style.visibility = "visible"; }
+        if (p < 1 && k < len) {
+          const idx = dir === "rtl" ? b - 1 - k : a + k; const s = spans[idx];
+          s.style.visibility = "visible"; s.classList.add("tcur"); s.style.background = color; s.style.boxShadow = `0 0 0 0.06em ${color}`;
+          s.textContent = scr[(k * 7 + fi * 13 + Math.floor(p * 50)) % scr.length];
+        }
+      });
+    };
+    render(0);
+    const prog = { p: 0 };
+    tl.fromTo(prog, { p: 0 }, { p: 1, duration: dur, ease: o.ease || "none", immediateRender: false, onUpdate: () => render(prog.p) }, at);
+    return at + dur;
+  };
+  // Loud type: shaky caps, words slam in one by one (for the loud trader's lines)
+  K.slamWords = (tl, sel, at, step = 0.18) => {
+    const el = document.querySelector(sel);
+    const words = el.textContent.trim().split(/\s+/);
+    el.innerHTML = words.map((w) => `<span class="sw">${w}</span>`).join(" ");
+    el.querySelectorAll(".sw").forEach((w, i) => {
+      tl.fromTo(w, { opacity: 0, scale: 2.2, rotation: (i % 2 ? 6 : -6) }, { opacity: 1, scale: 1, rotation: (i % 2 ? -2 : 2), duration: 0.16, ease: "back.out(3)", immediateRender: false }, at + i * step);
+    });
+    return at + words.length * step;
+  };
+})();

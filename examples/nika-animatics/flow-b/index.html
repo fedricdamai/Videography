@@ -6,79 +6,114 @@
 <link rel="stylesheet" href="kit.css">
 <script src="kit.js"></script>
 <style>
+  :root { --mirror:#22c55e; --inverse:#8b5cf6; --nika:#3b49f0; --paper:#f3f4f7; }
   html, body { margin:0; background:#000; }
   #root { position:relative; width:1920px; height:1080px; overflow:hidden; background:#000; font-family:"Inter",sans-serif; color:#fff; }
   .vid { position:absolute; left:0; top:0; width:100%; height:100%; object-fit:cover; }
-  #shadeB { position:absolute; left:0; right:0; bottom:0; height:460px; background:linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.7)); }
-  #held { position:absolute; left:0; right:0; top:470px; text-align:center; font-size:110px; font-weight:700; letter-spacing:-0.03em; text-shadow:0 4px 30px rgba(0,0,0,.35); opacity:0; }
-  #ntf { position:absolute; left:50%; top:150px; transform:translateX(-50%) scale(1.7); transform-origin:50% 0; opacity:0; }
+  #shadeB { position:absolute; left:0; right:0; bottom:0; height:480px; background:linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.65)); }
+  #shadeT { position:absolute; left:0; right:0; top:0; height:300px; background:linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,0)); }
+  .chip { position:absolute; left:90px; bottom:96px; font-size:40px; font-weight:600; letter-spacing:-0.01em; opacity:0; }
+  .chip b { font-weight:800; font-variant-numeric:tabular-nums; margin-right:14px; }
+  #ntf { position:absolute; left:50%; top:110px; transform:translateX(-50%) scale(1.6); transform-origin:50% 0; opacity:0; }
   #ntf .nk-toast { position:relative; }
-  #void { position:absolute; inset:0; background:radial-gradient(ellipse at 50% 50%, #141a3a 0%, #07080d 70%); opacity:0; }
-  #void p { position:absolute; left:0; right:0; top:300px; margin:0; text-align:center; font-size:64px; font-weight:600; letter-spacing:-0.02em; }
-  #pill { position:absolute; left:510px; top:470px; width:900px; height:170px; border-radius:85px; background:#15161d; border:2px solid #2c2f3a; opacity:0; }
-  #pill i { position:absolute; left:8px; top:8px; width:442px; height:150px; border-radius:76px; background:#123d27; border:2px solid #1f6b43; box-sizing:border-box; }
-  #pill span { position:absolute; top:0; width:450px; height:170px; line-height:170px; text-align:center; font-size:64px; font-weight:800; z-index:2; }
-  #pill .l { left:0; } #pill .r { left:450px; }
-  .cap { position:absolute; left:90px; bottom:120px; opacity:0; text-shadow:0 4px 30px rgba(0,0,0,.5); }
-  .cap b { display:block; font-size:170px; font-weight:800; letter-spacing:-0.05em; line-height:1; }
-  .cap span { display:block; font-size:44px; font-weight:600; margin-top:14px; }
-  .cap em { display:inline-block; font-style:normal; font-size:24px; font-weight:800; letter-spacing:.14em; padding:8px 14px; border-radius:10px; margin-top:20px; }
-  #capM em { background:#123d27; color:#4ade80; } #capI em { background:#2a1b52; color:#b49cff; }
+  .card { position:absolute; inset:0; background:var(--paper); opacity:0; color:#111; }
+  .card .ln { position:absolute; left:0; right:0; text-align:center; font-size:110px; font-weight:600; letter-spacing:-0.035em; white-space:nowrap; }
+  #pill { position:absolute; left:610px; top:640px; width:700px; height:140px; border-radius:70px; background:#fff; box-shadow:0 20px 60px rgba(17,17,17,.12); opacity:0; }
+  #pill i { position:absolute; left:8px; top:8px; width:342px; height:124px; border-radius:62px; background:var(--mirror); }
+  #pill span { position:absolute; top:0; width:350px; height:140px; line-height:140px; text-align:center; font-size:52px; font-weight:800; z-index:2; color:#111; }
+  #pill .l { left:0; color:#fff; } #pill .r { left:350px; }
+  .big { position:absolute; left:90px; bottom:130px; font-size:124px; font-weight:800; letter-spacing:-0.045em; line-height:1; white-space:nowrap; text-shadow:0 4px 30px rgba(0,0,0,.45); }
+  .bar { position:absolute; left:94px; bottom:104px; height:10px; width:0; border-radius:5px; }
+  .stat { position:absolute; left:90px; top:110px; opacity:0; text-shadow:0 4px 24px rgba(0,0,0,.45); }
+  .stat small { display:block; font-size:34px; font-weight:600; opacity:.9; }
+  .stat b { display:block; font-size:150px; font-weight:800; letter-spacing:-0.05em; line-height:1; font-variant-numeric:tabular-nums; }
+  #loud { position:absolute; left:0; right:0; top:330px; text-align:center; font-size:170px; font-weight:900; letter-spacing:-0.04em; text-shadow:0 6px 40px rgba(0,0,0,.6); }
+  #redchip { position:absolute; left:90px; top:110px; font-size:40px; font-weight:700; background:rgba(0,0,0,.55); padding:12px 22px; border-radius:14px; opacity:0; }
   #phone { left:1340px; top:107px; opacity:0; }
-  .subt { position:absolute; left:0; right:0; bottom:70px; text-align:center; font-size:40px; font-weight:600; text-shadow:0 2px 12px rgba(0,0,0,.8); }
-  #done { position:absolute; left:90px; top:110px; font-size:120px; font-weight:800; letter-spacing:-0.04em; text-shadow:0 4px 30px rgba(0,0,0,.5); opacity:0; }
+  #thatsit { position:absolute; left:90px; top:110px; font-size:120px; font-weight:800; letter-spacing:-0.045em; text-shadow:0 4px 30px rgba(0,0,0,.5); }
   #pf { position:absolute; left:1240px; top:120px; width:560px; opacity:0; }
   #pf .nk-panel { background:rgba(21,22,29,.85); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,.12); padding:22px; margin-bottom:16px; }
   #pf .nk-row { font-size:24px; } #pf .nk-kv b { font-size:30px; } #pf .nk-kv small { font-size:16px; }
-  #end { position:absolute; inset:0; background:#07080d; opacity:0; }
-  #end .h { position:absolute; top:330px; width:960px; font-size:92px; font-weight:800; letter-spacing:-0.04em; text-align:center; opacity:0; }
-  #end .mid { position:absolute; left:958px; top:290px; height:220px; width:3px; background:#5662ff; opacity:0; }
-  #end .lg { position:absolute; left:50%; top:610px; transform:translateX(-50%); opacity:0; }
-  #end .st { position:absolute; left:50%; top:770px; transform:translateX(-50%); opacity:0; }
-  #end .nk-disc { position:absolute; left:0; right:0; bottom:50px; text-align:center; opacity:0; }
-  #tagA { position:absolute; right:40px; bottom:24px; font-size:15px; font-weight:700; letter-spacing:.14em; color:rgba(255,255,255,.4); }
+  #end .e1 { top:300px; } #end .e2 { top:440px; }
+  #end .w { transition:none; }
+  #elogo { position:absolute; left:50%; top:690px; transform:translateX(-50%); opacity:0; }
+  #elogo .nk-logo { color:#111; }
+  #end .nk-store { position:absolute; left:50%; top:850px; transform:translateX(-50%); opacity:0; }
+  #end .nk-store span { color:#111; border-color:#111; }
+  #end .nk-disc { position:absolute; left:0; right:0; bottom:40px; text-align:center; opacity:0; color:#6b6e7c; }
+  #tagA { position:absolute; right:40px; bottom:24px; font-size:15px; font-weight:700; letter-spacing:.14em; color:rgba(127,127,127,.6); }
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="39" data-width="1920" data-height="1080">
-  <video id="v01" class="vid" src="assets/b01.mp4" data-start="0" data-duration="5" muted playsinline></video>
-  <video id="v02" class="vid" src="assets/b02.mp4" data-start="5" data-duration="1.5" muted playsinline></video>
-  <video id="v03" class="vid" src="assets/b03.mp4" data-start="6.5" data-duration="1.5" muted playsinline></video>
-  <video id="v04" class="vid" src="assets/b04.mp4" data-start="8" data-duration="1.5" muted playsinline></video>
-  <video id="v05" class="vid" src="assets/b05.mp4" data-start="9.5" data-duration="1.5" muted playsinline></video>
-  <video id="v12" class="vid" src="assets/b12.mp4" data-start="14" data-duration="6.5" muted playsinline></video>
-  <video id="v10" class="vid" src="assets/b10.mp4" data-start="20.5" data-duration="2.5" muted playsinline></video>
-  <video id="v11" class="vid" src="assets/b11.mp4" data-start="23" data-duration="4" muted playsinline></video>
-  <video id="v06" class="vid" src="assets/b06.mp4" data-start="27" data-duration="1.6" muted playsinline></video>
-  <video id="v07" class="vid" src="assets/b07.mp4" data-start="28.6" data-duration="1.6" muted playsinline></video>
-  <video id="v08" class="vid" src="assets/b08.mp4" data-start="30.2" data-duration="1.6" muted playsinline></video>
-  <video id="v09" class="vid" src="assets/b09.mp4" data-start="31.8" data-duration="1.7" muted playsinline></video>
-  <div id="shadeB"></div>
-  <div id="held">Life is busy.</div>
+<div id="root" data-composition-id="main" data-start="0" data-duration="40" data-width="1920" data-height="1080">
+  <video id="vy01" class="vid" src="assets/y01.mp4" data-start="0" data-duration="1.5" muted playsinline></video>
+  <video id="vy02" class="vid" src="assets/y02.mp4" data-start="1.5" data-duration="1.5" muted playsinline></video>
+  <video id="vy03" class="vid" src="assets/y03.mp4" data-start="3" data-duration="1.5" muted playsinline></video>
+  <video id="vy04" class="vid" src="assets/y04.mp4" data-start="4.5" data-duration="1.5" muted playsinline></video>
+  <video id="vy05" class="vid" src="assets/y05.mp4" data-start="6" data-duration="1.5" muted playsinline></video>
+  <video id="vy06" class="vid" src="assets/y06.mp4" data-start="7.5" data-duration="1.5" muted playsinline></video>
+  <video id="vy07" class="vid" src="assets/y07.mp4" data-start="12.6" data-duration="7" muted playsinline></video>
+  <video id="vy08" class="vid" src="assets/y08.mp4" data-start="19.6" data-duration="2.6" muted playsinline></video>
+  <video id="vy09" class="vid" src="assets/y09.mp4" data-start="22.2" data-duration="4.8" muted playsinline></video>
+  <video id="vy13" class="vid" src="assets/y13.mp4" data-start="27" data-duration="1.6" muted playsinline></video>
+  <video id="vy10" class="vid" src="assets/y10.mp4" data-start="28.6" data-duration="1.6" muted playsinline></video>
+  <video id="vy11" class="vid" src="assets/y11.mp4" data-start="30.2" data-duration="1.6" muted playsinline></video>
+  <video id="vy12" class="vid" src="assets/y12.mp4" data-start="31.8" data-duration="1.6" muted playsinline></video>
+  <div id="shadeT"></div><div id="shadeB"></div>
+  <!-- 1. A busy day: time chips + one notification earning across the day -->
+  <div class="chip" id="c1"><b>09:00</b><span id="c1t">Lecture</span></div>
+  <div class="chip" id="c2"><b>11:30</b><span id="c2t">Surgery</span></div>
+  <div class="chip" id="c3"><b>13:00</b><span id="c3t">Double shift</span></div>
+  <div class="chip" id="c4"><b>15:40</b><span id="c4t">Boarding</span></div>
+  <div class="chip" id="c5"><b>17:00</b><span id="c5t">Study group</span></div>
+  <div class="chip" id="c6"><b>18:30</b><span id="c6t">School run</span></div>
   <div id="ntf"></div>
-  <div id="void"><p id="vline">Copy trading is two buttons.</p><div id="pill"><i id="knob"></i><span class="l">Mirror</span><span class="r">Inverse</span></div></div>
-  <div class="cap" id="capM"><b>Mirror.</b><span>Copy someone who's great.</span><em>ONE TAP</em></div>
-  <div class="cap" id="capI"><b>Inverse.</b><span>Do the opposite of someone who's always wrong.</span><em>ONE TAP</em></div>
-  <div class="subt" id="sub"></div>
-  <div id="phone" class="nk-phone"></div>
-  <div id="done">That's it.</div>
+  <!-- 2. Type cards -->
+  <div class="card" id="k1"><div class="ln" id="k1t" style="top:440px">Life is busy.</div></div>
+  <div class="card" id="k2"><div class="ln" id="k2t" style="top:380px">So copy trading is two buttons.</div>
+    <div id="pill"><i id="knob"></i><span class="l" id="pl">Mirror</span><span class="r" id="pr">Inverse</span></div></div>
+  <!-- 3. Mirror -->
+  <div class="stat" id="st1"><small>quietkoi · 30 days</small><b id="st1v">+0.0%</b></div>
+  <div class="big" id="bm" style="opacity:0">Mirror the best.</div><div class="bar" id="barm" style="background:var(--mirror)"></div>
+  <!-- 4. The loudest -->
+  <div id="redchip">deskwarrior · <span style="color:#f87171">−74.2%</span> · 30D</div>
+  <div id="loud" style="opacity:0">IT HAS TO BOUNCE.</div>
+  <!-- 5. Inverse -->
+  <div class="big" id="bi" style="opacity:0">Inverse the rest.</div><div class="bar" id="bari" style="background:var(--inverse)"></div>
+  <!-- 6. Payoff -->
+  <div class="chip" id="c7"><b>19:30</b><span id="c7t">Park</span></div>
+  <div class="chip" id="c8"><b>20:00</b><span id="c8t">Dinner with friends</span></div>
+  <div class="chip" id="c9"><b>21:15</b><span id="c9t">Off shift</span></div>
+  <div class="chip" id="c10"><b>22:40</b><span id="c10t">Night in</span></div>
+  <div id="thatsit" style="opacity:0">That's it.</div>
   <div id="pf"></div>
-  <div id="end"><div class="h" style="left:0">Mirror the best.</div><div class="mid"></div><div class="h" style="left:960px;color:#b49cff">Inverse the rest.</div>
-    <div class="lg" id="endlogo"></div><div class="st nk-store"><span>Download on the App Store</span><span>Get it on Google Play</span></div>
-    <div class="nk-disc">Illustrative figures. Fictional characters. Trading perpetuals involves risk of loss. Not financial advice.</div></div>
-  <div id="tagA">NIKA · FLOW B v3 · RIPOMATIC · STOCK FOOTAGE FROM MIXKIT</div>
-  <audio id="m1" src="assets/music.mp3" data-start="0" data-duration="11" data-media-start="0" data-volume="0.8" data-fade-out="0.4"></audio>
-  <audio id="m2" src="assets/music.mp3" data-start="12.5" data-duration="26.5" data-media-start="30" data-volume="0.8" data-fade-in="0.3" data-fade-out="2.5"></audio>
-  <audio id="fx1" src="assets/sfx-1492.mp3" data-start="13.0" data-duration="1.2" data-volume="0.6"></audio>
-  <audio id="fx2" src="assets/sfx-2364.mp3" data-start="16.2" data-duration="0.6" data-volume="0.6"></audio>
-  <audio id="fx3" src="assets/sfx-2870.mp3" data-start="18.4" data-duration="1.6" data-volume="0.55"></audio>
-  <audio id="fx4" src="assets/sfx-1492.mp3" data-start="24.5" data-duration="1.2" data-volume="0.7"></audio>
-  <audio id="fx5" src="assets/sfx-2870.mp3" data-start="26.2" data-duration="1.6" data-volume="0.55"></audio>
+  <div id="phone" class="nk-phone"></div>
+  <!-- 7. End: the sentence assembles -->
+  <div class="card" id="end">
+    <div class="ln e1" id="e1">Mirror the best.</div>
+    <div class="ln e2" id="e2">Inverse the rest.</div>
+    <div id="elogo"></div>
+    <div class="nk-store"><span>Download on the App Store</span><span>Get it on Google Play</span></div>
+    <div class="nk-disc">Illustrative figures. Fictional characters. Trading perpetuals involves risk of loss. Not financial advice.</div>
+  </div>
+  <div id="tagA">NIKA · FLOW B v5 · RIPOMATIC · STOCK FOOTAGE FROM MIXKIT</div>
+  <audio id="m1" src="assets/music.mp3" data-start="0" data-duration="10.6" data-media-start="0" data-volume="0.8" data-fade-out="0.3"></audio>
+  <audio id="m2" src="assets/music.mp3" data-start="12.6" data-duration="27.4" data-media-start="30" data-volume="0.8" data-fade-in="0.2" data-fade-out="2.5"></audio>
+  <audio id="fx1" src="assets/sfx-1492.mp3" data-start="12.1" data-duration="1.2" data-volume="0.7"></audio>
+  <audio id="fx2" src="assets/sfx-2364.mp3" data-start="14.8" data-duration="0.6" data-volume="0.6"></audio>
+  <audio id="fx3" src="assets/sfx-2870.mp3" data-start="17.5" data-duration="1.6" data-volume="0.55"></audio>
+  <audio id="fx4" src="assets/sfx-2364.mp3" data-start="19.75" data-duration="0.5" data-volume="0.7"></audio>
+  <audio id="fx5" src="assets/sfx-2364.mp3" data-start="19.93" data-duration="0.5" data-volume="0.7"></audio>
+  <audio id="fx6" src="assets/sfx-2364.mp3" data-start="20.11" data-duration="0.5" data-volume="0.7"></audio>
+  <audio id="fx7" src="assets/sfx-2364.mp3" data-start="20.29" data-duration="0.5" data-volume="0.7"></audio>
+  <audio id="fx8" src="assets/sfx-1492.mp3" data-start="22.9" data-duration="1.2" data-volume="0.8"></audio>
+  <audio id="fx9" src="assets/sfx-2870.mp3" data-start="25.2" data-duration="1.6" data-volume="0.55"></audio>
+  <audio id="fx10" src="assets/sfx-1485.mp3" data-start="35.3" data-duration="0.5" data-volume="0.9"></audio>
 </div>
 <script>
 const $ = (s) => document.querySelector(s);
 $("#ntf").innerHTML = NK.toast("tn", "quietkoi opened BTC long", "Mirrored in your account", "+$0.00");
-$("#endlogo").innerHTML = NK.logo(90);
+$("#elogo").innerHTML = NK.logo(96);
 $("#pf").innerHTML = `<div class="nk-panel"><div class="nk-row">${NK.av("#f59e0b")}quietkoi<span class="nk-badge m">Mirror</span></div><div class="nk-kv" style="margin-top:14px"><div><small>Put in</small><b>$500.00</b></div><div style="text-align:right"><small>Total PnL</small><b class="nk-g" id="pfm">+$0.00</b></div></div></div>
   <div class="nk-panel"><div class="nk-row">${NK.av("#ef4444")}deskwarrior<span class="nk-badge i">Inverse</span></div><div class="nk-kv" style="margin-top:14px"><div><small>Put in</small><b>$200.00</b></div><div style="text-align:right"><small>Total PnL</small><b class="nk-g" id="pfi">+$0.00</b></div></div></div>`;
 const qk = { h:"quietkoi", c:"#f59e0b", roi:"+268.9%", win:"92.6%", seed:44, pnl:"$1,276,410.2", pnlShort:"$1.28M",
@@ -89,54 +124,75 @@ $("#phone").innerHTML = NK.detail(qk, { id:"qd" }) + NK.sheet(qk, { id:"qs" }) +
   NK.detail(desk, { id:"dd" }) + NK.sheet(desk, { id:"ds" }) + NK.success("Inversing deskwarrior", "$200 · Opposite of every trade", "ok2");
 ["#qd","#qs","#ok1","#dd","#ds","#ok2"].forEach((s) => gsap.set(s, { opacity: 0 }));
 gsap.set(["#qs","#ds"], { y: 760 });
+gsap.set(["#k1","#k2","#end"], { opacity: 0 });
 
 const tl = gsap.timeline({ paused: true });
 const on = (s, at, d = 0.01) => tl.to(s, { opacity: 1, duration: d }, at);
 const off = (s, at, d = 0.01) => tl.to(s, { opacity: 0, duration: d }, at);
-// 1. Busy lives (0-11)
-on("#held", 0.6, 0.4); on("#ntf", 1.4, 0.3);
-NK.count(tl, "#tn-amt", 0, 212.4, 0.8, 1.6, (v) => "+" + NK.money(v));
-const lines = ["quietkoi opened ETH long", "quietkoi opened SOL short", "quietkoi opened Gold long", "quietkoi closed BTC long"], amts = [212.4, 318.9, 365.15, 412.8];
-lines.forEach((l, i) => { const at = 5 + i * 1.5; NK.say(tl, "#tn > div:nth-child(2) b", l, at); if (i) NK.count(tl, "#tn-amt", amts[i - 1], amts[i], 0.6, at + 0.1, (v) => "+" + NK.money(v)); });
-// 2. Two buttons (11-14)
-on("#void", 11); off(["#held", "#ntf"], 11);
-tl.fromTo("#vline", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, immediateRender: false }, 11.2);
-tl.fromTo("#pill", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)", immediateRender: false }, 12.4);
-tl.to("#knob", { x: 434, backgroundColor: "#2a1b52", borderColor: "#6d4bd8", duration: 0.3, ease: "power3.inOut" }, 13.0);
-tl.to("#knob", { x: 0, backgroundColor: "#123d27", borderColor: "#1f6b43", duration: 0.3, ease: "power3.inOut" }, 13.5);
-off("#void", 14);
-// 3. Mirror (14-20.5): the doctor, between patients
-on("#phone", 14.1, 0.25); on("#qd", 14.1);
-NK.count(tl, "#qd-pnl", 0, 1276410.2, 1.6, 14.3, (v) => NK.money(v, 1));
-tl.fromTo("#qd-line", { attr: { "stroke-dashoffset": 1 } }, { attr: { "stroke-dashoffset": 0 }, duration: 1.5, ease: "power2.out", immediateRender: false }, 14.3);
-on("#qs", 15.8); tl.to("#qs", { y: 0, duration: 0.35, ease: "expo.out" }, 15.8);
-tl.fromTo("#capM", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.35, ease: "expo.out", immediateRender: false }, 16.2);
-tl.to("#qs-knob", { scale: 1.06, duration: 0.12, yoyo: true, repeat: 1 }, 16.2);
-NK.say(tl, "#qs-amt", "$500", 17.0);
-tl.to("#qs-thumb", { x: 274, duration: 0.5, ease: "power2.inOut" }, 17.7); tl.to("#qs-fill", { width: "100%", duration: 0.5, ease: "power2.inOut" }, 17.7);
-off(["#qd", "#qs"], 18.4); on("#ok1", 18.4, 0.15);
-off(["#phone", "#capM"], 20.5, 0.2); off("#ok1", 20.7);
-// 4. Inverse (20.5-27): the loudest guy in the office
-NK.say(tl, "#sub", "“It has to bounce. It has to.”", 20.7); NK.say(tl, "#sub", "", 23.0);
-on("#phone", 23.0, 0.2); on("#dd", 23.0);
-on("#ds", 23.8); tl.to("#ds", { y: 0, duration: 0.35, ease: "expo.out" }, 23.8);
-tl.to("#ds-knob", { xPercent: 100, backgroundColor: "#2a1b52", borderColor: "#6d4bd8", duration: 0.25 }, 24.5);
-NK.say(tl, "#ds-hint", "Take the opposite of this trader's positions.", 24.55);
-tl.fromTo("#capI", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.35, ease: "expo.out", immediateRender: false }, 24.5);
-NK.say(tl, "#ds-amt", "$200", 25.0);
-tl.to("#ds-thumb", { x: 274, duration: 0.5, ease: "power2.inOut" }, 25.5); tl.to("#ds-fill", { width: "100%", duration: 0.5, ease: "power2.inOut" }, 25.5);
-off(["#dd", "#ds"], 26.2); on("#ok2", 26.2, 0.15);
-off(["#phone", "#capI"], 27.0, 0.2);
-// 5. That's it: both pay over the evening (27-33.5)
-tl.fromTo("#done", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35, immediateRender: false }, 27.2);
+const NIKA = "#3b49f0", MIR = "#22c55e", INV = "#8b5cf6";
+// 1. A busy day (0-9): each shot gets a time chip typed on; one notification earns across the day
+const chips = ["#c1","#c2","#c3","#c4","#c5","#c6"];
+chips.forEach((c, i) => { const at = i * 1.5; on(c, at); NK.typeOn(tl, c + "t", at + 0.08, { color: NIKA, dur: 0.45, seed: i + 3 }); off(c, at + 1.5); });
+on("#ntf", 0.5, 0.25);
+const tr = ["quietkoi opened BTC long","quietkoi opened ETH long","quietkoi opened SOL short","quietkoi opened Gold long","quietkoi closed BTC long","quietkoi closed ETH long"];
+const amts = [0, 74.2, 212.4, 318.9, 365.15, 412.8];
+tr.forEach((l, i) => { const at = i * 1.5 + 0.1; NK.say(tl, "#tn > div:nth-child(2) b", l, at); if (i) NK.count(tl, "#tn-amt", amts[i - 1], amts[i], 0.6, at + 0.1, (v) => "+" + NK.money(v)); });
+off("#ntf", 9);
+// 2. Type cards (9-12.6)
+on("#k1", 9); NK.typeOn(tl, "#k1t", 9.1, { color: NIKA, cursors: 2, dur: 0.7, seed: 21 });
+off("#k1", 10.6); on("#k2", 10.6); NK.typeOn(tl, "#k2t", 10.7, { color: NIKA, cursors: 2, dur: 0.9, seed: 22 });
+tl.fromTo("#pill", { opacity: 0, scale: 0.4, y: -40 }, { opacity: 1, scale: 1, y: 0, duration: 0.35, ease: "back.out(2)", immediateRender: false }, 11.7);
+tl.to("#knob", { x: 342, backgroundColor: INV, duration: 0.25, ease: "power3.inOut" }, 12.1);
+tl.to("#pl", { color: "#111", duration: 0.01 }, 12.2); tl.to("#pr", { color: "#fff", duration: 0.01 }, 12.2);
+tl.to("#knob", { x: 0, backgroundColor: MIR, duration: 0.25, ease: "power3.inOut" }, 12.4);
+tl.to("#pl", { color: "#fff", duration: 0.01 }, 12.5); tl.to("#pr", { color: "#111", duration: 0.01 }, 12.5);
+off("#k2", 12.6);
+// 3. Mirror the best (12.6-19.6): the library student
+on("#phone", 12.7, 0.25); on("#qd", 12.7);
+on("#st1", 12.9, 0.2); NK.count(tl, "#st1v", 0, 268.9, 1.4, 12.9, (v) => "+" + v.toFixed(1) + "%");
+NK.count(tl, "#qd-pnl", 0, 1276410.2, 1.6, 12.9, (v) => NK.money(v, 1));
+tl.fromTo("#qd-line", { attr: { "stroke-dashoffset": 1 } }, { attr: { "stroke-dashoffset": 0 }, duration: 1.5, ease: "power2.out", immediateRender: false }, 12.9);
+off("#st1", 14.6, 0.2);
+on("#qs", 14.5); tl.to("#qs", { y: 0, duration: 0.35, ease: "expo.out" }, 14.5);
+tl.to("#qs-knob", { scale: 1.08, duration: 0.12, yoyo: true, repeat: 1 }, 14.8);
+on("#bm", 15.0); NK.typeOn(tl, "#bm", 15.0, { color: MIR, dur: 0.9, seed: 31 });
+NK.say(tl, "#qs-amt", "$500", 16.4);
+tl.to("#qs-thumb", { x: 274, duration: 0.5, ease: "power2.inOut" }, 16.9); tl.to("#qs-fill", { width: "100%", duration: 0.5, ease: "power2.inOut" }, 16.9);
+off(["#qd", "#qs"], 17.5); on("#ok1", 17.5, 0.15);
+tl.to("#barm", { width: 860, duration: 0.5, ease: "power3.out" }, 17.6);
+off(["#phone", "#bm", "#barm"], 19.6); off("#ok1", 19.6);
+// 4. The loudest (19.6-22.2)
+on("#redchip", 19.65); NK.typeOn(tl, "#redchip", 19.65, { color: "#ef4444", dur: 0.6, seed: 41 });
+on("#loud", 19.7); NK.slamWords(tl, "#loud", 19.75, 0.18);
+tl.to("#loud", { x: 8, duration: 0.05, yoyo: true, repeat: 9, ease: "none" }, 20.5);
+off(["#loud", "#redchip"], 22.2);
+// 5. Inverse the rest (22.2-27): types right to left
+on("#phone", 22.25, 0.2); on("#dd", 22.25);
+on("#ds", 22.5); tl.to("#ds", { y: 0, duration: 0.35, ease: "expo.out" }, 22.5);
+tl.to("#ds-knob", { xPercent: 100, backgroundColor: "#2a1b52", borderColor: "#6d4bd8", duration: 0.25 }, 22.95);
+NK.say(tl, "#ds-hint", "Take the opposite of this trader's positions.", 23.0);
+on("#bi", 23.1); NK.typeOn(tl, "#bi", 23.1, { color: INV, dir: "rtl", dur: 0.9, seed: 51 });
+NK.say(tl, "#ds-amt", "$200", 24.2);
+tl.to("#ds-thumb", { x: 274, duration: 0.5, ease: "power2.inOut" }, 24.6); tl.to("#ds-fill", { width: "100%", duration: 0.5, ease: "power2.inOut" }, 24.6);
+off(["#dd", "#ds"], 25.2); on("#ok2", 25.2, 0.15);
+tl.fromTo("#bari", { width: 0, x: 860 }, { width: 860, x: 0, duration: 0.5, ease: "power3.out", immediateRender: false }, 25.3);
+off(["#phone", "#bi", "#bari"], 27); off("#ok2", 27);
+// 6. Payoff (27-33.4)
+["#c7","#c8","#c9","#c10"].forEach((c, i) => { const at = 27 + i * 1.6; on(c, at); NK.typeOn(tl, c + "t", at + 0.08, { color: NIKA, dur: 0.5, seed: 60 + i }); off(c, at + 1.6); });
+on("#thatsit", 27.2); NK.typeOn(tl, "#thatsit", 27.2, { color: NIKA, cursors: 2, dur: 0.6, seed: 71 });
 tl.fromTo("#pf", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.35, immediateRender: false }, 27.5);
-NK.count(tl, "#pfm", 0, 648.6, 5.0, 27.8, (v) => "+" + NK.money(v));
-NK.count(tl, "#pfi", 0, 412.3, 5.0, 27.8, (v) => "+" + NK.money(v));
-off(["#done", "#pf"], 33.5, 0.2);
-// 6. End card (33.5-39)
-on("#end", 33.5, 0.3);
-tl.to("#end .h", { opacity: 1, duration: 0.3, stagger: 0.6 }, 33.8); on("#end .mid", 33.8, 0.3);
-on("#end .lg", 35.0, 0.3); on("#end .st", 35.4, 0.3); on("#end .nk-disc", 35.6, 0.3);
+NK.count(tl, "#pfm", 0, 648.6, 5.2, 27.8, (v) => "+" + NK.money(v));
+NK.count(tl, "#pfi", 0, 412.3, 5.2, 27.8, (v) => "+" + NK.money(v));
+off(["#thatsit", "#pf"], 33.4);
+// 7. End (33.4-40): the two halves the viewer already saw assemble into the line
+on("#end", 33.4, 0.15);
+NK.typeOn(tl, "#e1", 33.6, { color: MIR, dur: 0.8, seed: 81 });
+NK.typeOn(tl, "#e2", 34.5, { color: INV, dir: "rtl", dur: 0.8, seed: 82 });
+tl.to("#end .e1", { y: -10, duration: 0.25, ease: "power2.out" }, 35.3);
+tl.fromTo("#e1", { color: "#111" }, { color: "#15803d", duration: 0.3, immediateRender: false }, 35.4);
+tl.fromTo("#e2", { color: "#111" }, { color: "#6d28d9", duration: 0.3, immediateRender: false }, 35.4);
+tl.fromTo("#elogo", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, immediateRender: false }, 36.1);
+on("#end .nk-store", 36.7, 0.3); on("#end .nk-disc", 36.9, 0.3);
 window.__timelines = window.__timelines || {};
 window.__timelines.main = tl;
 </script>

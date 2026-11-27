@@ -73,3 +73,7 @@
 .nk-scene .act { position:absolute; left:70px; bottom:150px; max-width:780px; font-size:34px; font-weight:600; line-height:1.3; text-shadow:0 2px 20px rgba(0,0,0,.4); }
 .nk-scene .subt { position:absolute; left:0; right:0; bottom:70px; text-align:center; font-size:36px; font-weight:600; color:#fff; text-shadow:0 2px 12px rgba(0,0,0,.8); }
 .nk-scene .tagline { position:absolute; right:70px; top:56px; font-size:16px; font-weight:700; letter-spacing:.14em; color:rgba(255,255,255,.65); }
+/* kinetic type */
+.tc { display:inline-block; white-space:pre; }
+.tcur { color:#fff; border-radius:0.08em; text-align:center; }
+.sw { display:inline-block; }

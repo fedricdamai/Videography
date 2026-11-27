@@ -125,6 +125,7 @@ Useful moves (examples in the playbook):
 ## 6. Build
 
 - Choose the music first and note its BPM. Plan durations in beats.
+- Moving text (type-on, slammed words, chips, stats, end-line assembly): `/kinetic-type`. Make the end line the payoff: plant each half earlier, assemble it at the end.
 - Kinetic type, stats, charts and assembly: `/hyperframes`. Product UI, phones, dashboards: `/stageshow`. Check `/hyperframes-registry` before hand-building an effect.
 - One accent color (loud) or none (quiet). One display font.
 
